@@ -16,5 +16,9 @@ Route::get('/', function () {
 });
 
 
+Route::get('/admin', function () {
+    return view('admin');
+});
+
 
 Route::any('{slug}', 'HomeController@home')->where('slug', '([A-z\d-\/_.]+)?');

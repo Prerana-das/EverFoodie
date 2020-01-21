@@ -12,6 +12,15 @@ import partner from '../pages/user/partner.vue'
 import restaurant from '../pages/user/restaurant.vue'
 import singlerestaurarnt from '../pages/user/singlerestaurarnt.vue'
 
+
+//Admin
+import city from '../pages/admin/city.vue'
+import food from '../pages/admin/food.vue'
+import overview from '../pages/admin/overview.vue'
+import admin_restaurant from '../pages/admin/admin_restaurant.vue'
+import review from '../pages/admin/review.vue'
+
+
 let Admin = ['Admin'];
 
 
@@ -77,6 +86,52 @@ export default new Router({
       component: restaurant,
       meta: {
           title: 'singlerestaurarnt',
+      }
+    },
+
+
+    //admin
+    {
+      path: '/food',
+      name: 'food',
+      component: food,
+      meta: {
+          title: 'food',
+      }
+    },
+
+    {
+      path: '/city',
+      name: 'city',
+      component: city,
+      meta: {
+          title: 'city',
+      }
+    },
+
+    {
+      path: '/overview',
+      name: 'overview',
+      component: overview,
+      meta: {
+          title: 'overview',
+      }
+    },
+
+    {
+      path: '/admin_restaurant',
+      name: 'admin_restaurant',
+      component: admin_restaurant,
+      meta: {
+          title: 'admin_restaurant',
+      }
+    },
+     {
+      path: '/review',
+      name: 'review',
+      component: review,
+      meta: {
+          title: 'review',
       }
     },
    
