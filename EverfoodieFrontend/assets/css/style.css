@@ -1,6 +1,3 @@
-
-
-
 .block_btn{
     display: inline-block;
     background-color: #eb2f06;
@@ -41,6 +38,14 @@
     font-size: 17px;
     border-radius: 30px;
     color: #eb2f06;
+}
+.block_item {
+    padding: 4px 5px;
+    background-color: red;
+    align-self: center;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
 }
 
 /* ==============header start============== */
@@ -828,3 +833,148 @@
     height: -webkit-fill-available;
 }
 /* ============== Forgot Passwor start ============== */
+
+
+/* ============== Restaurant Details start ============== */
+.restaurant_details_banner{
+    background-image: url('../img/res_bg.jpg');
+    background-size:cover;
+    /*background-position: center;*/
+    background-repeat: no-repeat;
+    height: 70vh;
+    position: relative;
+}
+.restaurant_details_title_area{
+    padding: 18px 0px;
+}
+.restaurant_details_title_cont  {
+    display: flex;
+}
+.restaurant_details_item_list {
+    align-self: center;
+    margin-left: 25px;
+}
+.restaurant_details_item_list li {
+    margin-right: 12px;
+    font-size: 18px;
+    display: inline-block;
+}
+.restaurant_details_title {
+    display: inline-block;
+    margin-right: 25px;
+}
+
+.res_details_discount_area{
+    padding: 18px 0px;
+    background-color: #ECF0F1;
+}
+.res_details_discount {
+    font-size: 26px;
+}
+/* ============== Restaurant Details end ============== */
+
+
+/* ============== Restaurant Details Meal start ============== */
+.restaurant_details_meal_menu {
+    display: flex;
+    padding: 15px 0px;
+}
+.restaurant_details_meal_menu li {
+    margin-right: 15px;
+    font-size: 18px;
+    cursor: pointer;
+}
+.restaurant_details_meal {
+    padding: 18px 0px;
+}
+.restaurant_details_meal_list {
+    padding: 20px 0px;
+}
+.restaurant_details_meal_list li {
+    box-shadow: 0 1px 8px -2px rgba(0, 0, 0, 0.2);
+    padding: 18px 20px;
+    margin-bottom: 22px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.restaurant_meal_new {
+    margin-right: 15px;
+}
+.restaurant_meal_list_label{
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+}
+/* ============== Restaurant Details Meal end ============== */
+
+
+
+
+
+
+
+
+
+.payment_area_overlay {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .15s linear;
+    z-index: 999;
+}
+.payment_area {
+    background: #fff;
+    position: relative;
+    max-width: 526px;
+    width: 100%;
+    height: fit-content;
+   /* overflow-y: auto;*/
+    top: 0;
+    left: 0;
+    transition-duration: 500ms;
+    z-index: 1;
+    border-radius: 3px;
+    box-shadow: -1px 0 25px 0 rgba(0, 0, 0, 0.5);
+    transition: all 0.3s;
+    opacity: 0;
+    padding: 30px 28px;
+    max-height: 465px;
+}
+.payment_toggle {
+    float: right;
+    margin-bottom: 14px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.payment_modal_fadeIn {
+    opacity: 1;
+    visibility: visible;
+}
+.payment_modal_show {
+    transform: translate(0, 10%);
+    opacity: 1;
+}
+.reservation-btn {
+    text-align: right;
+}
+.advanced_payment {
+    position: absolute;
+    bottom: 45px;
+    left: 60px;
+    background-color: #202020a8;
+    border-color: #20202026;
+}
+.payment_title {
+    margin-top: 22px;
+    margin-bottom: 29px;
+    display: block;
+}
+/* Reservation Payment end */

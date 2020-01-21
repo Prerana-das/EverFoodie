@@ -1,0 +1,9 @@
+.git clone
+
+composer install
+
+php version check
+
+php artisan key:generate
+
+php artisan run serve
