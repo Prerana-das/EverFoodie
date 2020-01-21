@@ -1,54 +1,7 @@
-<!DOCTYPE HTML>
-<html lang="en-US">
-	<head>
-		<meta charset="UTF-8">
-	    <meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>EverFoodie</title>
+<template>
+    <div>
 
-		<!-- Fontawesome css -->
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-
-		<link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed:300,400,500,700,800,900&display=swap" rel="stylesheet">
-		
-		<!-- BOOTSTRAP GRID CSS -->
-		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-		<!-- owl carousel css -->
-		<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-		<!-- COMMON CSS -->
-		<link rel="stylesheet" href="assets/css/common.css" />
-		<!-- STYLE CSS -->
-		<link rel="stylesheet" href="assets/css/style.css" />
-		<!-- RESPONSIVE CSS -->
-		<link rel="stylesheet" href="assets/css/responsive.css" />
-	</head>
-	<body>
-
-		<!-- ================== Header Area Start ================== -->
-		<div class="header_area _box_shadow">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="header_cont">
-							<div class="main_logo">
-								<a href="index.html">
-									<!-- <img src="assets/img/logo.jpg" alt="logo"> -->
-									<span>Ever</span>Foodie
-								</a>
-							</div>
-							<div class="login">
-								<a href="login.html">
-									<img src="assets/img/login.png" alt="">Login
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- ===================== Header Area End ======================= -->
-
-
-		<div class="container">
+    	<div class="container">
 			<div class="div">
 			<!-- ===================== Restaurant Area Start ======================= -->
 			<div class="restaurant_details_banner_area ">
@@ -215,75 +168,6 @@
 		</div>
 		<!-- ===================== Restaurant checkout end ======================= -->
 
-		 <!-- ===================== Footer Area Start ======================= -->
-		 <div class="footer">
-			<div class="footer_top">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-4 col-md-6">
-							<div class="footer_col">
-								<img src="assets/img/footer_logo.png" alt="" />
-								<p>Lorem Ipsum available but the arran majority have suffered alteration in some form by injected humour.</p>
-								<ul>
-									<li>Working Hours:</li>
-									<li>Mon - Sat 8:00 - 18:00 (Sunday off)</li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6">
-							<div class="footer_col">
-								<h4>GET IN TOUCH</h4>
-								<ul class="footer_contact">
-									<li>1265 North Avenue LukeLane South Bend, IN 3600025</li>
-									<li><a href="+012 549 594">+012 549 594</a></li>
-									<li><a href="mailto:example@email.com">example@email.com</a></li>
-									<li><a href="support@email.com">support@email.com</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-lg-2 col-md-6">
-							<div class="footer_col">
-								<h4>Services</h4>
-								<ul class="footer_service">
-									<li><a href="#">Home</a></li>
-									<li><a href="#">About Us</a></li>
-									<li><a href="#">Our Works</a></li>
-									<li><a href="#">Contact</a></li>
-									<li><a href="#">News</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6">
-							<div class="footer_col">
-								<h4>newsletter</h4>
-								<p>Lorem Ipsum available, but the majority the have suffered alteration some.</p>
-								<form action="">
-									<input type="email" placeholder="enter your email"/>
-									<input type="submit" value="subscribe"/>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="footer_bottom">
-				<div class="container">
-					<div class="row">
-						<div class="col-xl-12 text-center">
-							<div class="footer_bottom_con">
-								<p>&copy; Prerana | All rights reserved.</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		 </div>
-		 <!-- ===================== Footer Area End ======================= -->
 
-
-		<script src="assets/js/jquery-1.12.4.min.js" ></script>
-        <script src="assets/js/bootstrap.min.js" ></script>
-        <script src="assets/js/owl.carousel.min.js" ></script>
-        <script src="assets/js/script.js" ></script>
-	</body>
-</html>
+    </div>
+ </template>

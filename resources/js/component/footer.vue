@@ -7,7 +7,6 @@
                     <div class="row">
                         <div class="col-lg-4 col-md-6">
                             <div class="footer_col">
-                                <img src="assets/img/footer_logo.png" alt="" />
                                 <p>Lorem Ipsum available but the arran majority have suffered alteration in some form by injected humour.</p>
                                 <ul>
                                     <li>Working Hours:</li>

@@ -2012,7 +2012,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {}
 });
@@ -64753,10 +64752,6 @@ var staticRenderFns = [
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-lg-4 col-md-6" }, [
                 _c("div", { staticClass: "footer_col" }, [
-                  _c("img", {
-                    attrs: { src: "assets/img/footer_logo.png", alt: "" }
-                  }),
-                  _vm._v(" "),
                   _c("p", [
                     _vm._v(
                       "Lorem Ipsum available but the arran majority have suffered alteration in some form by injected humour."
@@ -66809,6 +66804,298 @@ var staticRenderFns = [
           ])
         ])
       ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/user/singlerestaurarnt.vue?vue&type=template&id=69ffbebe&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/user/singlerestaurarnt.vue?vue&type=template&id=69ffbebe& ***!
+  \********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "div" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "restaurant_details_meal" }, [
+          _c("div", { staticClass: "container _padd_0" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("ul", { staticClass: "restaurant_details_meal_list" }, [
+                  _c("li", { staticClass: "restaurant_meal_list_label" }, [
+                    _vm._v("BREAKFAST")
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "restaurant_details_meal_item" }, [
+                    _c("div", { staticClass: "restaurant_meal_title" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t\t\t\tKhichuri, Egg Curry & Water\n\t\t\t\t\t\t\t\t\t"
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "restaurant_meal_price_area" }, [
+                      _c("span", { staticClass: "restaurant_meal_new" }, [
+                        _vm._v("BDT 63.00")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        { staticClass: "restaurant_meal_old" },
+                        [_c("strike", [_vm._v("BDT 120.00")])],
+                        1
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "restaurant_details_meal_item" }, [
+                    _c("div", { staticClass: "restaurant_meal_title" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t\t\t\tKhichuri, Egg Curry & Water\n\t\t\t\t\t\t\t\t\t"
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "restaurant_meal_price_area" }, [
+                      _c("span", { staticClass: "restaurant_meal_new" }, [
+                        _vm._v("BDT 63.00")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        { staticClass: "restaurant_meal_old" },
+                        [_c("strike", [_vm._v("BDT 120.00")])],
+                        1
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "restaurant_details_meal_item" }, [
+                    _c("div", { staticClass: "restaurant_meal_title" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t\t\t\tKhichuri, Egg Curry & Water\n\t\t\t\t\t\t\t\t\t"
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "restaurant_meal_price_area" }, [
+                      _c("span", { staticClass: "restaurant_meal_new" }, [
+                        _vm._v("BDT 63.00")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        { staticClass: "restaurant_meal_old" },
+                        [_c("strike", [_vm._v("BDT 120.00")])],
+                        1
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(2)
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(3)
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "restaurant_details_banner_area " }, [
+      _c(
+        "div",
+        { staticClass: "restaurant_details_banner _padd_tb60 _padd_t100" },
+        [
+          _c("div", { staticClass: "container" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c("div", { staticClass: "restaurant_details_banner_cont" })
+              ])
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "restaurant_details_title_area" }, [
+        _c("div", { staticClass: "container _padd_0" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-12" }, [
+              _c("div", { staticClass: "restaurant_details_title_cont" }, [
+                _c("h1", { staticClass: "restaurant_details_title" }, [
+                  _vm._v("Kababia")
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "block_item" }, [_vm._v("20% Off")]),
+                _vm._v(" "),
+                _c("ul", { staticClass: "restaurant_details_item_list" }, [
+                  _c("li", [_vm._v("Kabab & Grill")]),
+                  _vm._v(" "),
+                  _c("li", [_vm._v("Asian")]),
+                  _vm._v(" "),
+                  _c("li", [_vm._v("Chicken")]),
+                  _vm._v(" "),
+                  _c("li", [_vm._v("Noodles")])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "res_details_discount_area" }, [
+        _c("div", { staticClass: "container _padd_0" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-12" }, [
+              _c("h1", { staticClass: "res_details_discount" }, [
+                _vm._v("20% OFF")
+              ]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Enjoy 20% Discount on Full Menu")])
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", { staticClass: "restaurant_details_meal_menu" }, [
+      _c("li", [_vm._v("Kabab & Grill")]),
+      _vm._v(" "),
+      _c("li", [_vm._v("Asian")]),
+      _vm._v(" "),
+      _c("li", [_vm._v("Chicken")]),
+      _vm._v(" "),
+      _c("li", [_vm._v("Noodles")]),
+      _vm._v(" "),
+      _c("li", [_vm._v("Chicken")]),
+      _vm._v(" "),
+      _c("li", [_vm._v("Noodles")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "addtocart_area_overlay" }, [
+      _c("div", { staticClass: "addtocart_area" }, [
+        _c("span", { staticClass: "addtocart_toggle" }, [
+          _c("i", { staticClass: "fas fa-times" })
+        ]),
+        _vm._v(" "),
+        _c("h3", { staticClass: "addtocart_title" }, [
+          _vm._v("Khichuri, Egg Curry & Water")
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "addtocart_price" }, [_vm._v("BDT 120")]),
+        _vm._v(" "),
+        _c("form", { attrs: { action: "#" } }, [
+          _c("div", { staticClass: "form-box" }, [
+            _c("h3", [_vm._v("Special instructions")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v("You can write down here any special instructions")
+            ]),
+            _vm._v(" "),
+            _c("textarea", { attrs: { cols: "30", rows: "3" } })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-box" }, [
+            _c("p", { staticClass: "addcard" }, [
+              _c("span", { staticClass: "card_add" }, [_vm._v("-")]),
+              _vm._v("1 \n\t\t\t\t\t\t\t\t\t\t\t\t\t"),
+              _c("span", { staticClass: "card_minus" }, [_vm._v("+")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-box" }, [
+            _c("button", { staticClass: "block_btn" }, [_vm._v("Add To Card")])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "checkout_area _box_shadow" }, [
+      _c("div", { staticClass: "checkout_cont" }, [
+        _c("span", { staticClass: "checkout_cont_deliverytime" }, [
+          _vm._v("20 min")
+        ]),
+        _vm._v(" "),
+        _c("h3", { staticClass: "checkout_cont_title" }, [
+          _vm._v("Your order Kababia")
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "checkout_cont_sub" }, [
+          _vm._v(
+            "You haven’t added anything to your cart yet! Start adding your favourite dishes"
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "checkout_list _mar_t20" }, [
+        _c("ul", [
+          _c("li", { staticClass: "checkout_list_item" }, [
+            _c("div", { staticClass: "checkout_list_left" }, [
+              _c("p", [_vm._v("Subtotal")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "checkout_list_left" }, [
+              _c("span", [_vm._v("BDT 120")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "checkout_list_item" }, [
+            _c("div", { staticClass: "checkout_list_left" }, [
+              _c("p", [_vm._v("Delivery fee")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "checkout_list_left" }, [
+              _c("span", [_vm._v("BDT 120")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "checkout_list_item" }, [
+            _c("div", { staticClass: "checkout_list_left" }, [
+              _c("p", [_c("b", [_vm._v("Total")])])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "checkout_list_left" }, [
+              _c("span", [_vm._v("BDT 120")])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("button", { staticClass: "block_btn" }, [_vm._v("Checkout")])
     ])
   }
 ]
@@ -83953,6 +84240,59 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/pages/user/singlerestaurarnt.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/pages/user/singlerestaurarnt.vue ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _singlerestaurarnt_vue_vue_type_template_id_69ffbebe___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./singlerestaurarnt.vue?vue&type=template&id=69ffbebe& */ "./resources/js/pages/user/singlerestaurarnt.vue?vue&type=template&id=69ffbebe&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  script,
+  _singlerestaurarnt_vue_vue_type_template_id_69ffbebe___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _singlerestaurarnt_vue_vue_type_template_id_69ffbebe___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/pages/user/singlerestaurarnt.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/pages/user/singlerestaurarnt.vue?vue&type=template&id=69ffbebe&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/pages/user/singlerestaurarnt.vue?vue&type=template&id=69ffbebe& ***!
+  \**************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_singlerestaurarnt_vue_vue_type_template_id_69ffbebe___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./singlerestaurarnt.vue?vue&type=template&id=69ffbebe& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/user/singlerestaurarnt.vue?vue&type=template&id=69ffbebe&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_singlerestaurarnt_vue_vue_type_template_id_69ffbebe___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_singlerestaurarnt_vue_vue_type_template_id_69ffbebe___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/router/index.js":
 /*!**************************************!*\
   !*** ./resources/js/router/index.js ***!
@@ -83971,9 +84311,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_user_forgot_password_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../pages/user/forgot_password.vue */ "./resources/js/pages/user/forgot_password.vue");
 /* harmony import */ var _pages_user_partner_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../pages/user/partner.vue */ "./resources/js/pages/user/partner.vue");
 /* harmony import */ var _pages_user_restaurant_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../pages/user/restaurant.vue */ "./resources/js/pages/user/restaurant.vue");
+/* harmony import */ var _pages_user_singlerestaurarnt_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../pages/user/singlerestaurarnt.vue */ "./resources/js/pages/user/singlerestaurarnt.vue");
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
 
 
 
@@ -84024,6 +84366,13 @@ var Admin = ['Admin'];
     component: _pages_user_restaurant_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
     meta: {
       title: 'restaurant'
+    }
+  }, {
+    path: '/singlerestaurarnt',
+    name: 'singlerestaurarnt',
+    component: _pages_user_restaurant_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+    meta: {
+      title: 'singlerestaurarnt'
     }
   }]
 }));

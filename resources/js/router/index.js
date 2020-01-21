@@ -10,6 +10,7 @@ import register from '../pages/user/register.vue'
 import forgot_password from '../pages/user/forgot_password.vue'
 import partner from '../pages/user/partner.vue'
 import restaurant from '../pages/user/restaurant.vue'
+import singlerestaurarnt from '../pages/user/singlerestaurarnt.vue'
 
 let Admin = ['Admin'];
 
@@ -68,6 +69,14 @@ export default new Router({
       component: restaurant,
       meta: {
           title: 'restaurant',
+      }
+    },
+     {
+      path: '/singlerestaurarnt',
+      name: 'singlerestaurarnt',
+      component: restaurant,
+      meta: {
+          title: 'singlerestaurarnt',
       }
     },
    

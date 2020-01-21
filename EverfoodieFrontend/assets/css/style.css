@@ -64,7 +64,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 999999;
+    z-index: 111111;
     transform: translateY(0);
     transition: all 0.4s;  
     width: 100%; 
@@ -865,7 +865,7 @@
 }
 
 .res_details_discount_area{
-    padding: 18px 0px;
+    padding: 18px 15px;
     background-color: #ECF0F1;
 }
 .res_details_discount {
@@ -886,6 +886,7 @@
 }
 .restaurant_details_meal {
     padding: 18px 0px;
+    position: relative;
 }
 .restaurant_details_meal_list {
     padding: 20px 0px;
@@ -909,14 +910,8 @@
 /* ============== Restaurant Details Meal end ============== */
 
 
-
-
-
-
-
-
-
-.payment_area_overlay {
+/* ============== addtocart modal start ============== */
+.addtocart_area_overlay {
     display: flex;
     justify-content: center;
     position: fixed;
@@ -928,9 +923,9 @@
     opacity: 0;
     visibility: hidden;
     transition: opacity .15s linear;
-    z-index: 999;
+    z-index: 999999;
 }
-.payment_area {
+.addtocart_area {
     background: #fff;
     position: relative;
     max-width: 526px;
@@ -948,33 +943,75 @@
     padding: 30px 28px;
     max-height: 465px;
 }
-.payment_toggle {
+.addtocart_toggle {
     float: right;
     margin-bottom: 14px;
     font-size: 20px;
     cursor: pointer;
 }
-.payment_modal_fadeIn {
+.addtocart_modal_fadeIn {
     opacity: 1;
     visibility: visible;
 }
-.payment_modal_show {
+.addtocart_modal_show {
     transform: translate(0, 10%);
     opacity: 1;
 }
 .reservation-btn {
     text-align: right;
 }
-.advanced_payment {
-    position: absolute;
-    bottom: 45px;
-    left: 60px;
-    background-color: #202020a8;
-    border-color: #20202026;
-}
-.payment_title {
+.addtocart_title {
     margin-top: 22px;
-    margin-bottom: 29px;
+    margin-bottom: 7px;
     display: block;
 }
-/* Reservation Payment end */
+.addtocart_area .form-box textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin: 10px 0px 0px 0px;
+}
+.addcard {
+    font-size: 17px;
+}
+.card_add {
+    margin-right: 8px;
+    font-size: 23px;
+    color: red;
+    font-weight: 600;
+    cursor: pointer;
+}
+.card_minus {
+    margin-left: 5px;
+    font-size: 23px;
+    color: green;
+    font-weight: 500;
+    cursor: pointer;
+}
+.addtocart_price {
+    margin-bottom: 14px;
+}
+/* ============== addtocart modal end ============== */
+
+
+
+/* ============== checkout start ============== */
+.checkout_list_item {
+    display: flex;
+    justify-content: space-between;
+}
+.div{
+    width:70%;
+}
+.checkout_area {
+    width: 30%;
+    position: fixed;
+    right: 0;
+    z-index: 11;
+    background-color: #fff;
+    padding: 30px;
+    text-align: center;
+    top: 66px;
+    height: 65%;
+}
+/* ============== checkout end ============== */

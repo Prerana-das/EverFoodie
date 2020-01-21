@@ -40,13 +40,13 @@
 
          // Reservation Payment Modal
       $('.restaurant_details_meal_item').click(function() {
-              $(".payment_area").addClass("payment_modal_show");
-              $(".payment_area_overlay").addClass("payment_modal_fadeIn");
+              $(".addtocart_area").addClass("addtocart_modal_show");
+              $(".addtocart_area_overlay").addClass("addtocart_modal_fadeIn");
           });
-          $(".payment_toggle").click(function(e) {
+          $(".addtocart_toggle").click(function(e) {
               e.preventDefault();
-              $(".payment_area").removeClass("payment_modal_show");
-              $(".payment_area_overlay").removeClass("payment_modal_fadeIn");
+              $(".addtocart_area").removeClass("addtocart_modal_show");
+              $(".addtocart_area_overlay").removeClass("addtocart_modal_fadeIn");
           });
 
 
