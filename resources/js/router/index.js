@@ -20,9 +20,7 @@ import overview from '../pages/admin/overview.vue'
 import admin_restaurant from '../pages/admin/admin_restaurant.vue'
 import review from '../pages/admin/review.vue'
 
-
 let Admin = ['Admin'];
-
 
 export default new Router({
   mode: 'history',
@@ -92,7 +90,7 @@ export default new Router({
 
     //admin
     {
-      path: '/food',
+      path: '/admin/food',
       name: 'food',
       component: food,
       meta: {
@@ -101,7 +99,7 @@ export default new Router({
     },
 
     {
-      path: '/city',
+      path: '/admin/city',
       name: 'city',
       component: city,
       meta: {
@@ -110,7 +108,7 @@ export default new Router({
     },
 
     {
-      path: '/overview',
+      path: '/admin/overview',
       name: 'overview',
       component: overview,
       meta: {
@@ -119,7 +117,7 @@ export default new Router({
     },
 
     {
-      path: '/admin_restaurant',
+      path: '/admin/admin_restaurant',
       name: 'admin_restaurant',
       component: admin_restaurant,
       meta: {
@@ -127,7 +125,7 @@ export default new Router({
       }
     },
      {
-      path: '/review',
+      path: '/admin/review',
       name: 'review',
       component: review,
       meta: {

@@ -2191,6 +2191,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -64927,7 +64929,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "app" } }, [
+  return _c("div", [
     !_vm.isMainSite
       ? _c(
           "div",
@@ -65368,6 +65370,8 @@ var render = function() {
   return _c(
     "div",
     [
+      _c("h1", [_vm._v("hello")]),
+      _vm._v(" "),
       _c("headerSection"),
       _vm._v(" "),
       _c(
@@ -85471,7 +85475,7 @@ vue__WEBPACK_IMPORTED_MODULE_5___default.a.use(iview__WEBPACK_IMPORTED_MODULE_2_
 });
 
 vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('master', __webpack_require__(/*! ./layout/master.vue */ "./resources/js/layout/master.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('admin', __webpack_require__(/*! ./layout/admin_master.vue */ "./resources/js/layout/admin_master.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('admin_master', __webpack_require__(/*! ./layout/admin_master.vue */ "./resources/js/layout/admin_master.vue")["default"]);
 var app = new vue__WEBPACK_IMPORTED_MODULE_5___default.a({
   router: _router__WEBPACK_IMPORTED_MODULE_1__["default"],
   el: '#app'
@@ -86988,35 +86992,35 @@ var Admin = ['Admin'];
     }
   }, //admin
   {
-    path: '/food',
+    path: '/admin/food',
     name: 'food',
     component: _pages_admin_food_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
     meta: {
       title: 'food'
     }
   }, {
-    path: '/city',
+    path: '/admin/city',
     name: 'city',
     component: _pages_admin_city_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
     meta: {
       title: 'city'
     }
   }, {
-    path: '/overview',
+    path: '/admin/overview',
     name: 'overview',
     component: _pages_admin_overview_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
     meta: {
       title: 'overview'
     }
   }, {
-    path: '/admin_restaurant',
+    path: '/admin/admin_restaurant',
     name: 'admin_restaurant',
     component: _pages_admin_admin_restaurant_vue__WEBPACK_IMPORTED_MODULE_12__["default"],
     meta: {
       title: 'admin_restaurant'
     }
   }, {
-    path: '/review',
+    path: '/admin/review',
     name: 'review',
     component: _pages_admin_review_vue__WEBPACK_IMPORTED_MODULE_13__["default"],
     meta: {

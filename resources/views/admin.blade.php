@@ -23,7 +23,7 @@
     <body>
        
         <div id="app">
-            <admin></admin>
+            <admin_master></admin_master>
         </div>
         
         <script src="/js/app.js"></script>

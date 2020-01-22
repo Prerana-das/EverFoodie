@@ -16,7 +16,7 @@ import Vue from 'vue'
 
 
 Vue.component('master', require('./layout/master.vue').default);
-Vue.component('admin', require('./layout/admin_master.vue').default);
+Vue.component('admin_master', require('./layout/admin_master.vue').default);
 
 const app = new Vue({
 	router,
