@@ -13,9 +13,8 @@ export default {
     },
     computed: {
         ...mapGetters({
-
-        
-
+            authUser:'getAuthUser',
+            isLoggedIn:'isLoggedIn',
         }),
     },
     filters:{

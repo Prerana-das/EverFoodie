@@ -20,5 +20,10 @@ Route::get('/admin', function () {
     return view('admin');
 });
 
+//Auth::routes();
+
+
+Route::post('/app/registration', "UserController@registration");
+Route::post('/app/login', "UserController@login");
 
 Route::any('{slug}', 'HomeController@home')->where('slug', '([A-z\d-\/_.]+)?');  //

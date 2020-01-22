@@ -24,20 +24,23 @@
 						<h3 class="login_title">Log in</h3>
 						<p class="login_sub">Log in your email or username</p>
 					</div>
-					<form action="#">
+
+					<!-- ==================Form ============== -->
+					<form @submit.prevent="login">
 						<div class="login_group">
 							<label>Email or username</label>
-							<input type="email" placeholder="Type your email or username">
+							<input v-model="formItem.email" type="email" placeholder="Type your email or username">
 						</div>
 						<div class="login_group">
 							<label>Password</label>
 							<a href="forgot_password.html" class="forgot_pass">Forgot Password?</a>
-							<input type="password" placeholder="Type your password">
+							<input v-model="formItem.password" type="password" placeholder="Type your password">
 						</div>
 						<div class="login_group _mar_t10">
 							<input type="submit" value="Log in">
 						</div> 
 					</form>
+					<!-- ==================Form ============== -->
 
 					<div class="login_social_area">
 						<h3 class="login_social_title">Logged In with:</h3>
@@ -92,3 +95,38 @@
 
     </div>
  </template>
+
+<script>
+    export default {
+        data(){
+            return{
+                formItem:{
+					email:'',
+                    password:'',
+                } 
+            }
+        },
+       methods:{
+            async login(){
+               if(this.formItem.email=="" || this.formItem.password==''){
+                    this.i("All frields are required!");
+                    return;
+                }
+                const res = await this.callApi('post',"login",this.formItem)
+                if(res.status==200){
+                    this.s("login successfull !")
+                      // window.location = '/'
+                    this.$router.push('/')
+                  
+                }
+                else{
+                    this.swr();
+                }
+            },
+        },
+         created(){
+            console.log(window.authUser)
+            
+        }
+    }
+</script>
