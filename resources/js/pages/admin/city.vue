@@ -11,13 +11,33 @@
 					<!-- ===========Form================ -->
 					<Form :model="formItem" :label-width="80">
 						<FormItem label="Input">
-							<Input v-model="formItem.input" placeholder="Enter something..."></Input>
+							<Input v-model="formItem.name" placeholder="Enter something..."></Input>
 						</FormItem>
-						<FormItem label="Input">
-							<Input v-model="formItem.input" placeholder="Enter something..."></Input>
-						</FormItem>
+						<!-- <FormItem label="Input"> -->
+							<Upload
+								ref="upload"
+								type="drag"
+								name="image"
+								:show-upload-list="listMethod" 
+								:with-credentials="true"
+								:data="{id:1}"
+								:on-success="handleSuccess"
+								:format="['jpg','jpeg','png']"
+								:max-size="2048"
+								action="/app/upload">
+								<div style="padding: 20px 0">
+									<Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
+									<p>Click or drag image here to upload Product Image</p>
+								</div>
+							</Upload>
+							<Card  span="10" offset="1">
+                            <div style="text-align:center">
+                                <img  style="width: 100%;height: auto;" v-if="imageUrl" :src="imageUrl" >
+                            </div>
+                        </Card>
+						<!-- </FormItem> -->
 						 <FormItem>
-							<Button type="primary">Submit</Button>
+							<Button type="primary"  @click="add_city">Submit</Button>
 							<Button style="margin-left: 8px">Cancel</Button>
 						</FormItem>
 					</Form>
@@ -41,10 +61,10 @@
 
 
 								<!-- ITEMS -->
-							<tr>
-								<td>25-05-19</td>
-								<td class="_table_name">Name</td>
-								<td>Economy</td>
+							<tr v-for="(item,index) in city" :key="index">
+								<td>{{item.id}}</td>
+								<td class="_table_name">{{item.name}}</td>
+								<td><img :src="item.image" alt="image"></td>
 								<td>
 									<button class="_btn _action_btn view_btn1" type="button">View</button>
 									<button class="_btn _action_btn edit_btn1" type="button">Edit</button>
@@ -70,15 +90,49 @@
     export default {
         data () {
             return {
+				city:[],
 				modal1: false,
 				formItem: {
-                    input: ''
-                }
+					name: '',
+					image:''
+				},
+				imageUrl:'',			
+                listMethod:true
             }
         },
         methods: {
-    
-        }
+			 handleSuccess(res, file){
+                console.log(res);
+                this.imageUrl=res.imageUrl
+                this.formItem.image = res.imageUrl;
+			},
+			
+			async all_city(){
+				const res = await this.callApi('get','all_city')
+				if(res.status == 200){
+					this.city = res.data
+				}
+			},
+			
+			async add_city(){
+				if(this.formItem.name == '') return this.i("City Name is empty!");
+				if(this.formItem.image == '') return this.i("City image is empty!");
+				const res = await this.callApi('post','add_city',this.formItem)
+				if(res.status == 201){
+					this.city.push(res.data)
+					this.s("New City Added !")
+					//this.$router.push('/')
+					window.location='/admin/city'
+				}
+				else{
+					this.swr();
+				}
+			}
+
+		},
+		created(){
+			this.all_city();
+		}
     }
 </script>
 

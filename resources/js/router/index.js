@@ -14,6 +14,7 @@ import singlerestaurarnt from '../pages/user/singlerestaurarnt.vue'
 
 
 //Admin
+import category from '../pages/admin/category.vue'
 import city from '../pages/admin/city.vue'
 import food from '../pages/admin/food.vue'
 import overview from '../pages/admin/overview.vue'
@@ -103,7 +104,14 @@ export default new Router({
           // middleware: log,
       }
     },
-
+    {
+      path: '/admin/category',
+      name: 'category',
+      component: category,
+      meta: {
+          title: 'category',
+      }
+    },
     {
       path: '/admin/city',
       name: 'city',

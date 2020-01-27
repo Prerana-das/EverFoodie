@@ -20,6 +20,21 @@ Route::get('/admin', function () {
     return view('admin');
 });
 
+
+
+
+// Category Route
+Route::get('/app/all_category', "CategoryController@allCategory");
+Route::post('/app/add_category', "CategoryController@storeCategory");
+Route::post('/app/edit_category', "CategoryController@updateCategory");
+Route::post('/app/delete_category', "CategoryController@deleteCategory");
+
+
+Route::get('/app/all_city', "CityController@allCity");
+Route::post('/app/add_city', "CityController@storeCity");
+Route::post('/app/upload', "CityController@upload");
+
+
 //Auth::routes();
 
 
