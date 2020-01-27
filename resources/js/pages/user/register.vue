@@ -142,7 +142,7 @@
                 const res = await this.callApi('post',"registration",this.formItem)
                 if(res.status==201){
                     this.s("registration Successfull ! Please Login.");
-                    this.$router.push('/')
+                    this.$router.push('/login')
                   
                 }
                 else if(res.status==422){

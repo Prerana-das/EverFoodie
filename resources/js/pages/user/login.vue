@@ -108,25 +108,31 @@
         },
        methods:{
             async login(){
-               if(this.formItem.email=="" || this.formItem.password==''){
+
+                if(this.formItem.email=="" || this.formItem.password==''){
                     this.i("All frields are required!");
                     return;
                 }
-                const res = await this.callApi('post',"login",this.formItem)
-                if(res.status==200){
+                const res = await this.callApi('post','login',this.formItem)
+                if(res.status===200){
+                    
+                   
+                    this.$store.commit('setAuthuser', (res.data));
                     this.s("login successfull !")
                       // window.location = '/'
                     this.$router.push('/')
-                  
+                
                 }
-                else{
+                else if (res.status===422){
+                    this.e(res.data.msg);
+                }
+                else {
                     this.swr();
                 }
             },
         },
          created(){
-            console.log(window.authUser)
-            
+        
         }
     }
 </script>

@@ -12,14 +12,19 @@
                                  </router-link>
                             </div>
                             <div class="login">
-                                <router-link to="/login">
-                                    <img src="assets/img/login.png" alt=""> Login 
-                                </router-link>
-                            </div>
-                            <div class="login">
-                                <router-link to="/register">
-                                    <img src="assets/img/login.png" alt=""> register 
-                                </router-link>
+                                <ul class="login_list">
+                                    <li v-if="isLoggedIn">
+                                        <a href="/logout" >Logout</a>
+                                    </li>
+                                    <li v-else>
+                                        <router-link to="/login">
+                                            <img src="assets/img/login.png" alt=""> Login 
+                                        </router-link>
+                                        <router-link to="/register">
+                                            <img src="assets/img/login.png" alt=""> register 
+                                        </router-link>
+                                    </li>
+                                </ul>                          
                             </div>
                         </div>
                     </div>

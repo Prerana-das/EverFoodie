@@ -27,7 +27,21 @@
         <div id="app">
             <master></master>
         </div>
+
+        <script>
+            (function () {
+                window.Laravel = {
+                    csrfToken: '{{ csrf_token() }}'
+                };
+                @if(Auth::check())
+                    window.authUser={!! Auth::user() !!}
+                    @else
+                    window.authUser=false
+                    @endif
+            })();
+       </script>
         
         <script src="/js/app.js"></script>
+        <!-- <script src="{{asset('assets/js/script.js')}}"></script> -->
     </body>
 </html>

@@ -1015,3 +1015,13 @@
     height: 65%;
 }
 /* ============== checkout end ============== */
+
+
+
+/* New CSS */
+.login_list li{
+    display: inline-block;
+}
+.login_list li a {
+    margin-left: 15px;
+}

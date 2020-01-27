@@ -11,7 +11,7 @@ html{
 body{
     margin:0px auto;
     padding:0px;
-    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-family: 'Barlow Semi Condensed', sans-serif!important;
 }
 p {
     font-size: 16px;
@@ -126,7 +126,7 @@ input[type="checkbox"] {
     margin-bottom: 25px;
 }
 ._mar_b30{
-    margin-bottom: 30px;
+    margin-bottom: 30px!important;
 }
 ._mar_b50{
     margin-bottom: 50px;

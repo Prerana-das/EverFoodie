@@ -20,6 +20,11 @@ import overview from '../pages/admin/overview.vue'
 import admin_restaurant from '../pages/admin/admin_restaurant.vue'
 import review from '../pages/admin/review.vue'
 
+
+// import auth from '../middleware/auth'
+// import log from '../middleware/log'
+
+
 let Admin = ['Admin'];
 
 export default new Router({
@@ -81,7 +86,7 @@ export default new Router({
      {
       path: '/singlerestaurarnt',
       name: 'singlerestaurarnt',
-      component: restaurant,
+      component: singlerestaurarnt,
       meta: {
           title: 'singlerestaurarnt',
       }
@@ -95,6 +100,7 @@ export default new Router({
       component: food,
       meta: {
           title: 'food',
+          // middleware: log,
       }
     },
 

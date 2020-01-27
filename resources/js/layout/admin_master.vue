@@ -1,55 +1,82 @@
-
 <template>
-	<div>
+    <div>
+     
+  		   <!--========== ADMIN SIDE MENU one ========-->
+      <div class="_1side_menu">
+       <div class="_1side_menu_logo">
+          <div class="main_logo">
+              <router-link to="/">
+                  <!-- <img src="assets/img/logo.jpg" alt="logo"> -->
+                  <span>Ever</span>Foodie
+                </router-link>
+          </div>
+          <!--<img src="/img/logo.jpg" style="width: 108px;margin-left: 68px;"/>-->
+        </div>
 
-    <h1>hello</h1>
-    <headerSection/>
-  		<transition name="component-fade" mode="out-in">
-          <router-view :key="$route.fullPath"></router-view>
-      </transition>
-   
-   
- 
-	</div>
+          <!--~~~~~~~~ MENU CONTENT ~~~~~~~~-->
+        <div class="_1side_menu_content">
+          <div class="_1side_menu_img_name">
+            <img class="_1side_menu_img" src="assets/admin_img/admin.jpg" alt="" title="">
+
+            <p class="_1side_menu_name">Admin</p>
+          </div>
+
+            <!--~~~ MENU LIST ~~~~~~-->
+        <div class="_1side_menu_list">
+          <ul class="_1side_menu_list_ul">
+            <li class="_1side_menu_list_ul_active"><Icon type="ios-speedometer" /> Overview </li>
+            <li class="_1side_menu_list_li"><Icon type="ios-speedometer" /> Overview </li>
+
+          </ul>
+        </div>
+        </div>
+      </div>
+        <!--========== ADMIN SIDE MENU ========--> 
+
+        <!--========= HEADER ==========-->
+      <div class="header">
+        <div class="_2menu  _box_shadow">
+          <div class="_2menu_logo">
+            <ul class="open_button">
+              <li ><Icon type="ios-list" /></li>
+              <!--<li><Icon type="ios-albums" /></li>-->
+            </ul>
+          </div>
+
+           <ul class="_2menu_main_ul_list_ul">
+              <li>
+                <p>City</p>
+              </li> 
+              <li>
+                <p>Restaurant</p>
+              </li>
+              <li>
+                <p>Food</p>
+              </li> 
+              <li>
+                <p>Reviews</p>
+              </li>
+            </ul>
 
 
+        </div>
+      </div>
+            <!--========= HEADER ==========-->
+    	<router-view/>
+    </div>
 </template>
 
 
+
 <script>
-  import headerSection from '../component/admin_header.vue'
-
-
 export default {
-   components:{
-      headerSection
-        },
-  created(){
-   
-  },
-
+   data(){
+     return {
+      
+     }
+   },
+   created(){
+     
+   }
 }
 </script>
-
-
-
-
-
-
-
-<style>
-
-.component-fade-enter-active, .component-fade-leave-active {
-  transition: opacity .5s ease;
-}
-.component-fade-enter, .component-fade-leave-to
-/* .component-fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
-.progress-linear {
-    
-    position: absolute;
-    top: -15px;
-   
-}
-</style>

@@ -26,4 +26,11 @@ Route::get('/admin', function () {
 Route::post('/app/registration', "UserController@registration");
 Route::post('/app/login', "UserController@login");
 
+Route::get('/logout', function () {
+    Auth::logout();
+    Session::flush();
+    return redirect("/");
+
+});
+
 Route::any('{slug}', 'HomeController@home')->where('slug', '([A-z\d-\/_.]+)?');  //

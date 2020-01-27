@@ -72,7 +72,7 @@
         </div>
       </div>
             <!--========= HEADER ==========-->
-    	<router-view/>
+    	<!-- <router-view/> -->
     </div>
     </div>
 </template>
