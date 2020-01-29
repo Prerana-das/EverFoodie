@@ -33,6 +33,9 @@ Route::post('/app/delete_category', "CategoryController@deleteCategory");
 Route::get('/app/all_city', "CityController@allCity");
 Route::post('/app/add_city', "CityController@storeCity");
 Route::post('/app/upload', "CityController@upload");
+Route::post('/app/edit_city', "CityController@updateCity");
+Route::post('/app/delete_city', "CityController@deleteCity");
+Route::post( 'app/getUserImage', 'CityController@getUserImage');
 
 
 //Auth::routes();

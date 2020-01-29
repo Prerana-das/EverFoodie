@@ -2708,6 +2708,38 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2718,7 +2750,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         image: ''
       },
       imageUrl: '',
-      listMethod: true
+      listMethod: true,
+      edit_form: {
+        name: '',
+        id: ''
+      },
+      isEdit: false,
+      editIndex: -1
     };
   },
   methods: {
@@ -2726,6 +2764,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       console.log(res);
       this.imageUrl = res.imageUrl;
       this.formItem.image = res.imageUrl;
+    },
+    handleSuccessedit: function handleSuccessedit(res, file) {
+      console.log(res);
+      this.imageUrl = res.imageUrl;
+      this.edit_form.image = res.imageUrl;
     },
     all_city: function () {
       var _all_city = _asyncToGenerator(
@@ -2813,7 +2856,116 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       return add_city;
-    }()
+    }(),
+    updateCity: function () {
+      var _updateCity = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var res, ob;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                if (!(this.edit_form.name == '')) {
+                  _context3.next = 2;
+                  break;
+                }
+
+                return _context3.abrupt("return", this.i("City Name is empty!"));
+
+              case 2:
+                if (!(this.edit_form.image == '')) {
+                  _context3.next = 4;
+                  break;
+                }
+
+                return _context3.abrupt("return", this.i("City image is empty!"));
+
+              case 4:
+                _context3.next = 6;
+                return this.callApi('post', 'edit_city', this.edit_form);
+
+              case 6:
+                res = _context3.sent;
+
+                if (res.status == 200) {
+                  this.city[this.editIndex] = _.clone(this.edit_form);
+                  this.s("City Updated  !");
+                  ob = {
+                    name: '',
+                    id: ''
+                  };
+                  this.edit_form = ob;
+                  this.editIndex = -1;
+                  this.isEdit = false;
+                } else {
+                  this.swr();
+                }
+
+              case 8:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function updateCity() {
+        return _updateCity.apply(this, arguments);
+      }
+
+      return updateCity;
+    }(),
+    city_delete: function () {
+      var _city_delete = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(id, index) {
+        var ob, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                if (confirm("Are you sure to delete this City")) {
+                  _context4.next = 2;
+                  break;
+                }
+
+                return _context4.abrupt("return");
+
+              case 2:
+                ob = {
+                  id: id
+                };
+                _context4.next = 5;
+                return this.callApi('post', 'delete_city', ob);
+
+              case 5:
+                res = _context4.sent;
+
+                if (res.status == 200) {
+                  this.i(' City have been successfully Deleted!');
+                  this.city.splice(index, 1);
+                }
+
+              case 7:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this);
+      }));
+
+      function city_delete(_x, _x2) {
+        return _city_delete.apply(this, arguments);
+      }
+
+      return city_delete;
+    }(),
+    isEditOn: function isEditOn(item, index) {
+      this.edit_form = _.clone(item);
+      this.editIndex = index;
+      this.isEdit = true;
+    }
   },
   created: function created() {
     this.all_city();
@@ -67710,6 +67862,7 @@ var render = function() {
           _c(
             "Modal",
             {
+              staticClass: "add_table",
               attrs: { title: "Common Modal dialog box title" },
               model: {
                 value: _vm.modal1,
@@ -67765,29 +67918,23 @@ var render = function() {
                         [
                           _c("Icon", {
                             staticStyle: { color: "#3399ff" },
-                            attrs: { type: "ios-cloud-upload", size: "52" }
+                            attrs: { type: "ios-cloud-upload", size: "32" }
                           }),
                           _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "Click or drag image here to upload Product Image"
-                            )
-                          ])
+                          _c("p", [_vm._v("Upload Image")])
                         ],
                         1
                       )
                     ]
                   ),
                   _vm._v(" "),
-                  _c("Card", { attrs: { span: "10", offset: "1" } }, [
-                    _c("div", { staticStyle: { "text-align": "center" } }, [
-                      _vm.imageUrl
-                        ? _c("img", {
-                            staticStyle: { width: "100%", height: "auto" },
-                            attrs: { src: _vm.imageUrl }
-                          })
-                        : _vm._e()
-                    ])
+                  _c("div", { staticStyle: { "text-align": "center" } }, [
+                    _vm.imageUrl
+                      ? _c("img", {
+                          staticStyle: { width: "100%", height: "auto" },
+                          attrs: { src: _vm.imageUrl }
+                        })
+                      : _vm._e()
                   ]),
                   _vm._v(" "),
                   _c(
@@ -67835,17 +67982,154 @@ var render = function() {
                       return _c("tr", { key: index }, [
                         _c("td", [_vm._v(_vm._s(item.id))]),
                         _vm._v(" "),
-                        _c("td", { staticClass: "_table_name" }, [
-                          _vm._v(_vm._s(item.name))
-                        ]),
+                        _c(
+                          "td",
+                          { staticClass: "_table_name" },
+                          [
+                            _vm.isEdit && index == _vm.editIndex
+                              ? [
+                                  _c("Input", {
+                                    attrs: { placeholder: "Enter City..." },
+                                    model: {
+                                      value: _vm.edit_form.name,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.edit_form, "name", $$v)
+                                      },
+                                      expression: "edit_form.name"
+                                    }
+                                  })
+                                ]
+                              : _c("span", [_vm._v(_vm._s(item.name))])
+                          ],
+                          2
+                        ),
                         _vm._v(" "),
-                        _c("td", [
-                          _c("img", {
-                            attrs: { src: item.image, alt: "image" }
-                          })
-                        ]),
+                        _c(
+                          "td",
+                          [
+                            _vm.isEdit && index == _vm.editIndex
+                              ? [
+                                  _c(
+                                    "Upload",
+                                    {
+                                      ref: "upload",
+                                      refInFor: true,
+                                      attrs: {
+                                        type: "drag",
+                                        name: "image",
+                                        "show-upload-list": _vm.listMethod,
+                                        "with-credentials": true,
+                                        data: { id: 1 },
+                                        "on-success": _vm.handleSuccessedit,
+                                        format: ["jpg", "jpeg", "png"],
+                                        "max-size": 2048,
+                                        action: "/app/upload"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "div",
+                                        [
+                                          _c("Icon", {
+                                            staticStyle: { color: "#3399ff" },
+                                            attrs: {
+                                              type: "ios-cloud-upload",
+                                              size: "22"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("p", [_vm._v("Upload Image")])
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "preview_upload_img" },
+                                    [
+                                      _vm.imageUrl
+                                        ? _c("img", {
+                                            staticStyle: {
+                                              width: "100%",
+                                              height: "auto"
+                                            },
+                                            attrs: { src: _vm.imageUrl }
+                                          })
+                                        : _vm._e()
+                                    ]
+                                  )
+                                ]
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "_1table_img" }, [
+                              _c("img", {
+                                attrs: { src: item.image, alt: "image" }
+                              })
+                            ])
+                          ],
+                          2
+                        ),
                         _vm._v(" "),
-                        _vm._m(1, true)
+                        _c(
+                          "td",
+                          [
+                            _vm.isEdit && index == _vm.editIndex
+                              ? [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "_btn _action_btn make_btn2",
+                                      on: { click: _vm.updateCity }
+                                    },
+                                    [_vm._v("Save")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "_btn _action_btn edit_btn1",
+                                      on: {
+                                        click: function($event) {
+                                          _vm.isEdit = false
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Cancel")]
+                                  )
+                                ]
+                              : [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "_btn _action_btn edit_btn1",
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.isEditOn(item, index)
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Edit")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass:
+                                        " _btn _action_btn make_btn1",
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.city_delete(item.id, index)
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Delete")]
+                                  )
+                                ]
+                          ],
+                          2
+                        )
                       ])
                     })
                   ],
@@ -67875,48 +68159,6 @@ var staticRenderFns = [
       _c("th", [_vm._v("Image")]),
       _vm._v(" "),
       _c("th", [_vm._v("Action")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c(
-        "button",
-        {
-          staticClass: "_btn _action_btn view_btn1",
-          attrs: { type: "button" }
-        },
-        [_vm._v("View")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "_btn _action_btn edit_btn1",
-          attrs: { type: "button" }
-        },
-        [_vm._v("Edit")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "_btn _action_btn make_btn2",
-          attrs: { type: "button" }
-        },
-        [_vm._v("Remove Features")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "_btn _action_btn make_btn1",
-          attrs: { type: "button" }
-        },
-        [_vm._v("Delete")]
-      )
     ])
   }
 ]

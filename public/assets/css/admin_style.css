@@ -846,6 +846,10 @@ p {
       border-collapse: collapse;
       width: 100%;
   }
+  ._table img {
+    width: 72px;
+    height: 46px;
+}
   ._table tr{}
   ._table tr:first-child {
       background: #a7ccff;
@@ -11648,177 +11652,7 @@ p {
       width: 127px;
   }
   
-  /* ==============================Job Search Page========================== */
-  .job_banner_top ul li {
-      display: inline-block;
-      padding: 7px 1px;
-  }
-  .job_banner_top ul {
-      padding:0px
-  }
-  .job_search_cont {
-      width: 659px;
-      margin: 26px auto;
-      padding: 0px;
-  }
-  .job_search_cont h2 {
-      font-size: 24px;;
-  }
-  .job_search_cont p {
-      font-size: 13px;
-      margin-bottom: 30px;
-  }
-  .job_banner_area .job_banner_top {
-      padding: 15px 0 0;
-  }
-  .single_drop_job_search {
-      margin-bottom: 12px;
-  }
-  .job_sub_menu {
-      margin-top: 30px;
-      padding-bottom: 30px;
-  }
-  /* .community_search i {
-      top: 17px;
-      right: 17px;
-  } */
-  .job_platinum_area {
-      padding-top: 70px;
-  }
-  .single_job_type {
-      padding: 15px 8px;
-      font-size: 15px;
-  }
-  /* ==============================Job details Page========================== */
-  .job_banner_top {
-      text-align: left;
-  }
-  .single_info {
-      padding: 15px 34px;
-  }
-  .single_info p::before {
-      top: 42px;
-  }
-  .single_company_details p {
-      line-height: 46px;
-  }
-  .company_details_left {
-      padding: 25px 28px;
-  }
   
-  /* ===========================Job Company details Page========================== */
-  .job_mainmenu ul {
-      margin-top: 4px;
-  }
-  .company_details {
-      margin-top: 65px;
-      margin-bottom: 65px;
-  }
-  
-  /* ===========================Job Category Page========================== */
-  .jobsearch_login {
-      width: 50%;
-      margin: 15px auto;
-  }
-  .jobsearch_category_title {
-      width: 100%;
-  }
-  
-  /* ===========================Job Resume Page========================== */
-  .real_right.job_resume_right {
-      padding: 38px 35px;
-     margin-bottom: 50px;
-  }
-  .single_form_resume select {
-      margin-bottom: 10px;
-  }
-  .resume_working_dropdown_left {
-      width: 130px;
-  }
-  .resume_working_dropdown_right {
-      width: 372px;
-  }
-  .single_form_resume textarea {
-      width: 100%;
-      height: 172px;
-  }
-  .job_resume_basic_info {
-      margin-bottom: 20px;
-  }
-  .resume_btn {
-      margin-top: 30px;
-  }
-  
-  /* ===========================Job View Resume Page========================== */
-  .job_resume_single_view {
-      padding: 32px 55px;
-  }
-  .single_form_resume input {
-      margin-bottom: 15px;
-  }
-  .single_form_resume.resume_view_single_hope {
-      margin-top: 22px;
-  }
-  .single_job_hope {
-      margin-bottom: 6px;
-  }
-  .single_form_resume p {
-      margin-bottom: 0px;
-  }
-  .full-mailbox input[type="text"], .full-mailbox textarea {
-      height: 160px;
-  }
-  
-  /* =====================Job Resume Reading Page===================== */
-  .real_right.job_employe_manage_area {
-      padding: 25px 21px;
-  }
-  
-  /* =====================Job announcement Page===================== */
-  .job_job_employe_details.job_employment_announcement p {
-      min-height: 80px;
-  }
-  
-  
-  .job_employe_status {
-      padding: 20px 29px;
-  }
-  .job_announcement_support_status {
-      min-height: 100px;
-  }
-  
-  .real_right.job_resume_right h2 {
-      font-size: 24px;
-  }
-  .single_form_resume.form-row {
-      margin-top: 12px;
-  }
-  .job_product_paid_section {
-      margin-top: 30px;
-  }
-  .job_product_paid_mid_left {
-      margin-bottom: 40px;
-  }
-  .job_product_paid_mid_right_cont {
-      margin-bottom: 14px;
-  }
-  .job_product_paid_mid_left_img {
-      max-height: 828px;
-       margin-bottom: 50px;
-  }
-  .job_product_paid_general_job_table table {
-      margin-bottom: 45px;
-  }
-  .corporate_left_menu .single_real_sale h4 {
-      font-size: 17px;
-  }
-  .hk_area.billing_hk {
-      margin-bottom: 40px;
-      padding: 15px 56px;
-  }
-  .hk_area ul {
-      padding: 8px 2px;
-  }
   
   
   /*============= BUY & SELL USER TYPE =================== */
@@ -12018,6 +11852,39 @@ p {
   }
   
   }
-  
+
+
+
+
+
+
+  /*  =============== new css ================ */
+ .add_table .ivu-upload {
+    width: 80%;
+    margin:10px auto 0 auto;
+}
+
+.add_table .ivu-form-item {
+    margin: 30px auto 0px auto;
+    text-align: center;
+}
+._1adminOverveiw_table_recent .ivu-upload {
+    width: 178px;
+    display: block;
+    padding: 10px;
+}
+.preview_upload_img {
+    width: 88px;
+    height: 50px;
+    display: inline-block;
+}
+
+.preview_upload_img img {
+    height: 100%!important;
+}
+
+._1table_img {
+    display: inline-block;
+}
   
   

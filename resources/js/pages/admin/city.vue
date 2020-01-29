@@ -7,7 +7,7 @@
 				<Button class="_mar_b30" type="primary" @click="modal1 = true">Add City</Button>
 				 <Modal
 					v-model="modal1"
-					title="Common Modal dialog box title">
+					title="Common Modal dialog box title" class="add_table">
 					<!-- ===========Form================ -->
 					<Form :model="formItem" :label-width="80">
 						<FormItem label="Input">
@@ -26,15 +26,13 @@
 								:max-size="2048"
 								action="/app/upload">
 								<div style="padding: 20px 0">
-									<Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
-									<p>Click or drag image here to upload Product Image</p>
+									<Icon type="ios-cloud-upload" size="32" style="color: #3399ff"></Icon>
+									<p>Upload Image</p>
 								</div>
 							</Upload>
-							<Card  span="10" offset="1">
-                            <div style="text-align:center">
-                                <img  style="width: 100%;height: auto;" v-if="imageUrl" :src="imageUrl" >
-                            </div>
-                        </Card>
+							<div style="text-align:center">
+								<img  style="width: 100%;height: auto;" v-if="imageUrl" :src="imageUrl" >
+							</div>
 						<!-- </FormItem> -->
 						 <FormItem>
 							<Button type="primary"  @click="add_city">Submit</Button>
@@ -63,13 +61,47 @@
 								<!-- ITEMS -->
 							<tr v-for="(item,index) in city" :key="index">
 								<td>{{item.id}}</td>
-								<td class="_table_name">{{item.name}}</td>
-								<td><img :src="item.image" alt="image"></td>
+								<td class="_table_name">
+									<template  v-if="isEdit && index == editIndex">  
+										<Input v-model="edit_form.name" placeholder="Enter City..."/>
+									</template>
+									<span v-else>{{item.name}}</span>
+								</td>
 								<td>
-									<button class="_btn _action_btn view_btn1" type="button">View</button>
-									<button class="_btn _action_btn edit_btn1" type="button">Edit</button>
-									<button class="_btn _action_btn make_btn2" type="button">Remove Features</button>
-									<button class="_btn _action_btn make_btn1" type="button">Delete</button>
+									<template  v-if="isEdit && index == editIndex">  
+										<Upload
+											ref="upload"
+											type="drag"
+											name="image"
+											:show-upload-list="listMethod" 
+											:with-credentials="true"
+											:data="{id:1}"
+											:on-success="handleSuccessedit"
+											:format="['jpg','jpeg','png']"
+											:max-size="2048"
+											action="/app/upload">
+											<div>
+												<Icon type="ios-cloud-upload" size="22" style="color: #3399ff"></Icon>
+												<p>Upload Image</p>
+											</div>
+										</Upload>
+											<div class="preview_upload_img">
+												<img  style="width: 100%;height: auto;" v-if="imageUrl" :src="imageUrl" >
+											</div>
+									</template>
+									<div class="_1table_img">
+										<img :src="item.image" alt="image">
+									</div>								
+								</td>
+								<td>
+									<template   v-if="isEdit && index == editIndex">
+										<button class="_btn _action_btn make_btn2" @click="updateCity" >Save</button>
+										<button class="_btn _action_btn edit_btn1" @click="isEdit = false">Cancel</button>
+									</template>
+									<template v-else>
+										<button class="_btn _action_btn edit_btn1" @click="isEditOn(item,index)" >Edit</button>
+										<button class=" _btn _action_btn make_btn1" @click="city_delete(item.id,index)" >Delete</button>
+									</template>
 								</td>
 							</tr>
 								<!-- ITEMS -->
@@ -97,7 +129,13 @@
 					image:''
 				},
 				imageUrl:'',			
-                listMethod:true
+				listMethod:true,
+				edit_form:{
+                name:'',
+                id:'',
+				},
+				isEdit:false,
+				editIndex:-1,
             }
         },
         methods: {
@@ -105,6 +143,12 @@
                 console.log(res);
                 this.imageUrl=res.imageUrl
                 this.formItem.image = res.imageUrl;
+			},
+
+			 handleSuccessedit(res, file){
+                console.log(res);
+                this.imageUrl=res.imageUrl
+                this.edit_form.image = res.imageUrl;
 			},
 			
 			async all_city(){
@@ -127,7 +171,45 @@
 				else{
 					this.swr();
 				}
-			}
+			},
+
+			async updateCity(){
+				if(this.edit_form.name == '') return this.i("City Name is empty!");
+				if(this.edit_form.image == '') return this.i("City image is empty!");
+				const res = await this.callApi('post','edit_city',this.edit_form)
+				if(res.status == 200){
+					this.city[this.editIndex] = _.clone(this.edit_form) 
+					this.s("City Updated  !")
+					let ob ={
+						name:'',
+						id:'',
+					}
+					this.edit_form = ob 
+					this.editIndex = -1
+					this.isEdit = false
+				}
+				else{
+					this.swr();
+				}
+			},
+			async city_delete(id,index){
+				if(!confirm("Are you sure to delete this City")){
+					return;
+				}
+				let ob = {
+					id:id
+				}
+				const res = await this.callApi('post','delete_city',ob)
+				if(res.status == 200){
+					this.i(' City have been successfully Deleted!')
+					this.city.splice(index,1)
+				}
+			},
+			isEditOn(item,index){
+				this.edit_form = _.clone(item) 
+				this.editIndex = index
+				this.isEdit = true
+        	}
 
 		},
 		created(){
