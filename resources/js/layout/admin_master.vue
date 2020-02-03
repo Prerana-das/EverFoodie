@@ -24,9 +24,36 @@
             <!--~~~ MENU LIST ~~~~~~-->
         <div class="_1side_menu_list">
           <ul class="_1side_menu_list_ul">
-            <li class="_1side_menu_list_ul_active"><Icon type="ios-speedometer" /> Overview </li>
-            <li class="_1side_menu_list_li"><Icon type="ios-speedometer" /> Overview </li>
-
+            <li class="_1side_menu_list_ul_active">
+              <router-link to="/admin/city">
+                <Icon type="ios-speedometer" /> City 
+              </router-link> 
+            </li>
+            <li class="_1side_menu_list_li">
+              <router-link to="/admin/area">
+                <Icon type="ios-speedometer" /> Area 
+              </router-link> 
+            </li>
+            <li class="_1side_menu_list_li">
+              <router-link to="/admin/category">
+                <Icon type="ios-speedometer" /> Category 
+              </router-link> 
+            </li>
+            <li class="_1side_menu_list_li">
+              <router-link to="/admin/admin_restaurant">
+                <Icon type="ios-speedometer" /> Restaurant 
+              </router-link> 
+            </li>
+            <li class="_1side_menu_list_li">
+              <router-link to="/admin/food">
+                <Icon type="ios-speedometer" /> Food 
+              </router-link> 
+            </li>
+            <li class="_1side_menu_list_li">
+              <router-link to="/admin/review">
+                <Icon type="ios-speedometer" /> Review 
+              </router-link> 
+            </li>
           </ul>
         </div>
         </div>
@@ -76,6 +103,8 @@ export default {
      }
    },
    created(){
+     
+
      
    }
 }

@@ -16,13 +16,13 @@
                                     <li v-if="isLoggedIn">
                                         <a href="/logout" >Logout</a>
                                     </li>
-                                    <li v-else>
-                                        <router-link to="/login">
+                                    <li v-else>                      
+                                        <a href="/login">
                                             <img src="assets/img/login.png" alt=""> Login 
-                                        </router-link>
-                                        <router-link to="/register">
+                                        </a>
+                                        <a href="/register">
                                             <img src="assets/img/login.png" alt=""> register 
-                                        </router-link>
+                                        </a>
                                     </li>
                                 </ul>                          
                             </div>

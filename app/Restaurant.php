@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Restaurant extends Model
 {
     //
-    protected $fillable= ['name','description','image','city_id','area_id'];
+    protected $fillable= ['name','description','image','cost','city_id','area_id','request_status'];
 
     public function city(){
         return $this->belongsTo('App\City','city_id');

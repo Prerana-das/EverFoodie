@@ -23,7 +23,10 @@ class UserController extends Controller
 
         $data = $request->all();
         $data['password'] = Hash::make($data['password']);
-        return User::create($data);
+        User::create($data);
+
+        return redirect("/login");
+       
     }
 
     public function login(Request $request){
@@ -32,19 +35,24 @@ class UserController extends Controller
                 'msg' => "Email doesn't exist!",
             ],422);
         }
-      
 
+         if((User::where('email', $request->email)->count())==0){
+            return redirect("/login")->with('message',"Incorrect Email!");
+        }
+        
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password ])) {
-           return Auth::user();
+           $user = Auth::user();
+           if($user->user_type == 'User'){
+                    return redirect("/");
+            }
+            if($user->user_type == 'Admin'){
+                return redirect("/admin");
+             }
          }
-         
          else{
-            return response()->json([
-                'msg' => "Password doen't match!",
-            ],422);
+            return  redirect("/login")->with('message',"Incorrect Password!");
          }
-    }
 
- 
+    }
 
 }

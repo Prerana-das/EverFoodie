@@ -5,8 +5,8 @@ Vue.use(Router)
 
 
 import home from '../pages/user/home.vue'
-import login from '../pages/user/login.vue'
-import register from '../pages/user/register.vue'
+//import login from '../pages/user/login.vue'
+//import register from '../pages/user/register.vue'
 import forgot_password from '../pages/user/forgot_password.vue'
 import partner from '../pages/user/partner.vue'
 import restaurant from '../pages/user/restaurant.vue'
@@ -16,10 +16,12 @@ import singlerestaurarnt from '../pages/user/singlerestaurarnt.vue'
 //Admin
 import category from '../pages/admin/category.vue'
 import city from '../pages/admin/city.vue'
+import area from '../pages/admin/area.vue'
 import food from '../pages/admin/food.vue'
 import overview from '../pages/admin/overview.vue'
 import admin_restaurant from '../pages/admin/admin_restaurant.vue'
 import review from '../pages/admin/review.vue'
+
 
 
 // import auth from '../middleware/auth'
@@ -40,23 +42,23 @@ export default new Router({
       }
     },
 
-    {
-      path: '/login',
-      name: 'login',
-      component: login,
-      meta: {
-          title: 'login',
-      }
-    },
+    // {
+    //   path: '/login',
+    //   name: 'login',
+    //   component: login,
+    //   meta: {
+    //       title: 'login',
+    //   }
+    // },
 
-    {
-      path: '/register',
-      name: 'register',
-      component: register,
-      meta: {
-          title: 'register',
-      }
-    },
+    // {
+    //   path: '/register',
+    //   name: 'register',
+    //   component: register,
+    //   meta: {
+    //       title: 'register',
+    //   }
+    // },
 
     {
       path: '/forgot_password',
@@ -118,6 +120,15 @@ export default new Router({
       component: city,
       meta: {
           title: 'city',
+      }
+    },
+
+    {
+      path: '/admin/area',
+      name: 'area',
+      component: area,
+      meta: {
+          title: 'area',
       }
     },
 

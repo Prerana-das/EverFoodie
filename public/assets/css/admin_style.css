@@ -408,7 +408,7 @@ p {
       display: flex;
       font-size: 14px;
       cursor: pointer;
-      padding: 13px 25px;
+      padding: 13px 5px;
       transition: .2s all ease;
       border-right: 2px solid transparent;
   }
@@ -417,7 +417,7 @@ p {
     font-size: 14px;
     cursor: pointer;
     transition: .2s all ease;
-    padding: 16px 15px;
+    padding: 10px 15px;
 }
   ._1side_menu_list_ul li:hover{
   }
@@ -1094,7 +1094,6 @@ p {
       font-weight: 600;
       color: #383737;
       max-width: 415px;
-      display: -webkit-box;
       max-height: 3.2rem;
       -webkit-box-orient: vertical;
       overflow: hidden;

@@ -10,7 +10,8 @@
 							<div class="search_restaurant _box_shadow">
 								<div class="search">
 									<span>
-										<i class="fas fa-search"></i><input type="text" placeholder="Search">
+										<i class="fas fa-search"></i>
+										<input type="text" v-model="search" placeholder="Search">
 									</span>
 								</div>
 								<div class="filter">
@@ -154,150 +155,26 @@
 					</div>
 				</div>
 				<div class="row">
+
 					<!-- ITEM -->
-					<div class="col-md-3">
-						<div class="single_restaurant _mar_b30">
-							<a href="singlerestaurant.html">
-								<div class="restaurant_img _mar_b10">
-									<img src="assets/img/res1.jpg" alt="restaurant">
-									<span class="freedelivery">Free Delivery</span>
-									<span class="deliverytime">25min</span>
-								</div>
-								<h4 class="restaurant_title">Kababia</h4>
-								<span class="restaurant_rating">
-									<i class="fas fa-star"></i>4/5(4)
-								</span>
-								<p class="restaurant_sub">beef,chicken, noodles, rice, set menukabab & grillasian.</p>
-							</a>
-						</div>
+					<div class="col-md-3" v-for="(item,index) in filterrestaurant" :key="index">
+							<div class="single_restaurant _mar_b30">
+								<a href="singlerestaurant.html">
+									<div class="restaurant_img _mar_b10">
+										<img src="assets/img/res1.jpg" alt="restaurant">
+										<span class="freedelivery">Free Delivery</span>
+										<span class="deliverytime">25min</span>
+									</div>
+									<h4 class="restaurant_title">{{ item.name }}</h4>
+									<span class="restaurant_rating">
+										<i class="fas fa-star"></i>4/5(4)
+									</span>
+									<p class="restaurant_sub">{{ item.description }}</p>
+								</a>
+							</div>
 					</div>
 					<!-- ITEM -->
-					<!-- ITEM -->
-					<div class="col-md-3">
-						<div class="single_restaurant _mar_b30">
-							<a href="singlerestaurant.html">
-								<div class="restaurant_img _mar_b10">
-									<img src="assets/img/res1.jpg" alt="restaurant">
-									<span class="freedelivery">Free Delivery</span>
-									<span class="deliverytime">25min</span>
-								</div>
-								<h4 class="restaurant_title">Kababia</h4>
-								<span class="restaurant_rating">
-									<i class="fas fa-star"></i>4/5(4)
-								</span>
-								<p class="restaurant_sub">beef,chicken, noodles, rice, set menukabab & grillasian.</p>
-							</a>
-						</div>
-					</div>
-					<!-- ITEM -->
-					<!-- ITEM -->
-					<div class="col-md-3">
-						<div class="single_restaurant _mar_b30">
-							<a href="singlerestaurant.html">
-								<div class="restaurant_img _mar_b10">
-									<img src="assets/img/res1.jpg" alt="restaurant">
-									<span class="freedelivery">Free Delivery</span>
-									<span class="deliverytime">25min</span>
-								</div>
-								<h4 class="restaurant_title">Kababia</h4>
-								<span class="restaurant_rating">
-									<i class="fas fa-star"></i>4/5(4)
-								</span>
-								<p class="restaurant_sub">beef,chicken, noodles, rice, set menukabab & grillasian.</p>
-							</a>
-						</div>
-					</div>
-					<!-- ITEM -->
-					<!-- ITEM -->
-					<div class="col-md-3">
-						<div class="single_restaurant _mar_b30">
-							<a href="singlerestaurant.html">
-								<div class="restaurant_img _mar_b10">
-									<img src="assets/img/res1.jpg" alt="restaurant">
-									<span class="freedelivery">Free Delivery</span>
-									<span class="deliverytime">25min</span>
-								</div>
-								<h4 class="restaurant_title">Kababia</h4>
-								<span class="restaurant_rating">
-									<i class="fas fa-star"></i>4/5(4)
-								</span>
-								<p class="restaurant_sub">beef,chicken, noodles, rice, set menukabab & grillasian.</p>
-							</a>
-						</div>
-					</div>
-					<!-- ITEM -->
-					<!-- ITEM -->
-					<div class="col-md-3">
-						<div class="single_restaurant _mar_b30">
-							<a href="singlerestaurant.html">
-								<div class="restaurant_img _mar_b10">
-									<img src="assets/img/res1.jpg" alt="restaurant">
-									<span class="freedelivery">Free Delivery</span>
-									<span class="deliverytime">25min</span>
-								</div>
-								<h4 class="restaurant_title">Kababia</h4>
-								<span class="restaurant_rating">
-									<i class="fas fa-star"></i>4/5(4)
-								</span>
-								<p class="restaurant_sub">beef,chicken, noodles, rice, set menukabab & grillasian.</p>
-							</a>
-						</div>
-					</div>
-					<!-- ITEM -->
-					<!-- ITEM -->
-					<div class="col-md-3">
-						<div class="single_restaurant _mar_b30">
-							<a href="singlerestaurant.html">
-								<div class="restaurant_img _mar_b10">
-									<img src="assets/img/res1.jpg" alt="restaurant">
-									<span class="freedelivery">Free Delivery</span>
-									<span class="deliverytime">25min</span>
-								</div>
-								<h4 class="restaurant_title">Kababia</h4>
-								<span class="restaurant_rating">
-									<i class="fas fa-star"></i>4/5(4)
-								</span>
-								<p class="restaurant_sub">beef,chicken, noodles, rice, set menukabab & grillasian.</p>
-							</a>
-						</div>
-					</div>
-					<!-- ITEM -->
-					<!-- ITEM -->
-					<div class="col-md-3">
-						<div class="single_restaurant _mar_b30">
-							<a href="singlerestaurant.html">
-								<div class="restaurant_img _mar_b10">
-									<img src="assets/img/res1.jpg" alt="restaurant">
-									<span class="freedelivery">Free Delivery</span>
-									<span class="deliverytime">25min</span>
-								</div>
-								<h4 class="restaurant_title">Kababia</h4>
-								<span class="restaurant_rating">
-									<i class="fas fa-star"></i>4/5(4)
-								</span>
-								<p class="restaurant_sub">beef,chicken, noodles, rice, set menukabab & grillasian.</p>
-							</a>
-						</div>
-					</div>
-					<!-- ITEM -->
-					<!-- ITEM -->
-					<div class="col-md-3">
-						<div class="single_restaurant _mar_b30">
-							<a href="singlerestaurant.html">
-								<div class="restaurant_img _mar_b10">
-									<img src="assets/img/res1.jpg" alt="restaurant">
-									<span class="freedelivery">Free Delivery</span>
-									<span class="deliverytime">25min</span>
-								</div>
-								<h4 class="restaurant_title">Kababia</h4>
-								<span class="restaurant_rating">
-									<i class="fas fa-star"></i>4/5(4)
-								</span>
-								<p class="restaurant_sub">beef,chicken, noodles, rice, set menukabab & grillasian.</p>
-							</a>
-						</div>
-					</div>
-					<!-- ITEM -->
+					
 				</div>
 			</div>
 		</div>
@@ -307,8 +184,35 @@
 </template>
 
 <script>
-
-
-
+    export default {
+        data () {
+            return {
+				restaurant:[],
+				search:''
+			}
+        },
+        methods: {
+		
+		},
+		
+		 async created(){
+	
+			const res = await this.callApi('get','all_restaurant')
+			if(res.status == 200){
+				this.restaurant = res.data
+			}
+			else{
+				this.swr()
+			}
+		},
+		computed:{
+			filterrestaurant: function(){
+				return this.restaurant.filter((item)=>{
+					//return item.name.match(this.search);  // this is case-sensetive
+					return item.name.toLowerCase().match(this.search.toLowerCase());
+					//return item.description.match(this.search);
+				});
+			}
+		}
+    }
 </script>
- 		

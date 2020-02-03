@@ -218,68 +218,65 @@
 					<div class="col-lg-7 col-md-7 col-sm-12">
 						<div class="partnership_right _box_shadow">
 							<h3 class="hour_title _mar_b30">Partnership Form</h3>
-							<form action="#" method="post" class="partnership-form">
+							<form class="partnership-form">
 								<div class="form-box required">
-									<input type="text" placeholder="Restaurant Name">
+									<input v-model="formItem.name" type="text" placeholder="Restaurant Name">
 								</div>
 								<div class="form-box">
-									<select>
-									  <option>City</option>
-									  <option>steak</option>
-									  <option>sandwich</option>
-									  <option>Rice</option>
-									  <option>Biriyani</option>
+									<select v-model="formItem.city_id">
+									  <option v-for="(item,index) in city" :value="item.id" :key="index">
+										<div v-if="city.length">
+											{{ item.name }}
+										</div>
+									  </option>
 									</select>
 								</div>
-								<div class="form-box required">
-									<input type="text" placeholder="Restaurant Address">
-								</div>
-								<div class="row">
-									<div class="col-lg-6">
-										<div class="form-box">
-											<input type="text" placeholder="First Name">
-										</div>
-									</div>
-									<div class="col-lg-6">
-										<div class="form-box required">
-											<input type="text" placeholder="Last Name">
-										</div>
-									</div>
-								</div>
 								<div class="form-box">
-									<select>
-									  <option>Cuisine</option>
-									  <option>steak</option>
-									  <option>sandwich</option>
-									  <option>Rice</option>
-									  <option>Biriyani</option>
+									<select v-model="formItem.area_id">
+									  <option v-for="(item,index) in area" :value="item.id" :key="index">
+										<div v-if="area.length">
+											{{ item.name }}
+										</div>
+									  </option>
 									</select>
 								</div>
-								<div class="form-box required">
-									<input type="text" placeholder="Email Address">
-								</div>
-								<div class="form-box required">
-									<input type="text" placeholder="Mobile Number">
-								</div>
 								<div class="form-box">
-									<input type="number" placeholder="Number Of Restaurant">
-								</div>
-								<div class="form-box required">
-									<p>What other topics is the above mentioned contact person responsible for?</p>
-									<input type="checkbox" name="topics" value="Billing"> Billing<br>
-									<input type="checkbox" name="topics" value="Contract"> Contract<br>
-									<input type="checkbox" name="topics" value="Legal" checked> Legal<br>
-									<input type="checkbox" name="topics" value="MarketingOperations"> Marketing<br>
-									<input type="checkbox" name="topics" value="Operations"> Operations<br>
+									<Upload
+									ref="upload"
+									type="drag"
+									name="image"
+									:show-upload-list="listMethod" 
+									:with-credentials="true"
+									:data="{id:1}"
+									:on-success="handleSuccess"
+									:format="['jpg','jpeg','png']"
+									:max-size="2048"
+									action="/app/upload">
+									<div style="padding: 20px 0">
+										<Icon type="ios-cloud-upload" size="32" style="color: #3399ff"></Icon>
+										<p>Upload Image</p>
+									</div>
+								
+									</Upload>
 								</div>
 								<div class="form-box">
 									<p>Average cost of a meal</p>
-									  <input type="radio" name="gender" value="1"> &#36;<br>
-									  <input type="radio" name="gender" value="2"> &#36; &#36;<br>
-									  <input type="radio" name="gender" value="3"> &#36; &#36; &#36;<br>   
+									  <div id="radios">
+										<label>&#36;</label>
+										<input type="radio" value="150" v-model="formItem.cost">
+										<label>&#36; &#36;</label>
+										<input type="radio" value="300" v-model="formItem.cost">
+										<label>&#36; &#36; &#36;</label>
+										<input type="radio" value="1000" v-model="formItem.cost">
+									</div>  
+
+									<!-- $ = Less than 150 BDT, $$ = Less than 300 BDT, $$$ = Less than 1000 BDT -->
+								</div>
+								<div class="form-box required">
+									<textarea v-model="formItem.description"></textarea>
 								</div>
 								<div class="partnership-btn">
-									<input class="block_btn" type="submit" value="Submit">
+									<input class="block_btn"  @click="add_restaurant" type="submit" value="Submit">
 								</div>
 							</form>
 						</div>
@@ -291,3 +288,76 @@
 
     </div>
 </template>
+
+
+
+<script>
+    export default {
+        data () {
+            return {
+				restaurant:[],
+				formItem: {
+					name: '',
+					image:'',
+					cost:'',
+					city_id:'',
+					area_id:''
+				},
+				imageUrl:'',			
+				listMethod:true,
+				city:[],
+				area:[]
+			}
+        },
+        methods: {
+			handleSuccess(res, file){
+                console.log(res);
+                this.imageUrl=res.imageUrl
+                this.formItem.image = res.imageUrl;
+			},
+
+			async all_restaurant(){
+				const res = await this.callApi('get','all_restaurant')
+				if(res.status == 200){
+					this.restaurant = res.data
+				}
+			},
+			
+			async add_restaurant(){
+				if(this.formItem.name == '') return this.i("Restaurant Name is empty!");
+				if(this.formItem.description == '') return this.i("Restaurant Name is empty!");
+				if(this.formItem.image == '') return this.i("Restaurant Name is empty!");
+				if(this.formItem.cost == '') return this.i("Restaurant Name is empty!");
+				const res = await this.callApi('post','add_restaurant',this.formItem)
+				if(res.status == 201){
+					this.restaurant.push(res.data)
+					this.s("New Area Added !")
+					// this.formItem.name = ''
+					window.location='/'
+				}
+				else{
+					this.swr();
+				}
+			}
+		
+		},
+		
+		 async created(){
+			this.all_restaurant();
+	
+			const [res1, res2] = await Promise.all([ this.callApi('get','all_city'),this.callApi('get','all_area') ])
+			if(res1.status == 200 && res2.status == 200){
+				this.city = res1.data
+				this.area= res2.data
+			}
+			else{
+				this.swr()
+			}
+    	}
+    }
+</script>
+
+
+
+
+			

@@ -63,8 +63,24 @@
 </template>
 
 <script>
-</script>
+export default {
+    data(){
+		return{
+          
+      	}      
+	},
+    methods:{
 
+    },
+
+	created(){
+		if(this.isLoggedIn == false){
+		this.$router.push('/login')
+	  }
+				
+	}
+}
+</script>
 
 
 

@@ -103,16 +103,29 @@
     background-repeat: no-repeat;
     height: 100vh;
     position: relative;
+    z-index: 1;
+}
+.banner_area:after {
+    position: absolute;
+    content: "";
+    background-color: #000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: .5;
+    z-index: -1;
 }
 .main_banner {
     position: absolute;
     top: 50%;
-   right: 10%;
+    left: 9%;
     transform: translateY(-50%);
 }
 .main_title {
     font-size: 50px;
-    text-shadow: 3px 3px 10px #283b6226;
+    text-shadow: 1px 0px 1px #fff;
+    color: #fff;
 }
 .main_search {
     background-color: #fff;

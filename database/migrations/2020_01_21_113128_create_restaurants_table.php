@@ -18,8 +18,10 @@ class CreateRestaurantsTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('image');
+            $table->Integer('cost');
             $table->integer('city_id');
             $table->integer('area_id');
+            $table->string('request_status')->default('Pending');
             $table->timestamps();
         });
     }
