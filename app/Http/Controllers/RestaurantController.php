@@ -43,27 +43,18 @@ class RestaurantController extends Controller
     }
 
 
-    // public function changeIt(Request $request){
-    //     $data = $request->all();
-    //     \Log::info($data);
-    //     $data->request_status= $request->request_status;
-    //     return Restaurant::where('id',$data['id'])->update($data);
-    // }
-
-
     public function changeIt(Request $request){
         $data = $request->all();
         
-        if($data['request_status']=='completed') $data['request_status'] = 'pending';
-        if($data['request_status']=='pending') $data['request_status'] = 'completed';
+        if($data['request_status']=='approve') $data['request_status'] = 'Pending';
+        if($data['request_status']=='pending') $data['request_status'] = 'Approved';
 
-        Restaurant::where('id',$data['id'])->update($data);
-        $restaurant = Restaurant::where('id',$data['id']);
-        return response()->json([
-         'restaurant' => $restaurant,
-            'success' => true
-        ],200);
+        return Restaurant::where('id',$data['id'])->update($data);
+
     }
+
+
+
 
 
 }

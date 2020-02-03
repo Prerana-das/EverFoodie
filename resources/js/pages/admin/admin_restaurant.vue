@@ -65,9 +65,10 @@
 									<span>{{item.cost}}</span>
 								</td>
 								<td>
-									<template  v-if="isEdit && index == editIndex">  <Input v-model="edit_form.request_status" /></template>
+									
 									<span>{{item.request_status}}</span>
-									<button @click="changeIt(item,index)">Approved</button>
+									<span v-if="item.request_status=='Pending'"><button @click="changeIt(item,index)">Approve</button></span>
+                                    <span v-if="item.request_status=='Approved'"><button @click="changeIt(item,index)">Pending</button></span>
 								</td>
 								<td>
 									<template   v-if="isEdit && index == editIndex">
@@ -82,7 +83,7 @@
 							</tr>
 								<!-- ITEMS -->
 
-								<p>{{ request_status}}</p>
+								<!-- <p>{{ request_status}}</p> -->
 
 						</table>
 					</div>
@@ -109,31 +110,29 @@
 				editIndex:-1,
 				imageUrl:'',			
 				listMethod:true,
-				request_status:'pending',
-				 edit_data: {
+				edit_status:{
+					id:'',
 					request_status:''
 				}
 			}
         },
         methods: {
-
-
+		
 		 async changeIt(item,index){
-			this.editIndex = index
+			 this.editIndex=index
+
+			this.edit_status.id = item.id
+            this.edit_status.request_status = item.request_status
+           
+            if(this.edit_status.request_status !== 'Pending') this.edit_status.request_status = 'approve'
+            if(this.edit_status.request_status == 'Pending') this.edit_status.request_status = 'pending'
+           
+			const res = await this.callApi('post', 'changeIt', this.edit_status)
 			
-			//this.edit_data.id = item.id
-			
-			// if(this.edit_data.request_status == 'pending') this.edit_data.request_status = '2'
-			// if(this.edit_data.request_status == 'completed') this.edit_data.request_status = '1'
-			
-			if(this.request_status == 'pending') this.request_status = 'completed'
-			
-			
-            const response = await this.callApi('post', 'changeIt')
-            if (response.request_status == 200) {
-                this.data[this.editIndex].request_status = response.data.request_status
-                this.s('Order status changed')
-                this.editIndex = -1
+            if (res.status == 200) {
+				this.restaurant[this.editIndex].request_status = this.edit_status.request_status
+					this.s('res status changed')
+					this.editIndex = -1
             }else{
                 this.swr();
             }
@@ -197,13 +196,6 @@
 		 async created(){
 			this.all_restaurant();
 	
-			// const res = await this.callApi('get','all_restaurant')
-			// if(res.status == 200){
-			// 	this.city = res.data
-			// }
-			// else{
-			// 	this.swr()
-			// }
     	}
     }
 </script>

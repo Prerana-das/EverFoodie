@@ -2341,6 +2341,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2353,8 +2354,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       editIndex: -1,
       imageUrl: '',
       listMethod: true,
-      request_status: 'pending',
-      edit_data: {
+      edit_status: {
+        id: '',
         request_status: ''
       }
     };
@@ -2364,31 +2365,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _changeIt = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(item, index) {
-        var response;
+        var res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                this.editIndex = index; //this.edit_data.id = item.id
-                // if(this.edit_data.request_status == 'pending') this.edit_data.request_status = '2'
-                // if(this.edit_data.request_status == 'completed') this.edit_data.request_status = '1'
+                this.editIndex = index;
+                this.edit_status.id = item.id;
+                this.edit_status.request_status = item.request_status;
+                if (this.edit_status.request_status !== 'Pending') this.edit_status.request_status = 'approve';
+                if (this.edit_status.request_status == 'Pending') this.edit_status.request_status = 'pending';
+                _context.next = 7;
+                return this.callApi('post', 'changeIt', this.edit_status);
 
-                if (this.request_status == 'pending') this.request_status = 'completed';
-                _context.next = 4;
-                return this.callApi('post', 'changeIt');
+              case 7:
+                res = _context.sent;
 
-              case 4:
-                response = _context.sent;
-
-                if (response.request_status == 200) {
-                  this.data[this.editIndex].request_status = response.data.request_status;
-                  this.s('Order status changed');
+                if (res.status == 200) {
+                  this.restaurant[this.editIndex].request_status = this.edit_status.request_status;
+                  this.s('res status changed');
                   this.editIndex = -1;
                 } else {
                   this.swr();
                 }
 
-              case 6:
+              case 9:
               case "end":
                 return _context.stop();
             }
@@ -2550,13 +2551,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              this.all_restaurant(); // const res = await this.callApi('get','all_restaurant')
-              // if(res.status == 200){
-              // 	this.city = res.data
-              // }
-              // else{
-              // 	this.swr()
-              // }
+              this.all_restaurant();
 
             case 1:
             case "end":
@@ -67896,43 +67891,41 @@ var render = function() {
                           2
                         ),
                         _vm._v(" "),
-                        _c(
-                          "td",
-                          [
-                            _vm.isEdit && index == _vm.editIndex
-                              ? [
-                                  _c("Input", {
-                                    model: {
-                                      value: _vm.edit_form.request_status,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.edit_form,
-                                          "request_status",
-                                          $$v
-                                        )
-                                      },
-                                      expression: "edit_form.request_status"
+                        _c("td", [
+                          _c("span", [_vm._v(_vm._s(item.request_status))]),
+                          _vm._v(" "),
+                          item.request_status == "Pending"
+                            ? _c("span", [
+                                _c(
+                                  "button",
+                                  {
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.changeIt(item, index)
+                                      }
                                     }
-                                  })
-                                ]
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _c("span", [_vm._v(_vm._s(item.request_status))]),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                on: {
-                                  click: function($event) {
-                                    return _vm.changeIt(item, index)
-                                  }
-                                }
-                              },
-                              [_vm._v("Approved")]
-                            )
-                          ],
-                          2
-                        ),
+                                  },
+                                  [_vm._v("Approve")]
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          item.request_status == "Approved"
+                            ? _c("span", [
+                                _c(
+                                  "button",
+                                  {
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.changeIt(item, index)
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Pending")]
+                                )
+                              ])
+                            : _vm._e()
+                        ]),
                         _vm._v(" "),
                         _c(
                           "td",
@@ -67996,9 +67989,7 @@ var render = function() {
                           2
                         )
                       ])
-                    }),
-                    _vm._v(" "),
-                    _c("p", [_vm._v(_vm._s(_vm.request_status))])
+                    })
                   ],
                   2
                 )
