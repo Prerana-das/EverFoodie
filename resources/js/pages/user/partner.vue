@@ -218,27 +218,24 @@
 					<div class="col-lg-7 col-md-7 col-sm-12">
 						<div class="partnership_right _box_shadow">
 							<h3 class="hour_title _mar_b30">Partnership Form</h3>
-							<form class="partnership-form">
+
+							<form class="partnership-form" @submit.prevent="registration">
 								<div class="form-box required">
 									<input v-model="formItem.name" type="text" placeholder="Restaurant Name">
 								</div>
 								<div class="form-box">
-									<select v-model="formItem.city_id">
-									  <option v-for="(item,index) in city" :value="item.id" :key="index">
-										<div v-if="city.length">
+									<Select v-model="formItem.city_id"  >
+										<Option v-for="(item,index) in city" :value="item.id" :key="index">
 											{{ item.name }}
-										</div>
-									  </option>
-									</select>
+										</Option>
+									</Select>
 								</div>
 								<div class="form-box">
-									<select v-model="formItem.area_id">
-									  <option v-for="(item,index) in area" :value="item.id" :key="index">
-										<div v-if="area.length">
+									<Select v-model="formItem.address" >
+										<Option v-for="(item,index) in area" :value="item.name" :key="index">
 											{{ item.name }}
-										</div>
-									  </option>
-									</select>
+										</Option>
+									</Select>
 								</div>
 								<div class="form-box">
 									<Upload
@@ -275,8 +272,21 @@
 								<div class="form-box required">
 									<textarea v-model="formItem.description"></textarea>
 								</div>
+								<div class="form-box required">
+									<input v-model="formItem.phone" type="number" placeholder="Restaurant Phone">
+								</div>
+								<div class="form-box required">
+									<input v-model="formItem.email" type="email" placeholder="Restaurant Email">
+								</div>
+								<div class="form-box required">
+									<input v-model="formItem.password" type="password" placeholder="Restaurant Password">
+								</div>
+								<div class="form-box required">
+									<input v-model="formItem.password_confirmation" type="password" placeholder="Restaurant Password confirm">
+								</div>
+								<!-- <input name="user_type" type="hidden" :value="someData"> -->
 								<div class="partnership-btn">
-									<input class="block_btn"  @click="add_restaurant" type="submit" value="Submit">
+									<input class="block_btn" type="submit" value="Submit">
 								</div>
 							</form>
 						</div>
@@ -295,13 +305,18 @@
     export default {
         data () {
             return {
-				restaurant:[],
+				user:[],
 				formItem: {
 					name: '',
+					address:'',
 					image:'',
 					cost:'',
 					city_id:'',
-					area_id:''
+					phone:'',
+					email:'',
+					password:'',
+					password_confirmation:'',
+					user_type:''
 				},
 				imageUrl:'',			
 				listMethod:true,
@@ -310,40 +325,51 @@
 			}
         },
         methods: {
-			handleSuccess(res, file){
-                console.log(res);
-                this.imageUrl=res.imageUrl
-                this.formItem.image = res.imageUrl;
-			},
 
-			async all_restaurant(){
-				const res = await this.callApi('get','all_restaurant')
-				if(res.status == 200){
-					this.restaurant = res.data
+			handleSuccess(res, file){
+               if (res) {
+				this.formItem.image = res
 				}
 			},
-			
-			async add_restaurant(){
+
+			// async all_restaurant(){
+			// 	const res = await this.callApi('get','all_restaurant')
+			// 	if(res.status == 200){
+			// 		this.restaurant = res.data
+			// 	}
+			// },
+		
+
+			async registration(){
 				if(this.formItem.name == '') return this.i("Restaurant Name is empty!");
 				if(this.formItem.description == '') return this.i("Restaurant Name is empty!");
 				if(this.formItem.image == '') return this.i("Restaurant Name is empty!");
 				if(this.formItem.cost == '') return this.i("Restaurant Name is empty!");
-				const res = await this.callApi('post','add_restaurant',this.formItem)
+				if(this.formItem.phone == '') return this.i("Restaurant phone number is empty!");
+				if(this.formItem.email == '') return this.i("Restaurant email is empty!");
+				if(this.formItem.password == '') return this.i("Restaurant password is empty!");
+				this.formItem.user_type='Restaurant'
+				const res = await this.callApi('post','registration',this.formItem)
+
 				if(res.status == 201){
-					this.restaurant.push(res.data)
-					this.s("New Area Added !")
+					this.user.push(res.data)
+					this.s("New user Added !")
 					// this.formItem.name = ''
-					window.location='/'
+					window.location='/login'
 				}
 				else{
 					this.swr();
 				}
-			}
+			},
+
 		
+
 		},
-		
+
+
 		 async created(){
-			this.all_restaurant();
+
+			//this.all_user();
 	
 			const [res1, res2] = await Promise.all([ this.callApi('get','all_city'),this.callApi('get','all_area') ])
 			if(res1.status == 200 && res2.status == 200){
@@ -354,10 +380,11 @@
 				this.swr()
 			}
     	}
-    }
+	
+	
+	}
+	
 </script>
 
 
 
-
-			

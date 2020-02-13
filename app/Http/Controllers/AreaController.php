@@ -9,7 +9,8 @@ class AreaController extends Controller
 {
     //
     public function allArea(){
-        return Area::all();
+       return Area::with('city')->get();
+        // return Area::all();
     }
     public function storeArea(Request $request){
         $data = $request->all();

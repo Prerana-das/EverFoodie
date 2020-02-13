@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+		<meta name="csrf-token" content="{{ csrf_token() }}">
         <title>EverFoodie</title>
 
         <!-- Fonts -->
@@ -23,36 +23,6 @@
 
     </head>
     <body>
-    
-<!-- <div class="_login">
-<h3>Register</h3>
-    <form method="POST" action="/app/registration">
-    @csrf
-    @if (session('message'))
-        <div class="alert alert-danger" role="alert">
-            {{ session('message') }}
-        </div>
-    @endif
-        <div class="_1input_group">
-            <p class="_1label">Email</p>
-            <input class="_1int" name="name" type="text"  placeholder="Enter name" required/>
-            <input class="_1int" name="email" type="text"  placeholder="Enter Email" required/>
-            <input class="_1int" name="address" type="text"  placeholder="Enter address" required/>
-            <input class="_1int" name="phone" type="number"  placeholder="Enter phone" required/>
-        </div>
-
-        <div class="_1input_group">
-            <p class="_1label">Password</p>
-            <input class="_1int" type="password" name="password" placeholder="Enter Password" required/>
-            <input class="_1int" type="password" name="password_confirmation" placeholder="Enter Password" required/>
-        </div>
-
-        <div class="_1input_button _text_center">
-            <button class="_btn _btn_info"  type="submit">Sign In</button>
-        </div>
-    </form>
-    
-</div> -->
 
     <!-- ================== Register Area Start ================== -->
 		<div class="login_area  _padd_tb60 _padd_t100">
@@ -65,7 +35,7 @@
 						</a>
 					</div>
 					<div class="login_left_top_btn">
-						<button class="sign_up_btn" onclick="location.href='login.html'">Sign In</button>
+						<button class="sign_up_btn"> <a href="/login"> Sign In </a></button>
 					</div>
 
 					<div class="right_arrow_btn">

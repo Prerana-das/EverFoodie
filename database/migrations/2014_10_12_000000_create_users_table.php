@@ -22,6 +22,14 @@ class CreateUsersTable extends Migration
             $table->string('phone');
             $table->string('user_type')->default('User');
             $table->string('password');
+
+            $table->string('description')->nullable();
+            $table->string('image')->nullable();
+            $table->Integer('cost')->nullable();
+            $table->integer('city_id')->nullable();
+            $table->string('request_status')->default('Pending');
+
+
             $table->rememberToken();
             $table->timestamps();
         });

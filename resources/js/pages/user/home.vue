@@ -37,7 +37,9 @@
                             <h2 class="_mar_b10">List your restaurant on everfoodie</h2>
                             <p class="_mar_b15">Would you like thousands of new customers to taste your amazing food? So would we!.</p>
                             <p class="_mar_b15">It's simple: we list your menu online, help you process orders, pick them up, and deliver them to hungry pandas - in a heartbeat!</p>
-                            <a href="partner.html" class="block_btn">Get Started</a>
+                            <router-link :to="`/partner`">
+                                <button class="block_btn">Get Started</button>
+                            </router-link>
                         </div>
                     </div>
                 </div>
@@ -57,71 +59,22 @@
                 </div>
                 <div class="row">
                     <!-- Item -->
-                    <div class="col-md-3">
-                        <div class="single_city _mar_b30">
-                            <a href="restaurant.html">
-                                <div class="city_img">
-                                    <img src="assets/img/1.jpg" alt="sity">
-                                </div>
-                                <div class="city_title_area">
-                                    <h3 class="city_title">Dhaka</h3>
-                                </div>
-                                <div class="city_link">
-                                    <a href="#"><i class="fas fa-arrow-right"></i></a>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Item -->
-                    <!-- Item -->
-                    <div class="col-md-3">
-                        <div class="single_city _mar_b30">
-                            <a href="restaurant.html">
-                                <div class="city_img">
-                                    <img src="assets/img/2.jpg" alt="sity">
-                                </div>
-                                <div class="city_title_area">
-                                    <h3 class="city_title">Sylhet</h3>
-                                </div>
-                                <div class="city_link">
-                                    <a href="#"><i class="fas fa-arrow-right"></i></a>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Item -->
-                    <!-- Item -->
-                    <div class="col-md-3">
-                        <div class="single_city _mar_b30">
-                            <a href="restaurant.html">
-                                <div class="city_img">
-                                    <img src="assets/img/3.jpg" alt="sity">
-                                </div>
-                                <div class="city_title_area">
-                                    <h3 class="city_title">Chittagong</h3>
-                                </div>
-                                <div class="city_link">
-                                    <a href="#"><i class="fas fa-arrow-right"></i></a>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Item -->
-                    <!-- Item -->
-                    <div class="col-md-3">
-                        <div class="single_city _mar_b30">
-                            <a href="restaurant.html">
-                                <div class="city_img">
-                                    <img src="assets/img/4.jpg" alt="sity">
-                                </div>
-                                <div class="city_title_area">
-                                    <h3 class="city_title">Barisal</h3>
-                                </div>
-                                <div class="city_link">
-                                    <a href="#"><i class="fas fa-arrow-right"></i></a>
-                                </div>
-                            </a>
-                        </div>
+                    <div class="col-md-3" v-for="(item,index) in city" :key="index">
+                        <router-link :to="`/restaurant`">
+                            <div class="single_city _mar_b30">
+                                <a href="restaurant.html">
+                                    <div class="city_img">
+                                        <img :src="item.image" alt="city">
+                                    </div>
+                                    <div class="city_title_area">
+                                        <h3 class="city_title">{{ item.name }}</h3>
+                                    </div>
+                                    <div class="city_link">
+                                        <a href="#"><i class="fas fa-arrow-right"></i></a>
+                                    </div>
+                                </a>
+                            </div>
+                        </router-link>
                     </div>
                     <!-- Item -->
                 </div>
@@ -170,4 +123,36 @@
 
     </div>
 </template>
+
+
+
+<script>
+    export default {
+        data () {
+            return {
+				city:[]
+            }
+        },
+        methods: {
+			
+			async all_city(){
+				const res = await this.callApi('get','all_city')
+				if(res.status == 200){
+					this.city = res.data
+				}
+			}
+			
+			
+			
+
+
+
+
+		},
+		created(){
+			this.all_city();
+		}
+    }
+</script>
+
 

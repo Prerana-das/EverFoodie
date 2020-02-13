@@ -18,18 +18,26 @@ class CityController extends Controller
     }
 
 
+    // public function upload(Request $request)
+    // {
+    //    \Log::info($request->all());
+        
+    //     request()->file('image')->store('uploads');
+    //     $pic= $request->image->hashName();
+    //     $pic= "/uploads/$pic";
+    //     /*update the profile pic*/
+    //     //return Gallery::create($data);
+    //     return response()->json([
+    //         'imageUrl'=> $pic
+    //     ],200);
+    // }
+
     public function upload(Request $request)
     {
-       \Log::info($request->all());
-        
-        request()->file('image')->store('uploads');
-        $pic= $request->image->hashName();
-        $pic= "/uploads/$pic";
-        /*update the profile pic*/
-        //return Gallery::create($data);
-        return response()->json([
-            'imageUrl'=> $pic
-        ],200);
+        \Log::info($request);
+        request()->file('image')->store('/uploads');
+        $pic = "/uploads/" . $request->image->hashName();
+        return $pic;
     }
 
 

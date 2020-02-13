@@ -23,7 +23,21 @@ class HomeController extends Controller
             }
             return view('admin');
             
-        } 
+        }
+
+        if($request->segment(1)=='restaurantProfile'){
+            if(!Auth::check())
+            {
+                return redirect("/login");
+            }
+
+            if (Auth::user()->user_type !=='Restaurant') {
+                return redirect("/");
+            }
+            
+            return view('restaurantProfile');
+
+        }
         
             return view('welcome');
         }

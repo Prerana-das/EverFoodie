@@ -3,9 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+		<meta name="csrf-token" content="{{ csrf_token() }}">
         <title>EverFoodie</title>
-
         <!-- Fonts -->
         <!-- Fontawesome css -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -35,7 +34,7 @@
 						</a>
 					</div>
 					<div class="login_left_top_btn">
-						<button class="sign_up_btn" onclick="location.href='register.html'">Sign Up</button>
+						<button class="sign_up_btn"> <a href="/register"> Sign Up</a></button>
 					</div>
 
 					<div class="right_arrow_btn">
@@ -122,7 +121,7 @@
 		</div>
 		<!-- ================== Login Area Start ================== -->
 
-<script>
+		<script>
             (function () {
                window.Laravel = {
                    csrfToken: '{{ csrf_token() }}'

@@ -37,6 +37,18 @@
         });
 
 
+        $('.checkout_btnnn').click(function() {
+          $(".addtocart_area").addClass("addtocart_modal_show");
+          $(".addtocart_area_overlay").addClass("addtocart_modal_fadeIn");
+      });
+      $(".addtocart_toggle").click(function(e) {
+          e.preventDefault();
+          $(".addtocart_area").removeClass("addtocart_modal_show");
+          $(".addtocart_area_overlay").removeClass("addtocart_modal_fadeIn");
+      });
+
+
+
  });
 
 

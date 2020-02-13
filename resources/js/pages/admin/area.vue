@@ -5,29 +5,32 @@
 				
 
 				<Button class="_mar_b30" type="primary" @click="modal1 = true">Add Area</Button>
-				 <Modal
+				<Modal
 					v-model="modal1"
-					title="Add New Area">
-					<!-- ===========Form================ -->
-					<Form :model="formItem" :label-width="80">
-						<FormItem label="Input">
-							<Input v-model="formItem.name" placeholder="Enter something..."></Input>
-						</FormItem>
-						<FormItem label="Input">
-							 <Select v-model="formItem.city_id"  >
-								<Option v-for="(item,index) in city" :value="item.id" :key="item.id">
-									<div v-if="index == city.length > 1">
-										{{ item.name }}
-									</div>
+					title="Add a new Area"
+					:mask-closable="false"
+					:closable="false"
+				>
+					<div class="row">
+						<div class="col-6 col-md-6">
+							<div class="_3login_input_group">
+								<label class="form_label">Area Name</label>
+								<Input v-model="formItem.name" placeholder="Enter Area Name..."></Input>
+							</div>
+						</div>
+						<div class="col-12 col-md-12">
+							<label class="form_label">Select City</label>
+							<Select v-model="formItem.city_id"  >
+								<Option v-for="item in city" :value="item.id" :key="item.name">
+									{{ item.name }}
 								</Option>
-							</Select>
-						</FormItem>
-						 <FormItem>
-							<Button type="primary"  @click="add_area">Add</Button>
-							<Button style="margin-left: 8px">Cancel</Button>
-						</FormItem>
-					</Form>
-
+							</Select> 
+						</div>
+					</div>
+					<div slot="footer">
+						<Button type="default" @click="modal1=false">Close</Button>
+						<Button type="primary" @click="add_area">Add Area</Button>
+					</div>
 				</Modal>
 				<!--~~~~~~~ TABLE ONE ~~~~~~~~~-->
 				<div class="_1adminOverveiw_table_recent _box_shadow _border_radious _mar_b30 _p20">
@@ -38,8 +41,9 @@
 						<table class="_table">
 								<!-- TABLE TITLE -->
 							<tr>
-								<th>Date</th>
-								<th>Name</th>
+								<th>#</th>
+								<th>Area</th>
+								<th>City</th>
 								<th>Action</th>
 							</tr>
 								<!-- TABLE TITLE -->
@@ -49,27 +53,54 @@
 							<tr v-for="(item,index) in area" :key="index">
 								<td>{{item.id}}</td>
 								<td class="_table_name">
-									<template  v-if="isEdit && index == editIndex">  <Input v-model="edit_form.name" placeholder="Enter Category..."/></template>
-									<span v-else>{{item.name}}</span>
+									<span>{{item.name}}</span>
+								</td>
+								<td v-if="item.city">
+									<span>{{item.city.name}}</span>
 								</td>
 								<td>
-									<template   v-if="isEdit && index == editIndex">
-										<button class="_btn _action_btn view_btn1" @click="updateArea" >Save</button>
-										<button class="_btn _action_btn edit_btn1" @click="isEdit = false">Cancel</button>
-									</template>
-									<template v-else>
+									<template>
 										<button class="_btn _action_btn edit_btn1" @click="isEditOn(item,index)" >Edit</button>
 										<button class=" _btn _action_btn make_btn1" @click="area_delete(item.id,index)" >Delete</button>
 									</template>
 								</td>
 							</tr>
 								<!-- ITEMS -->
-
 						</table>
 					</div>
 				</div>
 				 <Page :total="100" />
+				 <!--~~~~~~~ TABLE ONE ~~~~~~~~~-->
 
+				 <Modal
+					v-model="editModal"
+						:mask-closable="false"
+						:closable="false"
+						title="Edit Area"
+						>
+						<div class="row">
+							<div class="col-6 col-md-6">
+								<div class="_3login_input_group">
+									<label class="form_label">Area Name</label>
+									<Input type="text" v-model="edit_form.name" placeholder="Menu Name"/>
+								</div>
+							</div>
+							<div class="col-6 col-md-6">
+								<div class="_3login_input_group">
+									<label class="form_label">City Name</label>
+										<Select v-model="edit_form.city_id"  >
+										<Option v-for="(item , index) in city" :value="item.id" :key="index">
+											{{ item.name }}
+										</Option>
+									</Select> 
+								</div>
+							</div>
+						</div>
+						<div slot="footer">
+							<Button type="default" @click="editModal=false">Close</Button>
+							<Button type="primary" @click="updateArea">Update</Button>
+						</div>
+					</Modal>
 			</div>
 		</div>
 	</div>
@@ -83,15 +114,17 @@
             return {
 				area:[],
 				modal1: false,
+				editModal:false,
 				formItem: {
 					name: '',
-					city_id:''
+					city_id:'',
 				},
 				edit_form:{
-                name:'',
-                id:'',
+					name:'',
+					id:'',
+					city_id:'',
 				},
-				isEdit:false,
+				// isEdit:false,
 				editIndex:-1,
 				city:[]
 			}
@@ -110,7 +143,9 @@
 				if(res.status == 201){
 					this.area.push(res.data)
 					this.s("New Area Added !")
-					this.formItem.name = ''
+					this.modal1 = false
+					// this.formItem = {}
+					// this.listMethod=false
 				}
 				else{
 					this.swr();
@@ -118,9 +153,16 @@
 			},
 			async updateArea(){
 				if(this.edit_form.name == '') return this.i("Area Name is empty!");
+				 if(this.edit_form.city_id == '') return this.i("City is empty!");
 				const res = await this.callApi('post','edit_area',this.edit_form)
 				if(res.status == 200){
-					this.area[this.editIndex] = _.clone(this.edit_form) 
+					//this.area[this.editIndex] = _.clone(this.edit_form) 
+
+					let ind =  this.city.findIndex( v => v.id == this.edit_form.city_id);
+
+					this.area[this.editIndex] = this.edit_form	
+					this.area[this.editIndex].city=this.city[ind]
+
 					this.s("Area Updated  !")
 					let ob ={
 						name:'',
@@ -128,7 +170,7 @@
 					}
 					this.edit_form = ob 
 					this.editIndex = -1
-					this.isEdit = false
+					this.editModal = false
 				}
 				else{
 					this.swr();
@@ -147,10 +189,19 @@
 					this.area.splice(index,1)
 				}
 			},
+
+
 			isEditOn(item,index){
-				this.edit_form = _.clone(item) 
+
+				//separately clone item
+				this.edit_form.id = item.id
+				this.edit_form.name = item.name
+				this.edit_form.city_id = item.city_id
+				
+				//this.edit_form=this.item.name
+
 				this.editIndex = index
-				this.isEdit = true
+				this.editModal = true
         	}
 		
 

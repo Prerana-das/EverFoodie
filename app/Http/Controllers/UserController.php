@@ -23,9 +23,15 @@ class UserController extends Controller
 
         $data = $request->all();
         $data['password'] = Hash::make($data['password']);
-        User::create($data);
+        return User::create($data);
+        
+       // $user = User;
+        // return response()->json([
+        //     'user' => $user,
+        //        'success' => true
+        //    ],200);
 
-        return redirect("/login");
+        // return redirect('/login');
        
     }
 
@@ -47,12 +53,102 @@ class UserController extends Controller
             }
             if($user->user_type == 'Admin'){
                 return redirect("/admin");
-             }
+            }
+
+
          }
+
+         if (Auth::attempt(['email' => $request->email, 'password' => $request->password ])) {
+            
+            $user = Auth::user();
+            \Log::info($user);
+              if($user->user_type == 'Restaurant' && $user->request_status == 'Approved'){
+                 return redirect("/");
+              }
+              else{
+                return  redirect("/login")->with('message',"Your Need Authorithies Permission!");
+              }
+ 
+
+          }
          else{
             return  redirect("/login")->with('message',"Incorrect Password!");
          }
 
     }
+
+    public function all_user(){
+        return User::all();
+    }
+
+    // public function changeIt(Request $request){
+    //     $data = $request->all();
+        
+    //     if($data['request_status']=='approve') $data['request_status'] = 'Pending';
+    //     if($data['request_status']=='pending') $data['request_status'] = 'Approved';
+
+    //     return User::where('id',$data['id'])->update($data);
+    // }
+
+    public function updateUser(Request $request){
+        $data = $request->all();
+        \Log::info($data);
+        return User::where('id',$data['id'])->update($data);
+    }
+
+    public function deleteUser(Request $request){
+        $data = $request->all();
+        return User::where('id',$data['id'])->delete();
+    }
+
+
+    public function login_check(){
+
+        if(Auth::check()==false){
+            return view('login');
+        }
+        else{
+            
+            return  redirect("/");
+
+            //return redirect()->back();
+        }
+        
+    }
+
+
+
+
+    public function changePassword(Request $request){
+        $data = $request->all();
+        $user = Auth::user();
+       
+        if(!Hash::check($request->current_password, $user->password)){
+            return response()->json([
+                'msg' => 'Old password is not correct.',
+                'success' => false
+            ],401);
+        }
+
+        $this->validate($request,[
+        
+            'new_password'=>'required|string|min:6'
+        ]
+        );
+
+        $password = Hash::make($data['new_password']);
+    
+        $user = User::where('id', $user->id)->update(['password' => $password]);
+        return response()->json([
+        'user' => $user,
+        'success' => true
+        ],200);
+    }
+
+
+
+
+
+    
 
 }

@@ -18,7 +18,7 @@ class FoodTag extends Model
     }
 
     public function restaurant(){
-        return $this->hasMany('App\Restaurant','res_id');
+        return $this->hasMany('App\User','res_id');
     }
 
 

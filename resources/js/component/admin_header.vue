@@ -7,10 +7,10 @@
       <div class="_1side_menu" v-if="flag==1">
        <div class="_1side_menu_logo">
           <div class="main_logo">
-              <router-link to="/">
+              <a href="/">
                   <!-- <img src="assets/img/logo.jpg" alt="logo"> -->
                   <span>Ever</span>Foodie
-                </router-link>
+                </a>
           </div>
           <!--<img src="/img/logo.jpg" style="width: 108px;margin-left: 68px;"/>-->
         </div>

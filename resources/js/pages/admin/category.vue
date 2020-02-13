@@ -7,18 +7,22 @@
 				<Button class="_mar_b30" type="primary" @click="modal1 = true">Add Category</Button>
 				 <Modal
 					v-model="modal1"
-					title="Add New Category">
-					<!-- ===========Form================ -->
-					<Form :model="formItem" :label-width="80">
-						<FormItem label="Input">
-							<Input v-model="formItem.name" placeholder="Enter something..."></Input>
-						</FormItem>
-						 <FormItem>
-							<Button type="primary"  @click="add_category">Add</Button>
-							<Button style="margin-left: 8px">Cancel</Button>
-						</FormItem>
-					</Form>
-
+					title="Add a new Category"
+					:mask-closable="false"
+					:closable="false"
+				>
+					<div class="row">
+						<div class="col-6 col-md-6">
+							<div class="_3login_input_group">
+								<label class="form_label">Category Name</label>
+								<Input v-model="formItem.name" placeholder="Enter Category Name..."></Input>
+							</div>
+						</div>
+					</div>
+					<div slot="footer">
+						<Button type="default" @click="modal1=false">Close</Button>
+						<Button type="primary" @click="add_category">Add Category</Button>
+					</div>
 				</Modal>
 				<!--~~~~~~~ TABLE ONE ~~~~~~~~~-->
 				<div class="_1adminOverveiw_table_recent _box_shadow _border_radious _mar_b30 _p20">
@@ -62,7 +66,30 @@
 					</div>
 				</div>
 				 <Page :total="100" />
+				 <!--~~~~~~~ TABLE ONE ~~~~~~~~~-->
 
+				<Modal
+					v-model="editModal"
+					:mask-closable="false"
+					:closable="false"
+					title="Edit Category"
+					>
+					<div class="row">
+						<div class="col-6 col-md-6">
+							<div class="_3login_input_group">
+								<label class="form_label">Category Name</label>
+								<Input type="text" v-model="edit_form.name" placeholder="Category Name"/>
+							</div>
+						</div>
+						<div class="col-12 col-md-12">
+							
+						</div>
+					</div>
+					<div slot="footer">
+						<Button type="default" @click="editModal=false">Close</Button>
+						<Button type="primary" @click="updateCategory">Update</Button>
+					</div>
+				</Modal>
 			</div>
 		</div>
 	</div>
@@ -76,12 +103,13 @@
             return {
 				category:[],
 				modal1: false,
+				editModal:false,
 				formItem: {
                     name: ''
 				},
 				edit_form:{
-                name:'',
-                id:'',
+					name:'',
+					id:'',
 				},
 				isEdit:false,
 				editIndex:-1,
@@ -101,7 +129,9 @@
 				if(res.status == 201){
 					this.category.push(res.data)
 					this.s("New Category Added !")
-					this.formItem.name = ''
+					this.modal1=false
+					this.formItem = {}
+					this.listMethod=false
 				}
 				else{
 					this.swr();
@@ -119,7 +149,7 @@
 					}
 					this.edit_form = ob 
 					this.editIndex = -1
-					this.isEdit = false
+					this.editModal = false
 				}
 				else{
 					this.swr();
@@ -141,7 +171,7 @@
 			isEditOn(item,index){
 				this.edit_form = _.clone(item) 
 				this.editIndex = index
-				this.isEdit = true
+				this.editModal = true
         	}
 		
 

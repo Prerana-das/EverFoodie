@@ -5,41 +5,52 @@
 				
 
 				<Button class="_mar_b30" type="primary" @click="modal1 = true">Add City</Button>
-				 <Modal
+				<Modal
 					v-model="modal1"
-					title="Common Modal dialog box title" class="add_table">
-					<!-- ===========Form================ -->
-					<Form :model="formItem" :label-width="80">
-						<FormItem label="Input">
-							<Input v-model="formItem.name" placeholder="Enter something..."></Input>
-						</FormItem>
-						<!-- <FormItem label="Input"> -->
-							<Upload
-								ref="upload"
-								type="drag"
-								name="image"
-								:show-upload-list="listMethod" 
-								:with-credentials="true"
-								:data="{id:1}"
-								:on-success="handleSuccess"
-								:format="['jpg','jpeg','png']"
-								:max-size="2048"
-								action="/app/upload">
-								<div style="padding: 20px 0">
-									<Icon type="ios-cloud-upload" size="32" style="color: #3399ff"></Icon>
-									<p>Upload Image</p>
-								</div>
-							</Upload>
-							<div style="text-align:center">
-								<img  style="width: 100%;height: auto;" v-if="imageUrl" :src="imageUrl" >
+					title="Add a new City"
+					:mask-closable="false"
+					:closable="false"
+				>
+					<div class="row">
+						<div class="col-6 col-md-6">
+							<div class="_3login_input_group">
+								<label class="form_label">City Name</label>
+								<Input v-model="formItem.name" placeholder="Enter City Name..."></Input>
 							</div>
-						<!-- </FormItem> -->
-						 <FormItem>
-							<Button type="primary"  @click="add_city">Submit</Button>
-							<Button style="margin-left: 8px">Cancel</Button>
-						</FormItem>
-					</Form>
-
+						</div>
+						<div class="col-12 col-md-12">
+							<div class="_3login_input_group">
+								<label class="form_label">Image</label>
+							</div>
+							<template>
+								<Upload
+									ref="upload"
+									type="drag"
+									name="image"
+									:show-upload-list="listMethod" 
+									:with-credentials="true"
+									:data="{id:1}"
+									:on-success="handleSuccess"
+									:format="['jpg','jpeg','png']"
+									:max-size="2048"
+									action="/app/upload">
+									<div style="padding: 20px 0">
+										<Icon type="ios-cloud-upload" size="32" style="color: #3399ff"></Icon>
+										<p>Upload Image</p>
+									</div>
+								</Upload>
+								<Card  span="10" offset="1">
+									<div style="text-align:center">
+										<img  style="width: 100%;height: auto;" v-if="formItem.image" :src="formItem.image" >
+									</div>
+								</Card>
+							</template> 
+						</div>
+					</div>
+					<div slot="footer">
+						<Button type="default" @click="modal1=false">Close</Button>
+						<Button type="primary" @click="add_city">Add City</Button>
+					</div>
 				</Modal>
 				<!--~~~~~~~ TABLE ONE ~~~~~~~~~-->
 				<div class="_1adminOverveiw_table_recent _box_shadow _border_radious _mar_b30 _p20">
@@ -50,7 +61,7 @@
 						<table class="_table">
 								<!-- TABLE TITLE -->
 							<tr>
-								<th>Date</th>
+								<th>#</th>
 								<th>Name</th>
 								<th>Image</th>
 								<th>Action</th>
@@ -62,44 +73,16 @@
 							<tr v-for="(item,index) in city" :key="index">
 								<td>{{item.id}}</td>
 								<td class="_table_name">
-									<template  v-if="isEdit && index == editIndex">  
-										<Input v-model="edit_form.name" placeholder="Enter City..."/>
-									</template>
-									<span v-else>{{item.name}}</span>
+									<span>{{item.name}}</span>
 								</td>
 								<td>
-									<template  v-if="isEdit && index == editIndex">  
-										<Upload
-											ref="upload"
-											type="drag"
-											name="image"
-											:show-upload-list="listMethod" 
-											:with-credentials="true"
-											:data="{id:1}"
-											:on-success="handleSuccessedit"
-											:format="['jpg','jpeg','png']"
-											:max-size="2048"
-											action="/app/upload">
-											<div>
-												<Icon type="ios-cloud-upload" size="22" style="color: #3399ff"></Icon>
-												<p>Upload Image</p>
-											</div>
-										</Upload>
-											<div class="preview_upload_img">
-												<img  style="width: 100%;height: auto;" v-if="imageUrl" :src="imageUrl" >
-											</div>
-									</template>
 									<div class="_1table_img">
 										<img :src="item.image" alt="image">
 									</div>								
 								</td>
 								<td>
-									<template   v-if="isEdit && index == editIndex">
-										<button class="_btn _action_btn make_btn2" @click="updateCity" >Save</button>
-										<button class="_btn _action_btn edit_btn1" @click="isEdit = false">Cancel</button>
-									</template>
-									<template v-else>
-										<button class="_btn _action_btn edit_btn1" @click="isEditOn(item,index)" >Edit</button>
+									<template>
+										<button class="_btn _action_btn edit_btn1" @click="editCity(item,index)" >Edit</button>
 										<button class=" _btn _action_btn make_btn1" @click="city_delete(item.id,index)" >Delete</button>
 									</template>
 								</td>
@@ -108,14 +91,58 @@
 
 						</table>
 					</div>
+					 <Modal
+						v-model="editModal"
+							:mask-closable="false"
+							:closable="false"
+							title="Edit City"
+							>
+							<div class="row">
+								<div class="col-6 col-md-6">
+									<div class="_3login_input_group">
+										<label class="form_label">City Name</label>
+										<Input type="text" v-model="edit_form.name" placeholder="Menu Name"/>
+									</div>
+								</div>
+								<div class="col-12 col-md-12">
+									<div class="_3login_input_group">
+										<label class="form_label">Image</label>			
+										<template>	
+											<Upload
+											ref="upload"
+											type="drag"
+											name="image"
+											:with-credentials="true"
+											:data="{id:1}"
+											:on-success="handleSuccessedit"
+											:format="['jpg','jpeg','png']"
+											:max-size="2048"
+											action="/app/upload">				
+											<div style="padding: 20px 0">
+												<Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
+												<p>Click or drag files here to upload</p>
+											</div>
+											</Upload>
+											<Card  span="10" offset="1">
+												<div style="text-align:center">
+													<img  style="width: 100%;height: auto;" v-if="edit_form.image" :src="edit_form.image" >
+												</div>
+											</Card>
+										</template> 
+									</div>
+								</div>
+							</div>
+							<div slot="footer">
+								<Button type="default" @click="editModal=false">Close</Button>
+								<Button type="primary" @click="updateCity">Update</Button>
+							</div>
+						</Modal>
 				</div>
 				 <Page :total="100" />
-
 			</div>
 		</div>
 	</div>
 </template>
-
 
 
 <script>
@@ -124,6 +151,7 @@
             return {
 				city:[],
 				modal1: false,
+				editModal: false,
 				formItem: {
 					name: '',
 					image:''
@@ -131,8 +159,9 @@
 				imageUrl:'',			
 				listMethod:true,
 				edit_form:{
-                name:'',
-                id:'',
+					name:'',
+					id:'',
+					image:''
 				},
 				isEdit:false,
 				editIndex:-1,
@@ -140,15 +169,16 @@
         },
         methods: {
 			 handleSuccess(res, file){
-                console.log(res);
-                this.imageUrl=res.imageUrl
-                this.formItem.image = res.imageUrl;
+            
+				if (res) {
+				this.formItem.image = res
+				}
 			},
 
 			 handleSuccessedit(res, file){
-                console.log(res);
-                this.imageUrl=res.imageUrl
-                this.edit_form.image = res.imageUrl;
+				if (res) {
+				this.edit_form.image = res
+				}
 			},
 			
 			async all_city(){
@@ -166,7 +196,10 @@
 					this.city.push(res.data)
 					this.s("New City Added !")
 					//this.$router.push('/')
-					window.location='/admin/city'
+
+					this.formItem = {}
+					this.listMethod=false
+					this.modal1=false
 				}
 				else{
 					this.swr();
@@ -182,11 +215,12 @@
 					this.s("City Updated  !")
 					let ob ={
 						name:'',
+						image:'',
 						id:'',
 					}
 					this.edit_form = ob 
 					this.editIndex = -1
-					this.isEdit = false
+					this.editModal = false
 				}
 				else{
 					this.swr();
@@ -205,11 +239,17 @@
 					this.city.splice(index,1)
 				}
 			},
-			isEditOn(item,index){
-				this.edit_form = _.clone(item) 
+		
+			
+
+			editCity(item,index){
+				this.edit_form = _.cloneDeep(item)
 				this.editIndex = index
-				this.isEdit = true
-        	}
+				this.editModal = true
+			},
+
+
+
 
 		},
 		created(){

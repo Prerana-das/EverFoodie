@@ -362,15 +362,14 @@ p {
       z-index: 111;
   }
   ._1side_menu_logo {
-      text-align: center;
-      border-bottom: 1px solid #f4f4f5;
-      height: 56px;
-      padding-top: 18px;
-  }
+    text-align: center;
+    border-bottom: 1px solid #f4f4f5;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+}
   ._1side_menu_content {
-      /*height: -moz-calc(100% - (20px + 30px));*/
-      /* height: -webkit-calc(100% - (20px + 30px)); */
-      /* height: calc(100% - (20px + 30px)); */
       flex: 1 1;
       overflow: auto;
   }
@@ -445,35 +444,20 @@ p {
       left: 0px;
   }
   ._2menu {
-      display: flex;
-      align-items: center;
-      height: 55px;
-      width: 100%;
-      z-index: 11111;
-      top: 0px;
-      left: 0px;
-      background: #fff;
-      padding: 0 15px 0 2px;
-  }
-  ._2menu_logo {
-      height: 100%;
-      padding-top: 17px;
-      border-right: 1px solid #ececec;
-      padding-right: 3px;
-  }
-  ._2menu_logo_pic {
-      width: 100px;
-  }
-  ._2menu_ceta {
-      flex: 1 1;
-      padding: 0 26px;
-      height: 100%;
-  }
+    display: flex;
+    align-items: center;
+    height: 55px;
+    width: 100%;
+    z-index: 11111;
+    top: 0px;
+    left: 0px;
+    background: #fff;
+    padding: 0 18px;
+}
   .open_button li{
       display: inline-block;
       margin:0 10px;
   }
-  .open_button{}
   .open_button i {
       font-size: 25px;
       color: #444;
@@ -498,16 +482,18 @@ p {
   ._2menu_profile_active {
       background: #0099ff !important;
   }
-  ._2menu_profile_on {
-      position: absolute;
-      height: 13px;
-      width: 12px;
-      border-radius: 50%;
-      background: white;
-      border: 2px solid #ddd;
-      bottom: 0px;
-      right: 0px;
-  }
+  ._2menu {
+    display: flex;
+    align-items: center;
+    height: 55px;
+    width: 100%;
+    z-index: 11111;
+    top: 0px;
+    left: 0px;
+    background: #fff;
+    padding: 0 18px;
+    justify-content: flex-end;
+}
   ._2menu_mess {
       position: relative;
       width: 19px;
@@ -530,13 +516,6 @@ p {
       font-size: 9px;
       border-radius: 50%;
       border: 1px solid #fff;
-  }
-  ._2menu_ul{}
-  ._2menu_ul li {
-      display: inline-block;
-      vertical-align: middle;
-      margin-left: 27px;
-      cursor: pointer;
   }
   ._2menu_ceta_text i {
       position: absolute;
@@ -586,9 +565,6 @@ p {
   .home_header:before{
       position: absolute;
       content: '';
-  }
-  .home {
-      
   }
   .home_header{
           background-image: url(/static/header.jpg);
@@ -11814,16 +11790,7 @@ p {
   .job_search_cont p {
       font-size: 13px;
   }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
   
   
   /* REAL ESTATE DESCRIPTION */
@@ -11884,6 +11851,47 @@ p {
 
 ._1table_img {
     display: inline-block;
+}
+  
+
+
+
+
+
+.admin_info_title {
+    color: #222;
+    font-size: 18px;
+    font-weight: bold;
+}
+.admin_info .ivu-select-dropdown {
+    top: 50px!important;
+}
+.main_logo {
+    font-size: 20px;
+    font-weight: bold;
+    color:#2d8cf0;
+}
+
+
+
+.user_type_select{
+    width:100px!important;
+}
+.user_type_select .ivu-select {
+    display: block!important;
+    width: 100%!important;
+
+}
+.ivu-modal-header-inner {
+    font-size: 16px;
+}
+.sign_up_btn a {
+    color: #fff;
+}
+.form_label {
+    font-weight: bold;
+    color: #222;
+    font-size: 13px;
 }
   
   

@@ -13,8 +13,8 @@
 
 
 
-// Route::get('/admin', function () {
-//     return view('admin');
+// Route::get('/restaurantProfile', function () {
+//     return view('restaurantProfile');
 // });
 
 
@@ -40,24 +40,44 @@ Route::post('/app/add_area', "AreaController@storeArea");
 Route::post('/app/edit_area', "AreaController@updateArea");
 Route::post('/app/delete_area', "AreaController@deleteArea");
 
-// Restaurant Route
-Route::get('/app/all_restaurant', "RestaurantController@allRestaurant");
-Route::post('/app/add_restaurant', "RestaurantController@storeRestaurant");
-Route::post('/app/edit_restaurant', "RestaurantController@updateRestaurant");
-Route::post('/app/delete_restaurant', "RestaurantController@deleteRestaurant");
-Route::post('/app/changeIt', "RestaurantController@changeIt");
+
+
+//Route::get('/app/all_restaurant', "RestaurantController@allRestaurant");
+
+Route::get('/app/restaurant/{id}', "RestaurantController@singleRestaurant");
+
+Route::post('/app/edit_user', "UserController@updateUser");
+Route::post('/app/delete_user', "UserController@deleteUser");
+
+
+
+
+// Restaurant food Route  
+Route::get('/app/all_food', "FoodController@allFood");
+Route::post('/app/add_food', "FoodController@storeFood");
+Route::post('/app/edit_food', "FoodController@updateFood");
+Route::post('/app/delete_food', "FoodController@deleteFood");
+
+Route::get('/app/all_food_of_this_res/{id}', "FoodController@all_food_of_this_res");
+
 
 //Auth::routes();
 
 
 Route::post('/app/registration', "UserController@registration");
-
-
 Route::post('/app/login', "UserController@login");
+Route::get('/app/all_user', "UserController@all_user");
 
-Route::get('/login', function () {
-    return view('login');
-});
+Route::post('/app/changePassword', 'UserController@changePassword');
+
+//Route::post('/app/changeIt', "UserController@changeIt");
+
+
+// Route::get('/login', function () {
+//     return view('login');
+// });
+
+Route::get('/login', "UserController@login_check");
 
 Route::get('/register', function () {
     return view('register');

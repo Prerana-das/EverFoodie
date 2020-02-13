@@ -10,8 +10,8 @@ import home from '../pages/user/home.vue'
 import forgot_password from '../pages/user/forgot_password.vue'
 import partner from '../pages/user/partner.vue'
 import restaurant from '../pages/user/restaurant.vue'
-import singlerestaurarnt from '../pages/user/singlerestaurarnt.vue'
-
+import singlerestaurant from '../pages/user/singlerestaurant.vue'
+import addCard from '../pages/user/addCard.vue'
 
 //Admin
 import category from '../pages/admin/category.vue'
@@ -21,8 +21,16 @@ import food from '../pages/admin/food.vue'
 import overview from '../pages/admin/overview.vue'
 import admin_restaurant from '../pages/admin/admin_restaurant.vue'
 import review from '../pages/admin/review.vue'
+import user from '../pages/admin/user.vue'
+import change_password from '../pages/admin/change_password.vue'
 
 
+//Restaurant
+ import restaurant_dash from '../pages/restaurant/restaurant_dash.vue'
+import restaurant_contactInfo from '../pages/restaurant/restaurant_contactInfo.vue'
+import restaurant_profile from '../pages/restaurant/restaurant_profile.vue'
+import restaurant_review from '../pages/restaurant/restaurant_review.vue'
+import restaurant_food from '../pages/restaurant/restaurant_food.vue'
 
 // import auth from '../middleware/auth'
 // import log from '../middleware/log'
@@ -87,11 +95,19 @@ export default new Router({
       }
     },
      {
-      path: '/singlerestaurarnt',
-      name: 'singlerestaurarnt',
-      component: singlerestaurarnt,
+      path: '/singlerestaurant/:id',
+      name: 'singlerestaurant',
+      component: singlerestaurant,
       meta: {
-          title: 'singlerestaurarnt',
+          title: 'singlerestaurant',
+      }
+    },
+    {
+      path: '/addCard',
+      name: 'addCard',
+      component: addCard,
+      meta: {
+          title: 'addCard',
       }
     },
 
@@ -157,6 +173,66 @@ export default new Router({
           title: 'review',
       }
     },
+    {
+      path: '/admin/user',
+      name: 'user',
+      component: user,
+      meta: {
+          title: 'user',
+      }
+    },
+    {
+      path: '/admin/change_password',
+      name: 'change_password',
+      component: change_password,
+      meta: {
+          title: 'change_password',
+      }
+    },
+
+    //restaurant
+    {
+      path: '/restaurantProfile/restaurant_dash',
+      name: 'restaurant_dash',
+      component: restaurant_dash,
+      meta: {
+          title: 'restaurant_dash',
+      }
+    },
+    {
+      path: '/restaurantProfile/restaurant_contactInfo',
+      name: 'restaurant_contactInfo',
+      component: restaurant_contactInfo,
+      meta: {
+          title: 'restaurant_contactInfo',
+      }
+    },
+    {
+      path: '/restaurantProfile/restaurant_profile',
+      name: 'restaurant_profile',
+      component: restaurant_profile,
+      meta: {
+          title: 'restaurant_profile',
+      }
+    },
+    {
+      path: '/restaurantProfile/restaurant_review',
+      name: 'restaurant_review',
+      component: restaurant_review,
+      meta: {
+          title: 'restaurant_review',
+      }
+    },
+
+    {
+      path: '/restaurantProfile/restaurant_food',
+      name: 'restaurant_food',
+      component: restaurant_food,
+      meta: {
+          title: 'restaurant_food',
+      }
+    },
+
    
   ],
 

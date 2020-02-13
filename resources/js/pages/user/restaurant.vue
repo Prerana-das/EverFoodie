@@ -157,11 +157,12 @@
 				<div class="row">
 
 					<!-- ITEM -->
-					<div class="col-md-3" v-for="(item,index) in filterrestaurant" :key="index">
+					<div v-for="(item,index) in filterrestaurant" :key="index" class="col-md-3" v-if="item.request_status=='Approved' && item.user_type=='Restaurant'">				
+						<router-link :to="`/singlerestaurant/${item.id}`">
 							<div class="single_restaurant _mar_b30">
 								<a href="singlerestaurant.html">
 									<div class="restaurant_img _mar_b10">
-										<img src="assets/img/res1.jpg" alt="restaurant">
+										<img v-if="item.image" :src="item.image" >
 										<span class="freedelivery">Free Delivery</span>
 										<span class="deliverytime">25min</span>
 									</div>
@@ -172,9 +173,9 @@
 									<p class="restaurant_sub">{{ item.description }}</p>
 								</a>
 							</div>
+						</router-link>
 					</div>
 					<!-- ITEM -->
-					
 				</div>
 			</div>
 		</div>
@@ -197,7 +198,7 @@
 		
 		 async created(){
 	
-			const res = await this.callApi('get','all_restaurant')
+			const res = await this.callApi('get','all_user')
 			if(res.status == 200){
 				this.restaurant = res.data
 			}
