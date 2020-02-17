@@ -1,7 +1,56 @@
 <template>
     <div>
+		<div id="myProduct">
 
+		
     	<div class="container">
+			<div class="row">
+				<div class="col-md-10">
+					<div class="col-md-2 text-right">
+						<div class="modal fade" id="cart">
+							<div class="modal-dialog modal-dialog-centered modal-lg">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h2>Your Cart</h2>
+										<button class="close" data-dismiss="modal">Close</button>
+									</div>
+									<div class="modal-body">
+										<table>
+											<tbody>
+												<tr v-for="(cart,n) in carts" :key="n">
+													<td>{{ cart.name }}</td>
+													<td>{{ cart.price }}</td>
+													<td>
+														<input type="text" readonly class="form-control" v-model="cart.amount">
+													</td>
+													<td>
+														<button @click="removeCart(n)">Remove</button>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<div class="modal-footer">
+										totalprice:{{ totalprice }}
+										<!-- <button data-dismiss="modal" class="btn btn-success">Checkout</button> -->
+										<router-link to="/checkout/single_res_checkout" data-dismiss="modal">
+											Checkout
+										</router-link>
+										<a href="/checkout">
+											Checkout
+										</a>
+
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
 			<div class="div">
 			<!-- ===================== Restaurant Area Start ======================= -->
 			<div class="restaurant_details_banner_area ">
@@ -67,23 +116,13 @@
 											<span class="restaurant_meal_old"><strike>BDT 120.00</strike></span>
 										</div>
 										<div class="addtocart_option">
-											<!-- <ul class="addtocart_option_list">
-												<li v-on:click="a--">-</li>
-												<li> 
-													<span>
-													{{ addToA }}
-													</span>
-												</li>
-												<li v-on:click="a++">+</li>
-											</ul> -->
-
+											<input type="hidden" v-model="quantity">
 											<ul class="addtocart_option_list">
-												<li>+</li>
+												<li @click="addCart(item)">+</li>
 											</ul>
 										</div>
 									</div>
 								</li>
-								
 
 								<!-- Payment Modal Start  -->
 								<div class="addtocart_area_overlay">
@@ -132,33 +171,51 @@
 					<h3 class="checkout_cont_title">Your order Kababia</h3>
 					<p class="checkout_cont_sub">You haven’t added anything to your cart yet! Start adding your favourite dishes</p>
 				</div>
+				<button class="_mar_t15 cart_btn" data-toggle="modal" data-target="#cart">
+					<i class="fas fa-shopping-cart"></i>
+					<span class="badge badge-light">{{ badge }}</span>
+				</button>
 				<div class="addcart_items">
 					<!-- Item -->
-					<ul class="addcart_items_list" v-for="(item,index) in restaurant.food" :key="index" >
-						<template>
-						<!-- <template v-if="addToA > 0"> -->
+					<ul class="addcart_items_list" >
 						<li>
-							<div class="addtocart_option">
-								<!-- <ul class="addtocart_option_list">
-									<li v-on:click="a--">-</li>
-									<li> 
-										<span>
-										{{ addToA }}
-										</span>
-									</li>
-									<li v-on:click="a++">+</li>
-								</ul> -->
+							<div class="table-wrapper-scroll-y my-custom-scrollbar">
+							<table class="table table-striped">
+								<tbody>
+									<tr v-for="(cart,cartItem) in carts" :key="cartItem">
+										<td class="addcart_items_title">{{ cart.name }}</td>
+										<td class="addcart_items_price">{{ cart.price }}</td>
+										<!-- <td>
+											<input type="text" readonly class="form-control" v-model="quantity">
+										</td> -->
+										<td>
+											<!-- <div class="addtocart_option">
+												<ul class="addtocart_option_list">
+													<li @click="removeCart(cartItem)">-</li>
+													<li> 
+														<span>
+															<input type="text" readonly class="form-control" v-model="cart.amount">
+														</span>
+													</li>
+													<li>+</li>
+												</ul>
+											</div> -->
+											<div class="addtocart_option">
+												<ul class="addtocart_option_list">
+													<li @click="removeCart(cartItem)">-</li>
+
+													<li @click="storeCartUpdate(cartItem.quantity)">+</li>
+												</ul>
+												<input type="number" v-model="quantity">
+												
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							
 							</div>
 						</li>
-						<li>
-							<div class="addcart_items_title">
-								<h3>{{ item.name }} </h3>
-							</div>
-						</li>
-						<li>
-							<h5 class="addcart_items_price">BDT 120</h5>
-						</li>
-						</template>
 					</ul>
 					<!-- Item -->
 					
@@ -170,7 +227,7 @@
 								<p>Subtotal</p>
 							</div>
 							<div class="checkout_list_right">
-								<span>BDT 120</span>
+								<span>BDT {{ totalprice }}</span>
 							</div>
 						</li>
 						<li class="checkout_list_item">
@@ -178,7 +235,7 @@
 								<p>Delivery fee</p>
 							</div>
 							<div class="checkout_list_right">
-								<span>BDT 120</span>
+								<span>BDT 00</span>
 							</div>
 						</li>
 						<li class="checkout_list_item">
@@ -186,7 +243,7 @@
 								<p><b>Total</b></p>
 							</div>
 							<div class="checkout_list_right">
-								<span>BDT 120</span>
+								<span>BDT {{ totalprice }}</span>
 							</div>
 						</li>
 					</ul>
@@ -209,7 +266,7 @@
 		</div>
 		<!-- ===================== Restaurant checkout end ======================= -->
 
-
+		</div>
     </div>
  </template>
 
@@ -231,7 +288,6 @@ export default {
 			badge:'0',
 			quantity:'1',
 			totalprice:'0',
-
         }
     },
     methods :{
@@ -240,48 +296,99 @@ export default {
             if(res.status == 200){
                 this.restaurant = res.data
             }
-		},
+		}, 
 		
-		// viewCart(){
+		viewCart(){
+			if(localStorage.getItem('carts'))
+			{
+				this.carts=JSON.parse(localStorage.getItem('carts'));
+				this.badge =this.carts.length;
+				this.totalprice = this.carts.reduce((total,item)=>{
+					// return total + this.quantity * item.price;
 
-		// },
-		// addCart(){
+					return total + item.amount * item.price;
+				},0);
+			}
+		},
+		addCart(item){
+			//console.log('addCart');
+			let cartadd={}
+			cartadd.id= item.id;
+			cartadd.name= item.name;
+			cartadd.price=item.price;
+			cartadd.amount=this.quantity;
+
+			// this.carts.push(this.cartadd);
+			// 	//this.cartadd = {};
+			// 	this.storeCart();
+
+
+			let flag = false;
+			if(this.carts.length > 0){
+				for (let i of this.carts) {     //'in' get only index but 'of' get the full obj
+					if( i.id==item.id){
+						flag = true
+						break;
+						//this.storeCartUpdate();
+					}
+				}
+				if(flag == false){
+					this.carts.push(cartadd);
+					this.storeCart();
+				}
+		}
+		else{
+			this.carts.push(cartadd);
+			this.storeCart();
+			console.log('firsttime');
+		}
+		},
+		removeCart(pro){
+			this.carts.splice(pro,1);
+			this.storeCart();
+		},
+		storeCart(pro)
+		{
+			let parsed = JSON.stringify(this.carts);
+			localStorage.setItem('carts',parsed);
+			this.viewCart();
+
 			
-		// },
-		// removeCart(){
-			
-		// },
+		},
+		storeCartUpdate(item){
+			console.log(item);
+		}
+
 	},
 	
 	 computed: {
-        // addToA: function(){
-		// 	console.log('addToA');
-		// 	if('a++'== true){
-		// 		return this.defaultValue - this.a;
-		// 	}
-		// 	else{
-		// 		return this.a + this.defaultValue;
-		// 	}
-            
-		// }
+    
 	 },
 
     created(){
         
 		this.single_restaurant();
 		
-		// const res = await this.callApi('get','all_food')
-		// 	if(res.status == 200){
-		// 		this.food = res.data
-		// 	}
-		// 	else{
-		// 		this.swr()
-		// 	}
-
 		this.viewCart();
 
-
+		console.log(this.carts);
 
     }
 }
 </script>
+
+
+<style scoped>
+	#myProduct{
+		margin-top:50px;
+	}
+
+	.cart_btn{
+		background-color: #eb2f06;
+		color: #fff;
+		padding: 6px 15px;
+		border: 1px solid #eb2f06;
+		border-radius: 2px;
+		font-size: 16px;
+	}
+</style>

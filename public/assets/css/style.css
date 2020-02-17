@@ -57,6 +57,7 @@
     width: 100%;
     z-index: 999;
     background-color: #fff;
+    border-bottom: none;
 }
 .navbar-home {
     background-color: #fff;
@@ -639,7 +640,7 @@
     top: 0;
 }
 .sign_up_btn {
-    background-color: #444444;
+    background-color: red;
     border: none;
     color: #fff;
     font-size: 14px;
@@ -672,7 +673,7 @@
     margin: 25px auto;
 }
 .login_title {
-    font-size: 30px;
+    font-size: 25px;
     font-weight: bold;
     text-align: center;
     margin-bottom: 4px;
@@ -1367,16 +1368,14 @@
 .restaurant_details_banner img {
     height: 300px;
 }
-.addtocart_option_list{
-    border: 1px solid #eb2f06;
-    border-radius: 2px;
-}
 .addtocart_option_list li {
     display: inline-block;
     padding: 2px 10px;
     margin-bottom: 0px;
     font-weight: bold;
     font-size: 20px;
+    border: 1px solid #eb2f06;
+    border-radius: 2px;
 }
 .addtocart_option_list {display: -webkit-box;}
 .restaurant_meal_price_area {
@@ -1419,11 +1418,97 @@
 .addcart_items_list li:nth-child(3){
     width: 18%;
 } */
-.addtocart_option{
+.addtocart_option {
+    display: flex;
+}
+.addtocart_option input[type="number"] {
+    width: 52px;
+    padding: 0px 3px;
+    margin-right: 10px;
+    background-color: #f7f0f0;
+    border: 1px solid #f7f0f0;
+    text-align: center;
+}
+.my-custom-scrollbar {
+    position: relative;
+    max-height: 240px;
+    overflow: auto;
+}
+.table-wrapper-scroll-y {
+    display: block;
+}
+.delivery_details_no {
+    background-color: red;
+    padding: 5px 14px;
+    font-size: 17px;
+    color: #fff;
+    font-weight: bold;
+    margin-bottom: 10px;
     display: inline-block;
+    margin-right: 6px;
+}
+.delivery_details_1address {
+    padding: 20px;
+    background-color: #eff2f7;
+    position: relative;
+}
+.deliver_details_1edit {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 24px;
+    color: red;
+}
+.deliver_details_1edit i{
+    cursor: pointer; 
+    font-weight: bold; 
+}
+.delivery_details_1_title h3{
+    display: inline-block;
+    font-size: 22px;
+}
+.delivery_details_subtitle {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.delivery_time{
+    font-weight: normal;
 }
 
 
 
+
+.is-invalid{
+    background-color: red;
+    border:1px solid blue;
+}
+.login_form_area .main_logo {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 25px;
+}
+
+
+
+.personal_details_list li span {
+    font-size: 18px;
+    font-weight: 500;
+}
+.personal_details_list li {
+    font-size: 16px;
+}
+.payment_img img {
+    width: 300px;
+    height: 110px;
+}
+.order_item_price_list li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+.restaurant_area {
+    padding: 50px 0px;
+}
 
 

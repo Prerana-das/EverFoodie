@@ -25,24 +25,24 @@
     <body>
 
     <!-- ================== Register Area Start ================== -->
-		<div class="login_area  _padd_tb60 _padd_t100">
+		<div class="login_area  _padd_tb60">
 			<!-- Left Start -->
 			<div class="login_left">
 				<div class="login_left_top">
-					<div class="login_left_top_logo">
-						<a href="#">
-							<img src="assets/img/login_logo.jpg" alt="">
-						</a>
-					</div>
 					<div class="login_left_top_btn">
-						<button class="sign_up_btn"> <a href="/login"> Sign In </a></button>
+					<a href="/login" class="sign_up_btn"> Login</a>
 					</div>
 
-					<div class="right_arrow_btn">
-					<img src="assets/img/right_arrow.png" alt="">
-				</div>
+					<!-- <div class="right_arrow_btn">
+						<img src="assets/img/right_arrow.png" alt="">
+					</div> -->
 				</div>
 				<div class="login_form_area">
+					<div class="main_logo">
+						<a href="/">
+							<span>Ever</span>Foodie
+						</a>
+					</div>
 					<div class="login_title_area">
 						<h3 class="login_title">Sign Up For Free</h3>
 						<p class="login_sub">Log in your email or username</p>
@@ -51,19 +51,32 @@
 					<!-- ==================Form ============== -->
 					<form  method="POST" action="/app/registration">
                     @csrf
-                        @if (session('message'))
+                        <!-- @if (session('message'))
                             <div class="alert alert-danger" role="alert">
                                 {{ session('message') }}
                             </div>
-                        @endif
+                        @endif -->
 
 						<div class="login_group">
 							<label>Your Username</label>
-							<input name="name" type="text" placeholder="Type your username">
+							<input name="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"  placeholder="Type your username">
+
+							@if ($errors->has('name'))
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $errors->first('name') }}</strong>
+								</span>
+							@endif
 						</div>
 						<div class="login_group">
 							<label>Your Email</label>
-							<input name="email" type="email" placeholder="Type your email">
+							<input id="email" name="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Type your email">
+
+
+							@if ($errors->has('email'))
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $errors->first('email') }}</strong>
+								</span>
+							@endif
 						</div>
 						<div class="login_group">
 							<label>Your Address</label>
@@ -75,7 +88,12 @@
 						</div>
 						<div class="login_group">
 							<label>Password</label>
-							<input name="password" type="password" placeholder="Type your password">
+							<input name="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="Type your password">
+							@if ($errors->has('password'))
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $errors->first('password') }}</strong>
+								</span>
+							@endif
 						</div>
 						<div class="login_group">
 							<label>Confirm Password</label>

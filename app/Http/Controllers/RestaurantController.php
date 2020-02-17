@@ -39,6 +39,10 @@ class RestaurantController extends Controller
         return User::where('id',$id)->with('food')->first();
     }
 
+    public function cityRestaurant ($id) {
+        return User::where('id',$id)->first();
+    }
+
 
 
 

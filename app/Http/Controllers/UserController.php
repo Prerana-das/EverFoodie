@@ -23,7 +23,7 @@ class UserController extends Controller
 
         $data = $request->all();
         $data['password'] = Hash::make($data['password']);
-        return User::create($data);
+        User::create($data);
         
        // $user = User;
         // return response()->json([
@@ -31,7 +31,7 @@ class UserController extends Controller
         //        'success' => true
         //    ],200);
 
-        // return redirect('/login');
+        return redirect('/login');
        
     }
 

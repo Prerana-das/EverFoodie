@@ -13,6 +13,12 @@ body{
     padding:0px;
     font-family: 'Barlow Semi Condensed', sans-serif!important;
 }
+th {
+    font-size: 15px;
+}
+td {
+    font-size: 15px;
+}
 p {
     font-size: 16px;
     margin: 0px;
@@ -110,6 +116,9 @@ input[type="checkbox"] {
 }
 ._mar_t60{
     margin-top:60px;
+}
+._mar_t100{
+    margin-top:100px;
 }
 
 /*margin bottom*/

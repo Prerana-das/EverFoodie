@@ -23,6 +23,8 @@ Vue.use(Vuex);
 Vue.component('master', require('./layout/master.vue').default);
 Vue.component('admin_master', require('./layout/admin_master.vue').default);
 Vue.component('restaurant_master', require('./layout/restaurant_master.vue').default);
+Vue.component('checkout_master', require('./layout/checkout_master.vue').default);
+
 
 const app = new Vue({
 	router,

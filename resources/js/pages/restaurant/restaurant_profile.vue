@@ -60,74 +60,7 @@
         },
         methods: {
 
-			//  handleSuccessedit(res, file){
-			// 	if (res) {
-			// 	this.edit_form.image = res
-			// 	}
-			// },
-			
-			// async all_city(){
-			// 	const res = await this.callApi('get','all_city')
-			// 	if(res.status == 200){
-			// 		this.city = res.data
-			// 	}
-			// },
-			
-			// async add_city(){
-			// 	if(this.formItem.name == '') return this.i("City Name is empty!");
-			// 	if(this.formItem.image == '') return this.i("City image is empty!");
-			// 	const res = await this.callApi('post','add_city',this.formItem)
-			// 	if(res.status == 201){
-			// 		this.city.push(res.data)
-			// 		this.s("New City Added !")
-			// 		this.modal1=false
-			// 	}
-			// 	else{
-			// 		this.swr();
-			// 	}
-			// },
-
-			// async updateCity(){
-			// 	if(this.edit_form.name == '') return this.i("City Name is empty!");
-			// 	if(this.edit_form.image == '') return this.i("City image is empty!");
-			// 	const res = await this.callApi('post','edit_city',this.edit_form)
-			// 	if(res.status == 200){
-			// 		this.city[this.editIndex] = _.clone(this.edit_form) 
-			// 		this.s("City Updated  !")
-			// 		let ob ={
-			// 			name:'',
-			// 			image:'',
-			// 			id:'',
-			// 		}
-			// 		this.edit_form = ob 
-			// 		this.editIndex = -1
-			// 		this.editModal = false
-			// 	}
-			// 	else{
-			// 		this.swr();
-			// 	}
-			// },
-			// async city_delete(id,index){
-			// 	if(!confirm("Are you sure to delete this City")){
-			// 		return;
-			// 	}
-			// 	let ob = {
-			// 		id:id
-			// 	}
-			// 	const res = await this.callApi('post','delete_city',ob)
-			// 	if(res.status == 200){
-			// 		this.i(' City have been successfully Deleted!')
-			// 		this.city.splice(index,1)
-			// 	}
-			// },
-		
-			
-
-			// editCity(item,index){
-			// 	this.edit_form = _.cloneDeep(item)
-			// 	this.editIndex = index
-			// 	this.editModal = true
-			// },
+	
 
 
 

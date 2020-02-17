@@ -38,6 +38,21 @@ class HomeController extends Controller
             return view('restaurantProfile');
 
         }
+
+        if($request->segment(1)=='checkout'){
+            if(!Auth::check())
+            {
+                return redirect("/login");
+            }
+
+            if (Auth::user()->user_type !=='User') {
+                return redirect("/");
+            }
+            
+            return view('checkout');
+
+        }
+
         
             return view('welcome');
         }

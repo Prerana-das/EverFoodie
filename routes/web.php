@@ -45,6 +45,7 @@ Route::post('/app/delete_area', "AreaController@deleteArea");
 //Route::get('/app/all_restaurant', "RestaurantController@allRestaurant");
 
 Route::get('/app/restaurant/{id}', "RestaurantController@singleRestaurant");
+Route::get('/app/city_restaurant/{id}', "RestaurantController@cityRestaurant");
 
 Route::post('/app/edit_user', "UserController@updateUser");
 Route::post('/app/delete_user', "UserController@deleteUser");
@@ -67,7 +68,6 @@ Route::get('/app/all_food_of_this_res/{id}', "FoodController@all_food_of_this_re
 Route::post('/app/registration', "UserController@registration");
 Route::post('/app/login', "UserController@login");
 Route::get('/app/all_user', "UserController@all_user");
-
 Route::post('/app/changePassword', 'UserController@changePassword');
 
 //Route::post('/app/changeIt', "UserController@changeIt");
@@ -77,8 +77,13 @@ Route::post('/app/changePassword', 'UserController@changePassword');
 //     return view('login');
 // });
 
-Route::get('/login', "UserController@login_check");
 
+//Order
+Route::post('/app/place_order', "OrderController@place_order");
+
+
+
+Route::get('/login', "UserController@login_check");
 Route::get('/register', function () {
     return view('register');
 });

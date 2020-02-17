@@ -12,7 +12,9 @@
                                     <input type="text" placeholder="Enter Your Address">
                                     <img src="assets/img/location_search.png" alt="">
                                 </div>
-                                <input type="submit" value="Search Restaurant">
+                                <router-link :to="`/restaurant`">
+                                    <input type="submit"  value="Search Restaurant">
+                                </router-link>
                             </form>
                         </div>
                     </div>
@@ -60,7 +62,7 @@
                 <div class="row">
                     <!-- Item -->
                     <div class="col-md-3" v-for="(item,index) in city" :key="index">
-                        <router-link :to="`/restaurant`">
+                        <router-link :to="`/city_restaurant/${item.id}`">
                             <div class="single_city _mar_b30">
                                 <a href="restaurant.html">
                                     <div class="city_img">

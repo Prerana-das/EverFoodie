@@ -24,24 +24,24 @@
     <body>
     
     <!-- ================== Login Area Start ================== -->
-		<div class="login_area  _padd_tb60 _padd_t100">
+		<div class="login_area  _padd_tb60">
 			<!-- Left Start -->
 			<div class="login_left">
 				<div class="login_left_top">
-					<div class="login_left_top_logo">
-						<a href="#">
-							<img src="assets/img/login_logo.jpg" alt="">
-						</a>
-					</div>
 					<div class="login_left_top_btn">
-						<button class="sign_up_btn"> <a href="/register"> Sign Up</a></button>
+						<a href="/register" class="sign_up_btn"> Sign Up</a>
 					</div>
 
-					<div class="right_arrow_btn">
-					<img src="assets/img/right_arrow.png" alt="">
-				</div>
+					<!-- <div class="right_arrow_btn">
+						<img src="assets/img/right_arrow.png" alt="">
+					</div> -->
 				</div>
 				<div class="login_form_area main_login">
+					<div class="main_logo">
+						<a href="/">
+							<span>Ever</span>Foodie
+						</a>
+					</div>
 					<div class="login_title_area">
 						<h3 class="login_title">Log in</h3>
 						<p class="login_sub">Log in your email or username</p>

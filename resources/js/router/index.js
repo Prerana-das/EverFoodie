@@ -11,7 +11,8 @@ import forgot_password from '../pages/user/forgot_password.vue'
 import partner from '../pages/user/partner.vue'
 import restaurant from '../pages/user/restaurant.vue'
 import singlerestaurant from '../pages/user/singlerestaurant.vue'
-import addCard from '../pages/user/addCard.vue'
+import city_restaurant from '../pages/user/city_restaurant.vue'
+
 
 //Admin
 import category from '../pages/admin/category.vue'
@@ -26,11 +27,14 @@ import change_password from '../pages/admin/change_password.vue'
 
 
 //Restaurant
- import restaurant_dash from '../pages/restaurant/restaurant_dash.vue'
+import restaurant_dash from '../pages/restaurant/restaurant_dash.vue'
 import restaurant_contactInfo from '../pages/restaurant/restaurant_contactInfo.vue'
 import restaurant_profile from '../pages/restaurant/restaurant_profile.vue'
 import restaurant_review from '../pages/restaurant/restaurant_review.vue'
 import restaurant_food from '../pages/restaurant/restaurant_food.vue'
+
+//checkout
+import single_res_checkout from '../pages/user/single_res_checkout.vue'
 
 // import auth from '../middleware/auth'
 // import log from '../middleware/log'
@@ -103,11 +107,11 @@ export default new Router({
       }
     },
     {
-      path: '/addCard',
-      name: 'addCard',
-      component: addCard,
+      path: '/city_restaurant/:id',
+      name: 'city_restaurant',
+      component: city_restaurant,
       meta: {
-          title: 'addCard',
+          title: 'city_restaurant',
       }
     },
 
@@ -230,6 +234,16 @@ export default new Router({
       component: restaurant_food,
       meta: {
           title: 'restaurant_food',
+      }
+    },
+
+
+    {
+      path: '/checkout',
+      name: 'single_res_checkout',
+      component: single_res_checkout,
+      meta: {
+          title: 'single_res_checkout',
       }
     },
 
