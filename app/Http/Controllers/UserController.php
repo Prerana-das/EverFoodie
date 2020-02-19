@@ -148,6 +148,29 @@ class UserController extends Controller
 
 
 
+    public function getDataBySearch(Request $request){
+        $location = $request->location;
+        $query = User::with('city');
+
+        if($location){
+            $query->where('address','like', '%'.$location.'%');
+        }
+        
+        // if($location){
+        //     $query->whereHas('city.area', function($q) use ($location) { 
+
+        //         $q->where('name','like', '%'.$location.'%'); });
+        // }
+
+
+        $data = $query->get();
+        return $data;
+        // return User::all();
+    }
+
+
+
+
 
     
 

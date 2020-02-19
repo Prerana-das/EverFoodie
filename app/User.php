@@ -44,6 +44,14 @@ class User extends Authenticatable
     }
 
 
+    public function city(){
+        return $this->belongsTo('App\City','city_id');
+    }
+
+    public function review(){
+        return $this->hasMany('App\Review','res_id');
+    }
+
 
 
 

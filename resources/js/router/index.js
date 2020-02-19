@@ -8,11 +8,11 @@ import home from '../pages/user/home.vue'
 //import login from '../pages/user/login.vue'
 //import register from '../pages/user/register.vue'
 import forgot_password from '../pages/user/forgot_password.vue'
-import partner from '../pages/user/partner.vue'
+import partner from '../pages/user/partner.vue' 
 import restaurant from '../pages/user/restaurant.vue'
 import singlerestaurant from '../pages/user/singlerestaurant.vue'
 import city_restaurant from '../pages/user/city_restaurant.vue'
-
+import singlerestaurant_review from '../pages/user/singlerestaurant_review.vue'
 
 //Admin
 import category from '../pages/admin/category.vue'
@@ -91,7 +91,7 @@ export default new Router({
     },
 
     {
-      path: '/restaurant',
+      path: '/all_restaurant',
       name: 'restaurant',
       component: restaurant,
       meta: {
@@ -104,6 +104,14 @@ export default new Router({
       component: singlerestaurant,
       meta: {
           title: 'singlerestaurant',
+      }
+    },
+    {
+      path: '/singlerestaurant_review',
+      name: 'singlerestaurant_review',
+      component: singlerestaurant_review,
+      meta: {
+          title: 'singlerestaurant_review',
       }
     },
     {

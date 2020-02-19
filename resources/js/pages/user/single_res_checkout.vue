@@ -5,116 +5,126 @@
     	<div class="container">
 			<div class="row _mar_t100">
 				<div class="col-md-8 ">
-					<!-- ========== One ======== -->
-					<div class="delivery_details_1 _box_shadow _padd20 _mar_b30">
-						<div class="delivery_details_1_title _mar_b10">
-							<span class="delivery_details_no">1</span>
-							<h3>
-								Delivery Details
-							</h3>
+					<template v-if="delivery_details_area">
+						<!-- ========== One ======== -->
+						<div class="delivery_details_1 _box_shadow _padd20 _mar_b30">
+							<div class="delivery_details_1_title _mar_b10">
+								<span class="delivery_details_no">1</span>
+								<h3>
+									Delivery Details
+								</h3>
+							</div>
+							<div class="delivery_details_1time _mar_b10">
+								<h3 class="delivery_details_subtitle">
+									Delivery time
+									<span class="delivery_time">
+									20mins
+									</span>
+								</h3>
+							</div>
+							<div class="delivery_details_1address_area _mar_b10">
+								<h3 class="delivery_details_subtitle">
+									Delivery Address
+								</h3>
+								
+								<div class="delivery_details_1address">
+									<ul class="personal_details_list">
+										<li class="personal_details_name">
+											<span>
+												Address:
+											</span>
+											{{ authUser.address }}
+										</li>
+										<li>
+											<span>
+												Note to rider:
+											</span>
+											Note something
+										</li>
+									</ul>
+									<div class="deliver_details_1edit">
+										<Icon type="ios-create-outline" />
+									</div>
+								</div>
+							</div>	
 						</div>
-						<div class="delivery_details_1time _mar_b10">
-							<h3 class="delivery_details_subtitle">
-								Delivery time
-								<span class="delivery_time">
-								  20mins
-								</span>
-							</h3>
-						</div>
-						<div class="delivery_details_1address_area _mar_b10">
-							<h3 class="delivery_details_subtitle">
-								Delivery Address
-							</h3>
-							
-							<div class="delivery_details_1address">
+						<!-- ========== Two ======== -->
+						<div class="delivery_details_2 _box_shadow _padd20 _mar_b30">
+							<div class="delivery_details_1_title _mar_b10">
+								<span class="delivery_details_no">2</span>
+								<h3>
+									Personal Details
+								</h3>
+							</div>
+							<div class="personal_details">
 								<ul class="personal_details_list">
 									<li class="personal_details_name">
 										<span>
-											Address:
+											Name:
 										</span>
-										{{ authUser.address }}
+										{{ authUser.name }}
 									</li>
 									<li>
 										<span>
-											Note to rider:
+											Email:
 										</span>
-										Note something
+										{{ authUser.email }}
+									</li>
+									<li>
+										<span>
+											Phone:
+										</span>
+										{{ authUser.phone}}
 									</li>
 								</ul>
-								<div class="deliver_details_1edit">
-									<Icon type="ios-create-outline" />
-								</div>
 							</div>
-						</div>	
-					</div>
-					<!-- ========== Two ======== -->
-					<div class="delivery_details_2 _box_shadow _padd20 _mar_b30">
-						<div class="delivery_details_1_title _mar_b10">
-							<span class="delivery_details_no">2</span>
-							<h3>
-								Personal Details
-							</h3>
 						</div>
-						<div class="personal_details">
-							<ul class="personal_details_list">
-								<li class="personal_details_name">
-									<span>
-										Name:
-									</span>
-									{{ authUser.name }}
-								</li>
-								<li>
-									<span>
-										Email:
-									</span>
-									{{ authUser.email }}
-								</li>
-								<li>
-									<span>
-										Phone:
-									</span>
-									{{ authUser.phone}}
-								</li>
-							</ul>
+						<!-- ========== Three ======== -->
+						<div class="delivery_details_3 _box_shadow _padd20 _mar_b30">
+							<div class="delivery_details_1_title _mar_b10">
+								<span class="delivery_details_no">2</span>
+								<h3>
+									Payment
+								</h3>
+							</div>
+							<div class="payment_area">
+								<template>
+									<Tabs :animated="false">
+										<TabPane label="Credit Or Debit Card">
+											<div class="payment_img">
+												<img src="assets/img/stripe.png" alt="">
+											</div>
+											<button class="block_btn _mar_t20">Place Order</button>
+										</TabPane>
+										<TabPane label="Cash On Delivery">
+											<p>Simply pay the driver, when he delivers the food to your doorstep.</p>
+											
+												<!--<FormItem label="Input">
+													<Input v-model="formItem.total_price" placeholder="Enter something..."></Input>
+												</FormItem> -->
+												<button @click="placeOrder" class="block_btn _mar_t20"> Place Order</button>
+	
+										</TabPane>
+									</Tabs>
+								</template>
+							</div>
 						</div>
-					</div>
-					<!-- ========== Three ======== -->
-					<div class="delivery_details_3 _box_shadow _padd20 _mar_b30">
-						<div class="delivery_details_1_title _mar_b10">
-							<span class="delivery_details_no">2</span>
-							<h3>
-								Payment
-							</h3>
-						</div>
-						<div class="payment_area">
-							<template>
-								<Tabs :animated="false">
-									<TabPane label="Credit Or Debit Card">
-										<div class="payment_img">
-											<img src="assets/img/stripe.png" alt="">
-										</div>
-										<button class="block_btn _mar_t20">Place Order</button>
-									</TabPane>
-									<TabPane label="Cash On Delivery">
-										<p>Simply pay the driver, when he delivers the food to your doorstep.</p>
+					</template>
 
-
-										
-										
-											<!--<FormItem label="Input">
-												<Input v-model="formItem.total_price" placeholder="Enter something..."></Input>
-											</FormItem> -->
-											<button @click="placeOrder" class="block_btn _mar_t20"> Place Order</button>
-										
-										
-												
-										
-									</TabPane>
-								</Tabs>
-								
-							</template>
+					<template v-else>
+						<div class="preparing_food _box_shadow _padd20 _mar_b30">
+							<div class="preparing_food_title _mar_b10">
+								<p>Estimated Delivery time</p>
+								<h3>
+									30 mins
+								</h3>
+							</div>
+							<div class="preparing_food_img _mar_b10">
+								<img src="assets/img/prepare_food.jpg" alt="">
+							</div>
+							<p>Preparing your food....</p>
 						</div>
-					</div>
+					</template>
 				</div>
 				<div class="col-md-4">
 					<div class="order_details_table">
@@ -178,6 +188,8 @@ export default {
 				user_id:'',
 				total_price: ''
 			},
+			delivery_details_area:true,
+			order:[]
 
         }
 	},
@@ -207,11 +219,18 @@ export default {
 
 				const res = await this.callApi('post','place_order',this.formItem)
 
-			if(res.status == 201){
-				this.order.push(res.data)
+			if(res.status == 200){
+				//this.order=res.data.order
+				 this.order.push(res.data) //prb--you should also check if "this.order" is really defined
+
 				this.s("Order Successful !")
 				this.formItem = {}
 				this.listMethod=false
+
+				this.delivery_details_area=false
+				
+
+
 			}
 			else{
 				this.swr();

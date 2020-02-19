@@ -157,7 +157,8 @@
 				<div class="row">
 
 					<!-- ITEM -->
-					<div v-for="(item,index) in filterrestaurant" :key="index" class="col-md-3" v-if="item.request_status=='Approved' && item.user_type=='Restaurant'">				
+					<template v-if="restaurant.length>0">
+					<div v-for="(item,index) in filterrestaurant" :key="index" class="col-md-3" v-if="item.request_status=='Approved'">				
 						<router-link :to="`/singlerestaurant/${item.id}`">
 							<div class="single_restaurant _mar_b30">
 								<a href="singlerestaurant.html">
@@ -176,6 +177,10 @@
 						</router-link>
 					</div>
 					<!-- ITEM -->
+					</template>
+					<template v-else>
+						 <Alert show-icon>No restaurants found in this location</Alert>
+					</template>
 				</div>
 			</div>
 		</div>
@@ -189,7 +194,8 @@
         data () {
             return {
 				restaurant:[],
-				search:''
+				search:'',
+				res_result:true
 			}
         },
         methods: {
@@ -197,14 +203,20 @@
 		},
 		
 		 async created(){
+
+			 ///Search
+			 if(this.$route.query.location){
+				 console.log(this.$route.query.location)
+				
+			 }
+			const res1 = await this.callApi('get',`getDataBySearch?location=${this.$route.query.location}`)
+
+				if(res1.status == 200){
+					this.restaurant = res1.data
+
+				}
+
 	
-			const res = await this.callApi('get','all_user')
-			if(res.status == 200){
-				this.restaurant = res.data
-			}
-			else{
-				this.swr()
-			}
 		},
 		computed:{
 			filterrestaurant: function(){

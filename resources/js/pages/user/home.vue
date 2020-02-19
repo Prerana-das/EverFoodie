@@ -7,15 +7,13 @@
                     <div class="main_banner">
                         <h1 class="main_title _mar_b20">Order Takeaway or Delivery Food</h1>
                         <div class="main_search">
-                            <form action="#" class="main_search_form">
+                            <div class="main_search_form">
                                 <div class="search_location">
-                                    <input type="text" placeholder="Enter Your Address">
+                                    <input type="text" v-model="location" placeholder="Enter Your Address">
                                     <img src="assets/img/location_search.png" alt="">
                                 </div>
-                                <router-link :to="`/restaurant`">
-                                    <input type="submit"  value="Search Restaurant">
-                                </router-link>
-                            </form>
+                                 <Button @click="$router.push('/all_restaurant?location='+location)" > Search Restaurant  </Button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -132,7 +130,9 @@
     export default {
         data () {
             return {
-				city:[]
+                city:[],
+                area:[],
+                location:''
             }
         },
         methods: {
@@ -151,8 +151,19 @@
 
 
 		},
-		created(){
-			this.all_city();
+		async created(){
+            this.all_city();
+
+
+            const res = await this.callApi('get','all_area')
+			if(res.status == 200){
+				this.area = res.data
+			}
+			else{
+				this.swr()
+			}
+            
+
 		}
     }
 </script>

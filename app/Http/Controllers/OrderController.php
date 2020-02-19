@@ -11,6 +11,11 @@ class OrderController extends Controller
 
     public function place_order(Request $request){
         $data = $request->all();
-        return Order::create($data);
+        $order= Order::create($data);
+
+        return response()->json([
+            'order' => $order,
+            'success' => true
+        ],200);
     }
 }

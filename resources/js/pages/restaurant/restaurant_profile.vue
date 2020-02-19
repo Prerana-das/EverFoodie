@@ -7,35 +7,18 @@
              <div class="row justify-content-end">
                 <div class="col-md-8">
                     <div class="dashboard-user" id="desh-user">
-                        <!-- <div class="desh-user-info">
-                            <div class="desh-user-img">
-                                <img src="assets/img/res1.jpg" alt="restaurant">
-                                <div class="change-btn">
-                                    <span class="change-img">Change</span>
-                                    <input type="file" style="display: none">
-                                </div>
-                            </div>						
-                           
-                        </div> -->
-
-
-
                         <Form ref="formCustom" :label-width="80">
                             <FormItem label="Image">
                                 <img :src="authUser.image" alt="restaurant">
                             </FormItem>
                             <FormItem label="Name">
-                                <Input type="text"></Input>
+                                <Input type="text"  v-model="formItem.name"></Input>
                             </FormItem>
                             <FormItem label="Email">
-                               
-                                <Input type="email" number ></Input>
-                            </FormItem>
-                            <FormItem label="Password">
-                                <Input type="password"></Input>
+                                <Input type="email" number  v-model="formItem.email"></Input>
                             </FormItem>
                             <FormItem>
-                                <Button type="primary" @click="handleSubmit('formCustom')">Save Change</Button>
+                                <Button type="primary" @click="updateUser">Save Change</Button>
                             </FormItem>
                         </Form>
 
@@ -51,28 +34,55 @@
 
 
 
+    
 <script>
     export default {
         data () {
             return {
-               
-            }
+                formItem:{
+                    name:authUser.name,
+                    email:authUser.email,
+                    id:authUser.id
+                }
+				 
+			}
         },
         methods: {
-
 	
 
+		
+			async all_user(){
+				const res = await this.callApi('get','all_user')
+				if(res.status == 200){
+					this.user = res.data
+				}
+			},
 
+			async updateUser(){
+				//if(this.user_name == '') return this.i("User Type is empty!");
+				const res = await this.callApi('post','edit_user',this.formItem)
+				if(res.status == 200){
+					this.user[this.editIndex] = _.clone(this.formItem) 
+					this.s("User Updated  !")
+					
+				}
+				else{
+					this.swr();
+				}
+			},
 
+		
+			
+
+		
 
 		},
-		created(){
-			this.all_city();
-		}
+		
+		 async created(){
+			this.all_user();
+	
+    	}
     }
 </script>
 
 
-
-
-			

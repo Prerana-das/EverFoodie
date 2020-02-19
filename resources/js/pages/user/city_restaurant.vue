@@ -6,7 +6,12 @@
             <div class="container">
                 <div class="row">
                     <div class="main_banner">
-                        <h1 class="main_title _mar_b20">Food Delivery from Sylhet’s Best Restaurants</h1>
+                        <h1 class="main_title _mar_b20" v-for="item in city" :key="item.id">
+							<span  v-if="item.id==$route.params.id">
+								Food Delivery from {{item.name}}'s Best Restaurants 
+							</span>					
+						</h1>
+						
                         <div class="main_search">
                             <form action="#" class="main_search_form">
                                 <div class="search_location">
@@ -36,7 +41,7 @@
 				<div class="row">
 
 					<!-- ITEM -->
-					<div v-for="(item,index) in filterrestaurant" :key="index" class="col-md-3" v-if="item.request_status=='Approved' && item.user_type=='Restaurant'">				
+					<div v-for="(item,index) in restaurant" :key="index" class="col-md-3" v-if="item.request_status=='Approved' && item.user_type=='Restaurant'">				
 						<router-link :to="`/singlerestaurant/${item.id}`">
 							<div class="single_restaurant _mar_b30">
 								<a href="singlerestaurant.html">
@@ -54,6 +59,12 @@
 							</div>
 						</router-link>
 					</div>
+
+					<!-- <span v-if="restaurant.length <= 0">
+						<div class="alert alert-warning" role="alert">
+							There no available Restaurants in this city.
+						</div>
+					</span> -->
 					<!-- ITEM -->
 				</div>
 			</div>
@@ -68,31 +79,43 @@
         data () {
             return {
 				restaurant:[],
+				city:[],
 				search:''
 			}
         },
         methods: {
-		
+			
+
+			async all_city_restaurant(){
+				const res = await this.callApi('get',`all_city_restaurant/${this.$route.params.id}`)
+				if(res.status == 200){
+					this.restaurant = res.data
+				}
+			}, 
+			
+
 		},
 		
 		 async created(){
 	
-			const res = await this.callApi('get','all_user')
+			const res = await this.callApi('get','all_city')
 			if(res.status == 200){
-				this.restaurant = res.data
+				this.city = res.data
 			}
 			else{
 				this.swr()
 			}
+
+			this.all_city_restaurant();
 		},
-		computed:{
-			filterrestaurant: function(){
-				return this.restaurant.filter((item)=>{
-					//return item.name.match(this.search);  // this is case-sensetive
-					return item.name.toLowerCase().match(this.search.toLowerCase());
-					//return item.description.match(this.search);
-				});
-			}
-		}
+		// computed:{
+		// 	filterrestaurant: function(){
+		// 		return this.restaurant.filter((item)=>{
+		// 			//return item.name.match(this.search);  // this is case-sensetive
+		// 			return item.name.toLowerCase().match(this.search.toLowerCase());
+		// 			//return item.description.match(this.search);
+		// 		});
+		// 	}
+		// }
     }
 </script>
