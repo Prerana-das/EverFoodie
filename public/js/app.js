@@ -7308,6 +7308,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -7334,6 +7336,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         this.total = this.carts.reduce(function (total, item) {
           return total + item.amount * item.price;
         }, 0);
+        localStorage.setItem('total', this.total);
       }
     },
     placeOrder: function () {
@@ -77297,6 +77300,12 @@ var render = function() {
                                         }
                                       })
                                     ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "a",
+                                      { attrs: { href: "/checkout/stripe" } },
+                                      [_vm._v("Checkout With Stripe")]
+                                    ),
                                     _vm._v(" "),
                                     _c(
                                       "button",

@@ -21,6 +21,9 @@
         <!-- <link rel="stylesheet" type="text/css" href="{{asset('assets/css/admin_style.css')}}" media="all" /> -->
 
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}" media="all" />
+
+        <script src="https://js.stripe.com/v2/"></script>
+        <script src="https://js.stripe.com/v3/"></script>
     
     </head>
     <body>

@@ -94,6 +94,8 @@
 											<div class="payment_img">
 												<img src="assets/img/stripe.png" alt="">
 											</div>
+
+											<a href="/checkout/stripe">Checkout With Stripe</a>
 											<button class="block_btn _mar_t20">Place Order</button>
 										</TabPane>
 										<TabPane label="Cash On Delivery">
@@ -209,6 +211,8 @@ export default {
 				this.total=this.carts.reduce((total,item)=>{
 					return total + item.amount * item.price;
 				}, 0);
+
+				localStorage.setItem('total',this.total);
 			}
 		},
 

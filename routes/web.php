@@ -1,5 +1,9 @@
 <?php
 
+
+use Illuminate\Http\Request;
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
+use Cartalyst\Stripe\Exception\CardErrorException;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -91,6 +95,12 @@ Route::get('/app/getDataBySearch', "UserController@getDataBySearch");
 
 
 
+
+Route::get('/checkout/stripe', "CheckoutController@stripe");
+
+Route::post('/checkout/stripepayment', "CheckoutController@stripePayment");
+
+
 Route::get('/login', "UserController@login_check");
 Route::get('/register', function () {
     return view('register');
@@ -102,6 +112,8 @@ Route::get('/logout', function () {
     Auth::check();
     return redirect("/login");
 });
+
+
 
 
 Route::any('{slug}', 'HomeController@home')->where('slug', '([A-z\d-\/_.]+)?');
