@@ -12,7 +12,7 @@
 							</span>					
 						</h1>
 						
-                        <div class="main_search">
+                        <!-- <div class="main_search">
                             <form action="#" class="main_search_form">
                                 <div class="search_location">
                                     <input type="text" placeholder="Enter Your Address">
@@ -20,7 +20,16 @@
                                 </div>
                                 <input type="submit" value="Search Restaurant">
                             </form>
-                        </div>
+                        </div> -->
+
+						<div class="search_restaurant _box_shadow">
+							<div class="search">
+								<span>
+									<i class="fas fa-search"></i>
+									<input type="text" v-model="search" placeholder="Search  Restaurant">
+								</span>
+							</div>
+						</div>
                     </div>
                 </div>
             </div>
@@ -41,7 +50,7 @@
 				<div class="row">
 
 					<!-- ITEM -->
-					<div v-for="(item,index) in restaurant" :key="index" class="col-md-3" v-if="item.request_status=='Approved' && item.user_type=='Restaurant'">				
+					<div v-for="(item,index) in filterrestaurant" :key="index" class="col-md-3" v-if="item.request_status=='Approved' && item.user_type=='Restaurant'">				
 						<router-link :to="`/singlerestaurant/${item.id}`">
 							<div class="single_restaurant _mar_b30">
 								<a href="singlerestaurant.html">
@@ -108,14 +117,14 @@
 
 			this.all_city_restaurant();
 		},
-		// computed:{
-		// 	filterrestaurant: function(){
-		// 		return this.restaurant.filter((item)=>{
-		// 			//return item.name.match(this.search);  // this is case-sensetive
-		// 			return item.name.toLowerCase().match(this.search.toLowerCase());
-		// 			//return item.description.match(this.search);
-		// 		});
-		// 	}
-		// }
+		computed:{
+			filterrestaurant: function(){
+				return this.restaurant.filter((item)=>{
+					//return item.name.match(this.search);  // this is case-sensetive
+					return item.name.toLowerCase().match(this.search.toLowerCase());
+					//return item.description.match(this.search);
+				});
+			}
+		}
     }
 </script>

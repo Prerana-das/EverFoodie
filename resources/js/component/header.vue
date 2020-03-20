@@ -39,8 +39,8 @@
                                                         </a>
                                                      </template>
                                                 </DropdownItem>
-                                                <DropdownItem>Bookmark</DropdownItem>
-                                                <DropdownItem>Review</DropdownItem>
+                                                <!-- <DropdownItem>Bookmark</DropdownItem>
+                                                <DropdownItem>Review</DropdownItem> -->
                                                 <DropdownItem>
                                                     <a href="/logout" >Logout</a>
                                                 </DropdownItem>
@@ -50,6 +50,7 @@
                                     <li v-else>
                                         <div>
                                             <a href="/login" class="login_list_dropdown_menu">
+                                            <!--  href="/login/?returnurl=/" -->
                                                <Icon type="md-person" /> 
                                                 <span>Login</span>
                                             </a>

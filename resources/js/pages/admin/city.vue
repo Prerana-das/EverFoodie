@@ -70,7 +70,7 @@
 
 
 								<!-- ITEMS -->
-							<tr v-for="(item,index) in city" :key="index">
+							<tr v-for="(item,index) in city" :key="index" v-if="item.id">
 								<td>{{item.id}}</td>
 								<td class="_table_name">
 									<span>{{item.name}}</span>
@@ -138,7 +138,10 @@
 							</div>
 						</Modal>
 				</div>
-				 <Page :total="100" />
+
+
+				                        <Page :current="city.current_page" :total="city.total" @on-change="pagination_result" :page-size="parseInt(city.per_page)" />
+
 			</div>
 		</div>
 	</div>
@@ -165,6 +168,9 @@
 				},
 				isEdit:false,
 				editIndex:-1,
+
+				 page:1,
+				  pagination:{},
             }
         },
         methods: {
@@ -182,9 +188,11 @@
 			},
 			
 			async all_city(){
-				const res = await this.callApi('get','all_city')
+				const res = await this.callApi('get',`all_city?page=${this.page}`)
 				if(res.status == 200){
-					this.city = res.data
+					this.city = res.data.city.data
+					this.pagination = res.data.city
+
 				}
 			},
 			
@@ -248,12 +256,26 @@
 				this.editModal = true
 			},
 
+			async pagination_result(e){
+
+	            this.page = e
+	            const res3 = await this.callApi('get',`showMenuForMenu?page=${this.page}`)
+	            if(res3.status == 200){
+	                this.city = res3.data.city.data
+	                this.pagination = res3.data.city
+               
+            }
+        },
+
 
 
 
 		},
 		created(){
 			this.all_city();
+
+
+
 		}
     }
 </script>

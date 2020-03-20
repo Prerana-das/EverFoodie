@@ -7,6 +7,9 @@ use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
+
 class UserController extends Controller
 {
     //
@@ -36,6 +39,7 @@ class UserController extends Controller
     }
 
     public function login(Request $request){
+
         if((User::where('email', $request->email)->count())==0){
             return response()->json([
                 'msg' => "Email doesn't exist!",
@@ -48,10 +52,23 @@ class UserController extends Controller
         
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password ])) {
            $user = Auth::user();
+
            if($user->user_type == 'User'){
+                
+               
+                
+               $storeUrl= url()->previous();
+
+                \Log::info($storeUrl);
+
+                //$returnurl
+
+                //return redirect($returnurl);
+
                     return redirect("/");
             }
             if($user->user_type == 'Admin'){
+                
                 return redirect("/admin");
             }
 
@@ -68,9 +85,9 @@ class UserController extends Controller
               else{
                 return  redirect("/login")->with('message',"Your Need Authorithies Permission!");
               }
- 
-
           }
+
+
          else{
             return  redirect("/login")->with('message',"Incorrect Password!");
          }
@@ -103,13 +120,14 @@ class UserController extends Controller
 
 
     public function login_check(){
-
+         //$storeUrl= url()->previous();
         if(Auth::check()==false){
+            
             return view('login');
         }
         else{
-            
-            return  redirect("/");
+
+            return  redirect("/partner");
 
             //return redirect()->back();
         }

@@ -36,34 +36,29 @@
 													<template v-else>{{cart.amount}}</template>
 												</td>
 												<td>
-													<button class="btn btn-secondary" @click="edit">Edit</button>
-													<template v-if="editQuantity"><button  class="btn btn-info" @click="editOff">Done</button></template>
-													<button @click="removeCart(n)">Remove</button>
+													<Button type="info" @click="edit">Edit</Button>
+													<template v-if="editQuantity">
+														<Button type="success"  @click="editOff">Save</Button>
+													</template>
+													<Button type="error" @click="removeCart(n)">Remove</Button>
 												</td>
 											</tr>
 										</tbody>
 									</table>
 								</div>
 								<div class="modal-footer">
-									totalprice:{{ totalprice }}
-									<!-- <button data-dismiss="modal" class="btn btn-success">Checkout</button> -->
-									<router-link to="/checkout/single_res_checkout" data-dismiss="modal">
-										Checkout
-									</router-link>
-									<a href="/checkout">
+									<h3>
+										Total Price: BDT{{ totalprice }}
+									</h3>
+									
+									<a href="/checkout" class="block_btn">
 										Checkout
 									</a>
-
-
 								</div>
 							</div>
 						</div>
 					</div>
-					
-			
-
-
-
+				
 			
 					<!-- ===================== Restaurant Area Start ======================= -->
 					<div class="restaurant_details_banner_area ">
@@ -277,12 +272,15 @@
 										<td>
 											<div class="addtocart_option">
 												<ul class="addtocart_option_list">
-													<li @click="removeCart(cartItem)">-</li>
-
-													<li @click="cart_plus(cartItem)">+</li>
+													<li @click="cart_plus(cartItem)">
+														<Icon type="ios-add" />
+														<Icon type="ios-remove" />
+													</li>
 												</ul>
 												<input type="number" v-model="cart.amount">
-												
+												<span class="cart_cancel" @click="removeCart(cartItem)">
+													<Icon type="md-close" />
+												</span>
 											</div>
 										</td>
 									</tr>
@@ -295,7 +293,7 @@
 					<!-- Item -->
 					
 				</div>
-				<div class="checkout_list _mar_t20">
+				<!-- <div class="checkout_list _mar_t20">
 					<ul>
 						<li class="checkout_list_item">
 							<div class="checkout_list_left">
@@ -323,7 +321,7 @@
 						</li>
 					</ul>
 				</div>
-				<button class="block_btn checkout_btnnn">Checkout</button>
+				<button class="block_btn checkout_btnnn">Checkout</button> -->
 
 			</div>
 
@@ -514,6 +512,13 @@ export default {
 
 
 		this.all_review();
+
+
+		
+		if(!this.isLoggedIn){
+             window.location='/login?returnurl='+window.location.pathname
+             console.log(currentUrl);
+         }
 
     }
 }

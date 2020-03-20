@@ -33,7 +33,7 @@ import restaurant_profile from '../pages/restaurant/restaurant_profile.vue'
 import restaurant_review from '../pages/restaurant/restaurant_review.vue'
 import restaurant_food from '../pages/restaurant/restaurant_food.vue'
 
-//checkout
+//checkout payment_vue
 import single_res_checkout from '../pages/user/single_res_checkout.vue'
 
 // import auth from '../middleware/auth'
@@ -254,6 +254,8 @@ export default new Router({
           title: 'single_res_checkout',
       }
     },
+
+    
 
    
   ],

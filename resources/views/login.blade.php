@@ -64,6 +64,9 @@
 							<a href="forgot_password.html" class="forgot_pass">Forgot Password?</a>
 							<input name="password" type="password" placeholder="Type your password">
 						</div>
+
+						
+
 						<div class="login_group _mar_t10">
 							<input type="submit" value="Log in">
 						</div> 

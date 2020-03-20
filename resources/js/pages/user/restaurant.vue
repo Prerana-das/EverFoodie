@@ -11,10 +11,10 @@
 								<div class="search">
 									<span>
 										<i class="fas fa-search"></i>
-										<input type="text" v-model="search" placeholder="Search">
+										<input type="text" v-model="search" placeholder="Search Restaurant">
 									</span>
 								</div>
-								<div class="filter">
+								<!-- <div class="filter">
 									<span>
 										filter <i class="fas fa-chevron-down"></i>
 									</span>
@@ -32,7 +32,7 @@
 											</div>
 										</form>
 									</div>
-								</div>
+								</div> -->
 							</div>
 						</form>
 
@@ -44,7 +44,7 @@
 		<!-- ===================== Search Area end ======================= -->
 
 		<!-- ===================== Best  Rated Restaurant Area Start ======================= -->
-		<div class="best_restaurant_area">
+		<!-- <div class="best_restaurant_area">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
@@ -56,7 +56,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="restaurant_slider owl-carousel">
-							<!-- ITEM -->
+						
 							<div class="single_restaurant _mar_b30">
 								<a href="singlerestaurant.html">
 									<div class="restaurant_img _mar_b10">
@@ -71,8 +71,6 @@
 									<p class="restaurant_sub">beef,chicken, noodles, rice, set menukabab & grillasian.</p>
 								</a>
 							</div>
-							<!-- ITEM -->
-							<!-- ITEM -->
 							<div class="single_restaurant _mar_b30">
 								<a href="singlerestaurant.html">
 									<div class="restaurant_img _mar_b10">
@@ -87,8 +85,6 @@
 									<p class="restaurant_sub">beef,chicken, noodles, rice, set menukabab & grillasian.</p>
 								</a>
 							</div>
-							<!-- ITEM -->
-							<!-- ITEM -->
 							<div class="single_restaurant _mar_b30">
 								<a href="singlerestaurant.html">
 									<div class="restaurant_img _mar_b10">
@@ -103,8 +99,6 @@
 									<p class="restaurant_sub">beef,chicken, noodles, rice, set menukabab & grillasian.</p>
 								</a>
 							</div>
-							<!-- ITEM -->
-							<!-- ITEM -->
 							<div class="single_restaurant _mar_b30">
 								<a href="singlerestaurant.html">
 									<div class="restaurant_img _mar_b10">
@@ -119,8 +113,6 @@
 									<p class="restaurant_sub">beef,chicken, noodles, rice, set menukabab & grillasian.</p>
 								</a>
 							</div>
-							<!-- ITEM -->
-							<!-- ITEM -->
 							<div class="single_restaurant _mar_b30">
 								<a href="singlerestaurant.html">
 									<div class="restaurant_img _mar_b10">
@@ -135,12 +127,11 @@
 									<p class="restaurant_sub">beef,chicken, noodles, rice, set menukabab & grillasian.</p>
 								</a>
 							</div>
-							<!-- ITEM -->
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		<!-- ===================== Best Rated Restaurant Area End ======================= -->
 
 
@@ -168,10 +159,12 @@
 										<span class="deliverytime">25min</span>
 									</div>
 									<h4 class="restaurant_title">{{ item.name }}</h4>
-									<span class="restaurant_rating">
+									<!-- <span class="restaurant_rating">
 										<i class="fas fa-star"></i>4/5(4)
-									</span>
+									</span> -->
 									<p class="restaurant_sub">{{ item.description }}</p>
+
+									
 								</a>
 							</div>
 						</router-link>

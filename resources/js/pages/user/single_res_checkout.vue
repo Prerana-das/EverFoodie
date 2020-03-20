@@ -91,12 +91,15 @@
 								<template>
 									<Tabs :animated="false">
 										<TabPane label="Credit Or Debit Card">
-											<div class="payment_img">
-												<img src="assets/img/stripe.png" alt="">
+											<div class="stripe_payment">
+												<div class="payment_img">
+													<img src="assets/img/stripe.png" alt="">
+												</div>
+												<div class="payment_option">
+													<a href="/checkout/stripe">Checkout With Stripe</a>
+												</div>
 											</div>
-
-											<a href="/checkout/stripe">Checkout With Stripe</a>
-											<button class="block_btn _mar_t20">Place Order</button>
+											<button @click="placeOrder" class="block_btn _mar_t20"> Place Order</button>
 										</TabPane>
 										<TabPane label="Cash On Delivery">
 											<p>Simply pay the driver, when he delivers the food to your doorstep.</p>
@@ -129,50 +132,53 @@
 					</template>
 				</div>
 				<div class="col-md-4">
-					<div class="order_details_table">
-						<div class="table-responsive order_item_table">
-							<table class="table table-striped table-bordered">
-								<thead>
-									<tr>
-										<th scope="col">Item</th>
-										<th scope="col">Name</th>
-										<th scope="col">Price</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr v-for="cart in carts" v-bind:key="cart.id">
-										<th scope="row">{{cart.id}}</th>
-										<td>{{ cart.name }}</td>
-										<td>{{ cart.price }}</td>
-									</tr>
-									<tr class="order_item_price">
-										<td colspan="2">
-										</td>
-										<td >
-											<ul class="order_item_price_list">
-												<li>
-													<span>Subtotal: </span>
-													<span> BDT {{ total }}</span>
-												</li>
-												<li>
-													<span>Delivery fee: </span>
-													<span > BDT 0.00</span>
-												</li>
-												<li>
-													<span>Total: </span>
-													<span> BDT {{ total }}</span>
-												</li>
-											</ul>
-										</td>
-									</tr>
-								</tbody>
-							</table>
+
+					<template v-if="carts.length>0">
+						<div class="order_details_table">
+							<div class="table-responsive order_item_table">
+								<table class="table table-striped table-bordered">
+									<thead>
+										<tr>
+											<th scope="col">Item</th>
+											<th scope="col">Name</th>
+											<th scope="col">Price</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr v-for="cart in carts" v-bind:key="cart.id">
+											<th scope="row">{{cart.id}}</th>
+											<td>{{ cart.name }}</td>
+											<td>{{ cart.price }}</td>
+										</tr>
+										<tr class="order_item_price">
+											<td colspan="2">
+											</td>
+											<td >
+												<ul class="order_item_price_list">
+													<li>
+														<span>Subtotal: </span>
+														<span> BDT {{ total }}</span>
+													</li>
+													<li>
+														<span>Delivery fee: </span>
+														<span > BDT 0.00</span>
+													</li>
+													<li>
+														<span>Total: </span>
+														<span> BDT {{ total }}</span>
+													</li>
+												</ul>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+
+
+							
 						</div>
-
-
-
-						
-					</div>
+					</template>
 				</div>
 			</div>
 
@@ -186,12 +192,14 @@ export default {
         return{
 			carts:[],
 			total:'0',
+
 			formItem: {
 				user_id:'',
 				total_price: ''
 			},
 			delivery_details_area:true,
-			order:[]
+			order:[],
+			orderItem:[]
 
         }
 	},
@@ -221,6 +229,8 @@ export default {
 				this.formItem.user_id=authUser.id
 				this.formItem.total_price=this.total
 
+				this.formItem.carts = this.carts
+
 				const res = await this.callApi('post','place_order',this.formItem)
 
 			if(res.status == 200){
@@ -232,7 +242,15 @@ export default {
 				this.listMethod=false
 
 				this.delivery_details_area=false
-				
+
+				this.orderItem = this.carts.slice();
+
+				this.carts.length = 0
+
+
+				let parsed = JSON.stringify(this.carts);
+				localStorage.setItem('carts',parsed);
+				this.viewCart();
 
 
 			}

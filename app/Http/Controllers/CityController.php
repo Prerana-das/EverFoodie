@@ -9,7 +9,14 @@ class CityController extends Controller
     //
 
     public function allCity(){
+       // $city = City::paginate(4);
+
         return City::all();
+
+        // return response()->json([
+        //   'city' => $city,
+        //     'success' => true
+        // ],200);
     }
 
     public function storeCity(Request $request){
@@ -62,6 +69,17 @@ class CityController extends Controller
     public function deleteCity(Request $request){
         $data = $request->all();
         return City::where('id',$data['id'])->delete();
+    }
+
+
+
+    public function showMenuForMenu(){ 
+        $city =  City::paginate(4);
+        
+        return response()->json([
+          'city' => $city,
+            'success' => true
+        ],200);
     }
 
 

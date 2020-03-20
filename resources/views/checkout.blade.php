@@ -30,6 +30,7 @@
        
         <div id="app">
             <checkout_master></checkout_master>
+
         </div>
 
         <script>

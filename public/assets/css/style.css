@@ -1426,9 +1426,18 @@
     width: 52px;
     padding: 0px 3px;
     margin-right: 10px;
-    background-color: #f7f0f0;
+    background-color: #fff;
     border: 1px solid #f7f0f0;
     text-align: center;
+}
+.addtocart_option_list li i {
+    display: list-item;
+}
+.cart_cancel {
+    font-size: 19px;
+    font-weight: bold;
+    color: red;
+    cursor: pointer;
 }
 .my-custom-scrollbar {
     position: relative;
@@ -1727,7 +1736,19 @@
 .reviews_area {
     padding: 20px 0px 40px 0px;
 }
-
+.stripe_payment {
+    display: flex;
+    align-items: center;
+}
+.payment_option a{
+    background-color: black;
+    color: #fff;
+    padding: 9px;
+    border: 2px solid black;
+    font-size: 14px;
+    font-weight: 500;
+    margin-left: 19px;
+}
 
 
 

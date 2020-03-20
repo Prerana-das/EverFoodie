@@ -101,6 +101,10 @@ Route::get('/checkout/stripe', "CheckoutController@stripe");
 Route::post('/checkout/stripepayment', "CheckoutController@stripePayment");
 
 
+
+Route::get('/app/showMenuForMenu', 'CityController@showMenuForMenu');
+
+
 Route::get('/login', "UserController@login_check");
 Route::get('/register', function () {
     return view('register');

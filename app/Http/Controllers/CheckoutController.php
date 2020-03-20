@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Stripe\Stripe;
 use Stripe\Charge;
 
+use App\Order;
+
 class CheckoutController extends Controller
 {
     //
@@ -19,10 +21,10 @@ class CheckoutController extends Controller
 
 
 
-            Stripe::setApiKey(env('STRIPE_SECRET'));
+           Stripe::setApiKey(env('STRIPE_SECRET'));
            Charge::create([
-            'amount' => 999,
-            //'amount'=>$request->get('total'),
+
+            'amount'=>$request->total*100,
             'currency' => 'usd',
             'description' => 'Example DES',
             'source' => $request->get('stripeToken'),
@@ -31,8 +33,18 @@ class CheckoutController extends Controller
             ]
             ]);
 
+            // Order::create([
+            //     'user_id' =>$request->user_id,
+            //     'total_price'=> $request->total       
+            //   ]);
 
-            return back()->with('success_message','thank you');
+
+            //return back()->with('success_message','thank you');
+
+            //return  redirect("/checkout")->with('success_message',"thank you");
+            
+            return  redirect("/checkout");
+
 
      }
 
