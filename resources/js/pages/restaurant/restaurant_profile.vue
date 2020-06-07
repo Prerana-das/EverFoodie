@@ -9,8 +9,31 @@
                     <div class="dashboard-user" id="desh-user">
                         <Form ref="formCustom" :label-width="80">
                             <FormItem label="Image">
-                                <img :src="authUser.image" alt="restaurant">
-                            </FormItem>
+                                <div class="_3login_input_group">		
+                                    <template>	
+                                        <Upload
+                                        ref="upload"
+                                        type="drag"
+                                        name="image"
+                                        :with-credentials="true"
+                                        :data="{id:1}"
+                                        :on-success="handleSuccessedit"
+                                        :format="['jpg','jpeg','png']"
+                                        :max-size="2048"
+                                        action="/app/upload">				
+                                        <div style="padding: 20px 0">
+                                            <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
+                                            <p>Click or drag files here to upload</p>
+                                        </div>
+                                        </Upload>
+                                        <Card  span="10" offset="1">
+                                            <div style="text-align:center">
+                                                <img  style="width: 100%;height: auto;" v-if="formItem.image" :src="formItem.image" >
+                                            </div>
+                                        </Card>
+                                    </template> 
+                                </div>
+                             </FormItem>      
                             <FormItem label="Name">
                                 <Input type="text"  v-model="formItem.name"></Input>
                             </FormItem>
@@ -42,15 +65,18 @@
                 formItem:{
                     name:authUser.name,
                     email:authUser.email,
+                    image:authUser.image,
                     id:authUser.id
-                }
+                },
 				 
 			}
         },
         methods: {
-	
-
-		
+             handleSuccessedit(res, file){
+				if (res) {
+				this.formItem.image = res
+				}
+			},
 			async all_user(){
 				const res = await this.callApi('get','all_user')
 				if(res.status == 200){
@@ -64,7 +90,9 @@
 				if(res.status == 200){
 					this.user[this.editIndex] = _.clone(this.formItem) 
 					this.s("User Updated  !")
-					
+					this.$store.commit('setAuthuser',{
+                        image: this.formItem.image
+                        });
 				}
 				else{
 					this.swr();

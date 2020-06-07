@@ -6,19 +6,19 @@
                 <div class="row justify-content-end">
                     <div class="col-md-8">
                         <div class="dashboard-user" id="desh-user">
-                        <Form ref="formCustom" :label-width="80">      
-                            <FormItem label="Address">
-                                <Input type="text"  v-model="formItem.address"></Input>
-                            </FormItem>
-                            <FormItem label="Phone">
-                                <Input type="number" number  v-model="formItem.phone"></Input>
-                            </FormItem>
-                            <FormItem>
-                                <Button type="primary" @click="updateUser">Save Change</Button>
-                            </FormItem>
-                        </Form>
+                            <Form ref="formCustom" :label-width="80">      
+                                <FormItem label="Description">
+                                    <Input type="text" number  v-model="formItem.description"></Input>
+                                </FormItem>
+                                <FormItem label="Average Cost">
+                                    <Input type="text" number  v-model="formItem.cost"></Input>
+                                </FormItem>
+                                <FormItem>
+                                    <Button type="primary" @click="updateUser">Save Change</Button>
+                                </FormItem>
+                            </Form>
 
-                    </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -33,8 +33,8 @@
         data () {
             return {
                 formItem:{
-                    address:authUser.address,
-					phone:authUser.phone,
+					cost:authUser.cost,
+					description:authUser.description,
                     id:authUser.id
                 },
 				 
@@ -54,7 +54,7 @@
 				if(res.status == 200){
 					this.user[this.editIndex] = _.clone(this.formItem) 
 					this.s("User Updated  !")
-                }
+				}
 				else{
 					this.swr();
 				}

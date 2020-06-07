@@ -159,12 +159,11 @@
 										<span class="deliverytime">25min</span>
 									</div>
 									<h4 class="restaurant_title">{{ item.name }}</h4>
-									<!-- <span class="restaurant_rating">
-										<i class="fas fa-star"></i>4/5(4)
-									</span> -->
-									<p class="restaurant_sub">{{ item.description }}</p>
-
-									
+									<span class="restaurant_rating" v-if="item.avgreview">
+										<i class="fas fa-star"></i>
+										{{ item.avgreview.avgRating }} / 5
+									</span>
+									<p class="restaurant_sub">{{ item.description }}</p>	
 								</a>
 							</div>
 						</router-link>
@@ -192,6 +191,7 @@
 			}
         },
         methods: {
+			
 		
 		},
 		
@@ -222,3 +222,13 @@
 		}
     }
 </script>
+
+<style scoped>
+
+.ivu-alert.ivu-alert-with-icon {
+    padding: 10px 48px 8px 39px;
+    font-size: 19px;
+    width: 50%;
+}
+
+</style>

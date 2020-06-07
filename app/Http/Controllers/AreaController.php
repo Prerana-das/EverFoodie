@@ -12,6 +12,13 @@ class AreaController extends Controller
        return Area::with('city')->get();
         // return Area::all();
     }
+
+    public function all_area_list(Request $request){
+        $total = $request->total;
+        $data = Area::with('city')->orderBy('id','desc');
+        return $data->paginate($total);
+    }
+
     public function storeArea(Request $request){
         $data = $request->all();
         return Area::create($data);

@@ -37,24 +37,19 @@ Route::post('/app/upload', "CityController@upload");
 Route::post('/app/edit_city', "CityController@updateCity");
 Route::post('/app/delete_city', "CityController@deleteCity");
 Route::post( 'app/getUserImage', 'CityController@getUserImage');
+Route::get('/app/get_all_city', "CityController@get_all_city");
 
 // Area Route
 Route::get('/app/all_area', "AreaController@allArea");
 Route::post('/app/add_area', "AreaController@storeArea");
 Route::post('/app/edit_area', "AreaController@updateArea");
 Route::post('/app/delete_area', "AreaController@deleteArea");
+Route::get('/app/all_area_list', "AreaController@all_area_list");
 
-
-
-//Route::get('/app/all_restaurant', "RestaurantController@allRestaurant");
-
+// Restaurant
 Route::get('/app/restaurant/{id}', "RestaurantController@singleRestaurant");
 Route::get('/app/all_city_restaurant/{id}', "RestaurantController@all_city_restaurant");
-
-Route::post('/app/edit_user', "UserController@updateUser");
-Route::post('/app/delete_user', "UserController@deleteUser");
-
-
+Route::get('/app/all_restaurant', "RestaurantController@all_restaurant");
 
 
 // Restaurant food Route  
@@ -62,25 +57,23 @@ Route::get('/app/all_food', "FoodController@allFood");
 Route::post('/app/add_food', "FoodController@storeFood");
 Route::post('/app/edit_food', "FoodController@updateFood");
 Route::post('/app/delete_food', "FoodController@deleteFood");
-
 Route::get('/app/all_food_of_this_res/{id}', "FoodController@all_food_of_this_res");
 
 
 //Auth::routes();
 
-
+Route::post('/app/edit_user', "UserController@updateUser");
+Route::post('/app/delete_user', "UserController@deleteUser");
 Route::post('/app/registration', "UserController@registration");
 Route::post('/app/login', "UserController@login");
 Route::get('/app/all_user', "UserController@all_user");
 Route::post('/app/changePassword', 'UserController@changePassword');
+Route::get('/app/getDataBySearch', "UserController@getDataBySearch");
 
 //Route::post('/app/changeIt', "UserController@changeIt");
-
-
 // Route::get('/login', function () {
 //     return view('login');
 // });
-
 
 //Review
 Route::get('/app/all_review', "ReviewController@all_review");
@@ -89,22 +82,12 @@ Route::post('/app/reviews', "ReviewController@reviews");
 //Order
 Route::post('/app/place_order', "OrderController@place_order");
 
-
-
-Route::get('/app/getDataBySearch', "UserController@getDataBySearch");
-
-
-
-
+//Checkout
 Route::get('/checkout/stripe', "CheckoutController@stripe");
-
 Route::post('/checkout/stripepayment', "CheckoutController@stripePayment");
 
 
-
-Route::get('/app/showMenuForMenu', 'CityController@showMenuForMenu');
-
-
+// Route::get('/app/showMenuForMenu', 'CityController@showMenuForMenu');
 Route::get('/login', "UserController@login_check");
 Route::get('/register', function () {
     return view('register');

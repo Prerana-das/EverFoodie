@@ -140,7 +140,13 @@
 				</div>
 
 
-				                        <Page :current="city.current_page" :total="city.total" @on-change="pagination_result" :page-size="parseInt(city.per_page)" />
+				                       <!--  <Page :current="city.current_page" :total="city.total" @on-change="pagination_result" :page-size="parseInt(city.per_page)" /> -->
+
+				       <Page :current="parseInt(pagination.page)" 
+                        :total="pagination.total" 
+                        @on-change="pagination_result" 
+                        :page-size="parseInt(pagination.city.per_page)"
+                      />
 
 			</div>
 		</div>
@@ -169,8 +175,8 @@
 				isEdit:false,
 				editIndex:-1,
 
-				 page:1,
-				  pagination:{},
+				 page: 1,
+         		 pagination:{},
             }
         },
         methods: {
@@ -188,10 +194,13 @@
 			},
 			
 			async all_city(){
+				let page = 1
 				const res = await this.callApi('get',`all_city?page=${this.page}`)
 				if(res.status == 200){
+					// this. = res.data.city
+					// this.pagination = res.data.city
 					this.city = res.data.city.data
-					this.pagination = res.data.city
+           			this.pagination = res.data
 
 				}
 			},
@@ -256,16 +265,29 @@
 				this.editModal = true
 			},
 
-			async pagination_result(e){
+			// async pagination_result(e){
 
-	            this.page = e
-	            const res3 = await this.callApi('get',`showMenuForMenu?page=${this.page}`)
-	            if(res3.status == 200){
-	                this.city = res3.data.city.data
-	                this.pagination = res3.data.city
+	  //           this.page = e
+	  //           const res3 = await this.callApi('get',`showMenuForMenu?page=${this.page}`)
+	  //           if(res3.status == 200){
+	  //               this.city = res3.data.city
+	  //               this.pagination = res3.data
                
+   //          }
+   //      },
+
+
+          async pagination_result(e){
+            this.page = e
+            const res3 = await this.callApi('get',`all_city?page=${this.page}`)
+            if(res3.status == 200){
+                this.city = res3.city.data.data
+                this.pagination = res3.data       
             }
-        },
+            else {
+              this.swr()
+            }
+        }, 
 
 
 

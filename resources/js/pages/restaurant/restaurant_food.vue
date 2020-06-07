@@ -9,7 +9,7 @@
                         <Button class="_mar_b30" type="primary" @click="modal1 = true">Add Food</Button>
                             <Modal
                                 v-model="modal1"
-                                title="Add a new Area"
+                                title="Add a new food"
                                 :mask-closable="false"
                                 :closable="false"
                             >
@@ -254,8 +254,8 @@
 				const res = await this.callApi('post','add_food',this.formItem)
 				if(res.status == 201){
 					this.food.push(res.data)
-					this.s("New Food Added !")
-					this.modal1 = false
+					this.s("New Food Added !");
+					this.modal1=false
 				}
 				else{
 					this.swr();

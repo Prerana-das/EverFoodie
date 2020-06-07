@@ -26,8 +26,8 @@ Vue.component('admin_master', require('./layout/admin_master.vue').default);
 Vue.component('restaurant_master', require('./layout/restaurant_master.vue').default);
 Vue.component('checkout_master', require('./layout/checkout_master.vue').default);
 
-Vue.component('master_header', require('./layout/master_header.vue').default);
-Vue.component('master_footer', require('./layout/master_footer.vue').default);
+// Vue.component('master_header', require('./layout/master_header.vue').default);
+// Vue.component('master_footer', require('./layout/master_footer.vue').default);
 
 
 const app = new Vue({

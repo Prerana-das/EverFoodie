@@ -7,7 +7,7 @@
 				<div class="row">
 					<div class="partner_main_banner">
 						<h1 class="partner_main_title _mar_b15">Order Takeaway or Delivery Food</h1>
-						<a href="#" class="block_btn">Sign Up Now</a>
+						<a href="/login" class="block_btn">Sign Up Now</a>
 					</div>
 				</div>
 			</div>
@@ -149,40 +149,8 @@
 					<!-- Item -->
 					<div class="col-md-3">
 						<div class="activation_item _mar_b30">
-							<img src="assets/img/emails.png" alt="">
-							<p class="activation_item_cont _mar_t10"><span>Step 3:</span>fooddelivery sends contract</p>
-						</div>
-					</div>
-					<!-- Item -->
-					<!-- Item -->
-					<div class="col-md-3">
-						<div class="activation_item _mar_b30">
-							<img src="assets/img/files-and-folders.png" alt="">
-							<p class="activation_item_cont _mar_t10"><span>Step 4:</span> Contract signed</p>
-						</div>
-					</div>
-					<!-- Item -->
-					<!-- Item -->
-					<div class="col-md-3">
-						<div class="activation_item _mar_b30">
-							<img src="assets/img/files.png" alt="">
-							<p class="activation_item_cont _mar_t10"><span>Step 5:</span> Receive preview of your menu</p>
-						</div>
-					</div>
-					<!-- Item -->
-					<!-- Item -->
-					<div class="col-md-3">
-						<div class="activation_item _mar_b30">
-							<img src="assets/img/shipping-and-delivery.png" alt="">
-							<p class="activation_item_cont _mar_t10"><span>Step 6:</span> Receive everfoodie devices</p>
-						</div>
-					</div>
-					<!-- Item -->
-					<!-- Item -->
-					<div class="col-md-3">
-						<div class="activation_item _mar_b30">
 							<img src="assets/img/phone.png" alt="">
-							<p class="activation_item_cont _mar_t10"><span>Step 7:</span> Receive training via call</p>
+							<p class="activation_item_cont _mar_t10"><span>Step 3:</span> Receive training via call</p>
 						</div>
 					</div>
 					<!-- Item -->
@@ -190,7 +158,7 @@
 					<div class="col-md-3">
 						<div class="activation_item _mar_b30">
 							<img src="assets/img/live-stream.png" alt="">
-							<p class="activation_item_cont _mar_t10"><span>Step 8:</span> Your restaurant is live on everfoodie</p>
+							<p class="activation_item_cont _mar_t10"><span>Step 4:</span> Your restaurant is live on everfoodie</p>
 						</div>
 					</div>
 					<!-- Item -->
@@ -224,14 +192,14 @@
 									<input v-model="formItem.name" type="text" placeholder="Restaurant Name">
 								</div>
 								<div class="form-box">
-									<Select v-model="formItem.city_id"  >
+									<Select v-model="formItem.city_id"  placeholder="Select City">
 										<Option v-for="(item,index) in city" :value="item.id" :key="index">
 											{{ item.name }}
 										</Option>
 									</Select>
 								</div>
 								<div class="form-box">
-									<Select v-model="formItem.address" >
+									<Select v-model="formItem.address" placeholder="Select Area">
 										<Option v-for="(item,index) in area" :value="item.name" :key="index">
 											{{ item.name }}
 										</Option>
@@ -351,14 +319,39 @@
 				this.formItem.user_type='Restaurant'
 				const res = await this.callApi('post','registration',this.formItem)
 
-				if(res.status == 201){
+				if(res.status == 200){
 					this.user.push(res.data)
 					this.s("New user Added !")
 					// this.formItem.name = ''
-					window.location='/login'
+					// window.location='/login'
 				}
 				else{
-					this.swr();
+					if(res.status==422){
+						if(res.data.errors.name){
+							this.e(res.data.errors.name[0])
+						}
+						if(res.data.errors.description){
+							this.e(res.data.errors.description[0])
+						}
+						if(res.data.errors.image){
+							this.e(res.data.errors.image[0])
+						}
+						if(res.data.errors.cost){
+							this.e(res.data.errors.cost[0])
+						}
+						if(res.data.errors.phone){
+							this.e(res.data.errors.phone[0])
+						}
+						if(res.data.errors.email){
+							this.e(res.data.errors.email[0])
+						}
+						if(res.data.errors.password){
+							this.e(res.data.errors.password[0])
+						}
+						
+					}else{
+						this.swr()
+					}
 				}
 			},
 

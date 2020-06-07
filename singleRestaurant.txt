@@ -1,7 +1,5 @@
 <template>
-	<div>
-	
-
+    <div>
 		<div id="myProduct">
 
 		
@@ -53,9 +51,19 @@
 										Total Price: BDT{{ totalprice }}
 									</h3>
 									
-									<a href="/checkout" class="block_btn">
-										Checkout
-									</a>
+									<h1>
+										
+										<p v-if="!isLoggedIn">
+											<span @click="warningCheck">
+												Checkout
+											</span>
+										</p>
+										<span v-if="isLoggedIn">
+											<a href="/checkout" class="block_btn">
+											Checkout	
+											</a>
+										</span>
+									</h1>
 								</div>
 							</div>
 						</div>
@@ -214,7 +222,11 @@
 											</div>
 
 											<div class="_comments_items_details">
-												<p class="_comments_items_name">{{item.user.name}}</p>
+												<p class="_comments_items_name">
+													<span v-if="item.user">
+													{{item.user.name}}
+													</span>
+												</p>
 											
 												<div class="_comments_items_rating">
 													<div class="_1rating">
@@ -329,16 +341,19 @@
 
 		</div>
 		<!-- ===================== Restaurant checkout end ======================= -->
-		</div>
-	</div>
-</template>
 
-<script>
+		</div>
+    </div>
+ </template>
+
+ <script>
 export default {
-	data(){
-		return { 
+    data(){
+        return{
 			restaurant:[],
 			food:[],
+			// defaultValue:0,
+			// a:0,
 			carts:[],
 			cartadd:{
 				id:'',
@@ -358,10 +373,18 @@ export default {
 			review_data:[],
 			single_review:[],
 			review_all_data:[]
-		}
-	},
+        }
+    },
+    methods :{
+        async single_restaurant(){
+            const res = await this.callApi('get',`restaurant/${this.$route.params.id}`)
+            if(res.status == 200){
+				this.restaurant = res.data
+				 this.review_data = res.data.review
+            }
+		}, 
 
-	methods : {
+
 		async insertReview(){
 			if(this.review_form.rating == 0){
 				return this.i("Please give a rating !")
@@ -374,21 +397,23 @@ export default {
 			}
 			this.review_form.user_id = authUser.id
 			this.review_form.res_id = this.$route.params.id
+
 			const res = await this.callApi('post','reviews',this.review_form)
 			if(res.status == 201){
-				this.review_data.push(res.data)
+
+				this.review_data.push(res.data.review_data)
+
 				this.s("Review posted Successfully !")
 				this.review_form.rating = 0
 				this.review_form.description = ''
 			} else if (res.status == 401){
 				this.e('You are not Login ! Please Login ...')
-			}
-			else if (res.status == 422){
-				this.e('Please Login As a User ...')
+
 			} else{
 				this.swr()
 			}
 		},
+		
 		viewCart(){
 			if(localStorage.getItem('carts'))
 			{
@@ -396,8 +421,14 @@ export default {
 				this.badge =this.carts.length;
 				this.totalprice = this.carts.reduce((total,item)=>{
 					// return total + this.quantity * item.price;
+
 					return total + item.amount * item.price;
 				},0);
+			}
+		},
+		warningCheck(){
+			if(!this.isLoggedIn){
+				return this.i("Please Login first  !")
 			}
 		},
 		addCart(item){
@@ -407,13 +438,17 @@ export default {
 			cartadd.name= item.name;
 			cartadd.price=item.price;
 			cartadd.amount=this.quantity;
+
 			// this.carts.push(this.cartadd);
 			// 	//this.cartadd = {};
 			// 	this.storeCart();
+
+
 			let flag = false;
 			if(this.carts.length > 0){
 				for (let i of this.carts) {     //'in' get only index but 'of' get the full obj
 					if( i.id==item.id){
+
 					
 						//this.cart_plus(item);
 						flag = true
@@ -441,49 +476,68 @@ export default {
 			let parsed = JSON.stringify(this.carts);
 			localStorage.setItem('carts',parsed);
 			this.viewCart();
+
 			
 		},
 		cart_plus(item){
 			//console.log(item);
+
 			let parsed = JSON.stringify(this.carts);
 			localStorage.setItem('carts',parsed);
 			this.viewCart();
 		},
+
 		edit(){
+
 			this.editQuantity = true
 		},
+
 		editOff(){
 			
 			//localStorage.setItem('localcart', JSON.stringify(this.carts[0]))
+
 			let parsed = JSON.stringify(this.carts);
 			localStorage.setItem('carts',parsed);
 			this.editQuantity = false
 			this.viewCart();
-					
-		},
-		 async single_restaurant(){
-            const res = await this.callApi('get',`restaurant/${this.$route.params.id}`)
-            if(res.status == 200){
-				this.restaurant = res.data
-				 this.review_data = res.data.review
-            }
-		}, 
-		async all_review(){
-			const res = await this.callApi('get','all_review')
-			if(res.status == 200){
-				this.review_all_data = res.data
-			}
-		},
 			
-	}, 
+			
+		},
 
-	created(){
-		this.single_restaurant();
-		this.viewCart();
-		this.all_review();
+
+
+		async all_review(){
+				const res = await this.callApi('get','all_review')
+				if(res.status == 200){
+					this.review_all_data = res.data
+				}
+			},
+
+
+
 	},
 	
-	
+	 computed: {
+    
+	 },
+
+    async created(){
+        
+		this.single_restaurant();
+		
+		this.viewCart();
+
+		console.log(this.carts);
+
+
+		this.all_review();
+		
+
+
+		
+		
+
+    }
 }
 </script>
 
@@ -492,6 +546,7 @@ export default {
 	#myProduct{
 		margin-top:50px;
 	}
+
 	.cart_btn{
 		background-color: #eb2f06;
 		color: #fff;

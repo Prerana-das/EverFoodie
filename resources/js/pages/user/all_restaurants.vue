@@ -6,10 +6,8 @@
             <div class="container">
                 <div class="row">
                     <div class="main_banner">
-                        <h1 class="main_title _mar_b20" v-for="item in city" :key="item.id">
-							<span  v-if="item.id==$route.params.id">
-								Food Delivery from {{item.name}}'s Best Restaurants 
-							</span>					
+                        <h1 class="main_title _mar_b20">
+							All Restaurant On Everfoodie				
 						</h1>
 						
                         <!-- <div class="main_search">
@@ -43,7 +41,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="section_title_area _mar_b30">
-							<h1 class="section_title">Popular restaurants</h1>
+							<h1 class="section_title">All restaurants</h1>
 						</div>
 					</div>
 				</div>
@@ -96,12 +94,18 @@
         methods: {
 			
 
-			async all_city_restaurant(){
-				const res = await this.callApi('get',`all_city_restaurant/${this.$route.params.id}`)
+			async all_restaurant(){
+				const res = await this.callApi('get','all_restaurant')
 				if(res.status == 200){
 					this.restaurant = res.data
 				}
 			}, 
+			async all_review(){
+				const res = await this.callApi('get','all_review')
+				if(res.status == 200){
+					this.review_all_data = res.data
+				}
+			},
 			
 
 		},
@@ -116,7 +120,8 @@
 				this.swr()
 			}
 
-			this.all_city_restaurant();
+			this.all_restaurant();
+			this.all_review();
 		},
 		computed:{
 			filterrestaurant: function(){

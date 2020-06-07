@@ -9,7 +9,7 @@ class CityController extends Controller
     //
 
     public function allCity(){
-       // $city = City::paginate(4);
+    //    $city = City::paginate(5);
 
         return City::all();
 
@@ -17,6 +17,10 @@ class CityController extends Controller
         //   'city' => $city,
         //     'success' => true
         // ],200);
+    }
+
+    public function get_all_city(){
+         return City::all();
     }
 
     public function storeCity(Request $request){
@@ -73,14 +77,14 @@ class CityController extends Controller
 
 
 
-    public function showMenuForMenu(){ 
-        $city =  City::paginate(4);
+    // public function showMenuForMenu(){ 
+    //     $city =  City::paginate(4);
         
-        return response()->json([
-          'city' => $city,
-            'success' => true
-        ],200);
-    }
+    //     return response()->json([
+    //       'city' => $city,
+    //         'success' => true
+    //     ],200);
+    // }
 
 
 }

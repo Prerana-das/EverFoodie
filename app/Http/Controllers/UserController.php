@@ -26,67 +26,52 @@ class UserController extends Controller
 
         $data = $request->all();
         $data['password'] = Hash::make($data['password']);
-        User::create($data);
+        $user = User::create($data);
         
-       // $user = User;
-        // return response()->json([
-        //     'user' => $user,
-        //        'success' => true
-        //    ],200);
+        return response()->json([
+            'user' => $user,
+               'success' => true
+           ],200);
 
-        return redirect('/login');
+        // return redirect('/login');
        
     }
 
     public function login(Request $request){
 
         if((User::where('email', $request->email)->count())==0){
-            return response()->json([
-                'msg' => "Email doesn't exist!",
-            ],422);
+            return redirect("/login")->with('message',"Email Doesn't exist!");
         }
-
-         if((User::where('email', $request->email)->count())==0){
-            return redirect("/login")->with('message',"Incorrect Email!");
-        }
-        
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password ])) {
            $user = Auth::user();
 
            if($user->user_type == 'User'){
-                
-               
-                
                $storeUrl= url()->previous();
-
                 \Log::info($storeUrl);
-
                 //$returnurl
-
                 //return redirect($returnurl);
-
-                    return redirect("/");
+                return redirect("/");
             }
             if($user->user_type == 'Admin'){
-                
                 return redirect("/admin");
             }
 
+            if($user->user_type == 'Restaurant' && $user->request_status == 'Approved'){
+                return redirect("/restaurantProfile");
+            }
+
+            if($user->user_type == 'Restaurant' && $user->request_status == 'Pending'){
+                Auth::logout();
+                Session::flush();
+                Auth::check();
+                return redirect("/login")->with('message',"You Need Admin Approval!");
+            }
+
+            else{
+                return  redirect("/login")->with('message',"Your Need Authorithies Permission!");
+            }
 
          }
-
-         if (Auth::attempt(['email' => $request->email, 'password' => $request->password ])) {
-            
-            $user = Auth::user();
-            \Log::info($user);
-              if($user->user_type == 'Restaurant' && $user->request_status == 'Approved'){
-                 return redirect("/");
-              }
-              else{
-                return  redirect("/login")->with('message',"Your Need Authorithies Permission!");
-              }
-          }
-
 
          else{
             return  redirect("/login")->with('message',"Incorrect Password!");
@@ -126,9 +111,7 @@ class UserController extends Controller
             return view('login');
         }
         else{
-
-            return  redirect("/partner");
-
+            return  redirect("/");
             //return redirect()->back();
         }
         
@@ -168,7 +151,9 @@ class UserController extends Controller
 
     public function getDataBySearch(Request $request){
         $location = $request->location;
-        $query = User::with('city');
+        $query = User::where('user_type','Restaurant')
+                ->where('request_status','Approved')
+                ->with('avgreview','city');
 
         if($location){
             $query->where('address','like', '%'.$location.'%');
@@ -179,6 +164,9 @@ class UserController extends Controller
 
         //         $q->where('name','like', '%'.$location.'%'); });
         // }
+        if(!$location){
+            return;
+        }
 
 
         $data = $query->get();

@@ -69,7 +69,9 @@
 						</table>
 					</div>
 				</div>
-				 <Page :total="100" />
+				<div style="text-align:center;" class="pagination_div _mar_t30">
+					<Page :current="pagination.current_page" :total="pagination.total" @on-change="getpaginate" :page-size="parseInt(pagination.per_page)" />
+				</div>
 				 <!--~~~~~~~ TABLE ONE ~~~~~~~~~-->
 
 				 <Modal
@@ -126,17 +128,23 @@
 				},
 				// isEdit:false,
 				editIndex:-1,
-				city:[]
+				city:[],
+				page:1,
+				total:"3",
+				pagination: {},
 			}
         },
         methods: {
-
-			async all_areas(){
-				const res = await this.callApi('get','all_area')
+			async getpaginate(page = 1){
+				const res  = await this.callApi('get',`app/all_area_list?page=${page}&total=${ parseInt(this.total)}`)
 				if(res.status == 200){
-					this.area = res.data
+					this.area = res.data.data
+					this.pagination = res.data
 				}
-        	},
+				else{
+					this.swr()
+				}
+			},
 			async add_area(){
 				if(this.formItem.name == '') return this.i("Area Name is empty!");
 				const res = await this.callApi('post','add_area',this.formItem)
@@ -206,13 +214,15 @@
 		
 
 		},
-		
 		 async created(){
-			this.all_areas();
-	
-			const res = await this.callApi('get','all_city')
-			if(res.status == 200){
-				this.city = res.data
+			const [res1, res2] = await Promise.all([ 
+			this.callApi('get','all_city'),
+			this.callApi('get',`all_area_list?total=${this.total}`) 
+			])
+			if(res1.status == 200 && res2.status == 200){
+				this.city = res1.data
+				this.area= res2.data.data
+				this.pagination = res2.data
 			}
 			else{
 				this.swr()

@@ -12,7 +12,9 @@ import partner from '../pages/user/partner.vue'
 import restaurant from '../pages/user/restaurant.vue'
 import singlerestaurant from '../pages/user/singlerestaurant.vue'
 import city_restaurant from '../pages/user/city_restaurant.vue'
-import singlerestaurant_review from '../pages/user/singlerestaurant_review.vue'
+import all_restaurants from '../pages/user/all_restaurants.vue'
+
+
 
 //Admin
 import category from '../pages/admin/category.vue'
@@ -32,6 +34,7 @@ import restaurant_contactInfo from '../pages/restaurant/restaurant_contactInfo.v
 import restaurant_profile from '../pages/restaurant/restaurant_profile.vue'
 import restaurant_review from '../pages/restaurant/restaurant_review.vue'
 import restaurant_food from '../pages/restaurant/restaurant_food.vue'
+import restaurant_others from '../pages/restaurant/restaurant_others.vue'
 
 //checkout payment_vue
 import single_res_checkout from '../pages/user/single_res_checkout.vue'
@@ -89,7 +92,6 @@ export default new Router({
           title: 'partner',
       }
     },
-
     {
       path: '/all_restaurant',
       name: 'restaurant',
@@ -98,20 +100,20 @@ export default new Router({
           title: 'restaurant',
       }
     },
+    {
+      path: '/all_restaurants',
+      name: 'all_restaurants',
+      component: all_restaurants,
+      meta: {
+          title: 'all_restaurants',
+      }
+    },
      {
       path: '/singlerestaurant/:id',
       name: 'singlerestaurant',
       component: singlerestaurant,
       meta: {
           title: 'singlerestaurant',
-      }
-    },
-    {
-      path: '/singlerestaurant_review',
-      name: 'singlerestaurant_review',
-      component: singlerestaurant_review,
-      meta: {
-          title: 'singlerestaurant_review',
       }
     },
     {
@@ -244,7 +246,14 @@ export default new Router({
           title: 'restaurant_food',
       }
     },
-
+    {
+      path: '/restaurantProfile/restaurant_others',
+      name: 'restaurant_others',
+      component: restaurant_others,
+      meta: {
+          title: 'restaurant_others',
+      }
+    },
 
     {
       path: '/checkout',

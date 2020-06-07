@@ -57,12 +57,12 @@
                         @endif
 						<div class="login_group">
 							<label>Email or username</label>
-							<input name="email" type="email" placeholder="Type your email or username">
+							<input name="email" type="email" placeholder="Type your email or username" required>
 						</div>
 						<div class="login_group">
 							<label>Password</label>
 							<a href="forgot_password.html" class="forgot_pass">Forgot Password?</a>
-							<input name="password" type="password" placeholder="Type your password">
+							<input name="password" type="password" placeholder="Type your password" required>
 						</div>
 
 						
