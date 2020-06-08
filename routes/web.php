@@ -69,6 +69,8 @@ Route::post('/app/login', "UserController@login");
 Route::get('/app/all_user', "UserController@all_user");
 Route::post('/app/changePassword', 'UserController@changePassword');
 Route::get('/app/getDataBySearch', "UserController@getDataBySearch");
+Route::get('/app/restaurant_user', "UserController@restaurant_user");
+
 
 //Route::post('/app/changeIt', "UserController@changeIt");
 // Route::get('/login', function () {
@@ -81,10 +83,16 @@ Route::post('/app/reviews', "ReviewController@reviews");
 
 //Order
 Route::post('/app/place_order', "OrderController@place_order");
+Route::get('/app/get_all_order', "OrderController@get_all_order");
+
 
 //Checkout
 Route::get('/checkout/stripe', "CheckoutController@stripe");
 Route::post('/checkout/stripepayment', "CheckoutController@stripePayment");
+
+//Subscription
+Route::post('/app/newSubscription', "HomeController@newSubscription");
+
 
 
 // Route::get('/app/showMenuForMenu', 'CityController@showMenuForMenu');

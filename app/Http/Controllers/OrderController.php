@@ -21,7 +21,11 @@ class OrderController extends Controller
         unset($data['carts']);
 
 
-        $order =  Order::create($data);
+        $order =  Order::create([
+            'user_id'=>$data['user_id'],
+            'total_price'=>$data['total_price'],
+            'res_id'=>$data['res_id'],
+        ]);
 
         $size = sizeof($carts);
         $orderCartItem = [];
@@ -29,7 +33,10 @@ class OrderController extends Controller
             $ob = ([
                 'order_id' => $order->id,
                 'item_id' => $carts[$i]['id'],
-                'quantity' => $carts[$i]['amount']
+                'res_id'=>$data['res_id'],
+                'quantity' => $carts[$i]['amount'],
+                'order_description'=>$data['order_description'],
+                'payment_method'=>$data['payment_method'],
             ]);
             array_push($orderCartItem,$ob);
             
@@ -43,4 +50,14 @@ class OrderController extends Controller
             'success' => true
         ],200);
     }
+
+    
+    public function get_all_order(Request $request){
+        $total = $request->total;
+        $data = Order::with('user','order_details.food')->orderBy('id','desc');
+        return $data->paginate($total);
+    }
+
+
+
 }

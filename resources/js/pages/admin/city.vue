@@ -276,7 +276,6 @@
    //          }
    //      },
 
-
           async pagination_result(e){
             this.page = e
             const res3 = await this.callApi('get',`all_city?page=${this.page}`)
@@ -288,9 +287,6 @@
               this.swr()
             }
         }, 
-
-
-
 
 		},
 		created(){

@@ -35,6 +35,8 @@ import restaurant_profile from '../pages/restaurant/restaurant_profile.vue'
 import restaurant_review from '../pages/restaurant/restaurant_review.vue'
 import restaurant_food from '../pages/restaurant/restaurant_food.vue'
 import restaurant_others from '../pages/restaurant/restaurant_others.vue'
+import restaurant_order from '../pages/restaurant/restaurant_order.vue'
+
 
 //checkout payment_vue
 import single_res_checkout from '../pages/user/single_res_checkout.vue'
@@ -254,9 +256,16 @@ export default new Router({
           title: 'restaurant_others',
       }
     },
-
     {
-      path: '/checkout',
+      path: '/restaurantProfile/restaurant_order',
+      name: 'restaurant_order',
+      component: restaurant_order,
+      meta: {
+          title: 'restaurant_order',
+      }
+    },
+    {
+      path: '/checkout/:id',
       name: 'single_res_checkout',
       component: single_res_checkout,
       meta: {

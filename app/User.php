@@ -48,9 +48,9 @@ class User extends Authenticatable
     public function city(){
         return $this->belongsTo('App\City','city_id');
     }
-    // public function review(){
-    //     return $this->hasMany('App\Review','res_id');
-    // }
+    public function review(){
+        return $this->hasMany('App\Review','res_id');
+    }
      public function avgreview(){
         return $this->hasOne('App\Review','res_id')
                     ->select('res_id', DB::raw( 'cast(AVG(rating) as decimal(10,2)) AS avgRating'))

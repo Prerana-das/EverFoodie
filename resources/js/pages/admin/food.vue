@@ -71,14 +71,9 @@
 				this.formItem.image = res
 				}
             },
-            
-			
-		
 
 		},
-		
 		 async created(){
-	
 			const res = await this.callApi('get','all_food')
 			if(res.status == 200){
 				this.food = res.data

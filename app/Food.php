@@ -17,5 +17,10 @@ class Food extends Model
         return $this->belongsTo('App\User','res_id');
     }
 
+    public function order_details()
+    {
+        return $this->hasMany('App\Order_details');
+    }
+
     
 }

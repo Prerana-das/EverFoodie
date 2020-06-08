@@ -13,7 +13,7 @@
 						<div class="modal-dialog modal-dialog-centered modal-lg">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h2>Your Cart</h2>
+									
 									<button class="close" data-dismiss="modal">Close</button>
 								</div>
 								<div class="modal-body">
@@ -49,17 +49,70 @@
 									</table>
 								</div>
 								<div class="modal-footer">
-									<h3>
-										Total Price: BDT{{ totalprice }}
-									</h3>
 									
-									<a href="/checkout" class="block_btn">
+									
+									<!-- <a href="/checkout" class="block_btn">
 										Checkout
-									</a>
+									</a> -->
+									
 								</div>
 							</div>
 						</div>
 					</div>
+
+					<Modal
+						v-model="modal6"
+						title="Your Cart"
+						>
+
+						<div class="_overflow _table_div">
+                            <table class="_table">
+                                    <!-- TABLE TITLE -->
+								<tr>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Amount</th>
+                                    <th>Action</th>
+                                </tr>
+                                <tr v-for="(cart,n) in carts" :key="n">
+									<td>{{ cart.name }}</td>
+									<td>{{ cart.amount*cart.price }}</td>
+									<!-- <td>
+										<input type="text" readonly class="form-control" v-model="cart.amount">
+									</td> -->
+									<td>
+									<template v-if="editQuantity">
+										<template>
+											<InputNumber :max="10" :min="1" v-model="cart.amount"></InputNumber>
+										
+										</template>
+									</template>
+										<template v-else>{{cart.amount}}</template>
+									</td>
+									<td>
+										<Button type="info" @click="edit">Edit</Button>
+										<template v-if="editQuantity">
+											<Button type="success"  @click="editOff">Save</Button>
+										</template>
+										<Button type="error" @click="removeCart(n)">Remove</Button>
+									</td>
+								</tr> 
+                            </table>
+                        </div>
+						<div slot="footer">
+							<h3>
+								Total Price: BDT{{ totalprice }}
+							</h3>
+							<router-link :to="`/checkout/${restaurant.id}`" >
+								<button class="block_btn" @click="modal6 = false">Get Started</button>
+							</router-link>
+			
+						<Button type="default" @click="modal6 = false">Close</Button>
+						
+					</div>
+					</Modal>
+
+
 				
 			
 					<!-- ===================== Restaurant Area Start ======================= -->
@@ -254,7 +307,7 @@
 					<h3 class="checkout_cont_title">Your order Kababia</h3>
 					<p class="checkout_cont_sub">You haven’t added anything to your cart yet! Start adding your favourite dishes</p>
 				</div>
-				<button class="_mar_t15 cart_btn" data-toggle="modal" data-target="#cart">
+				<button class="_mar_t15 cart_btn" @click="modal6 = true">
 					<i class="fas fa-shopping-cart"></i>
 					<span class="badge badge-light">{{ badge }}</span>
 				</button>
@@ -357,7 +410,8 @@ export default {
 			avgRating:0,
 			review_data:[],
 			single_review:[],
-			review_all_data:[]
+			review_all_data:[],
+			modal6:false
 		}
 	},
 

@@ -83,6 +83,14 @@ class UserController extends Controller
         return User::all();
     }
 
+    public function restaurant_user(Request $request){
+        $total = $request->res_id;
+        return User::with('avgreview','city')->where('id',$total)->get();
+    }
+
+
+    
+
     // public function changeIt(Request $request){
     //     $data = $request->all();
         

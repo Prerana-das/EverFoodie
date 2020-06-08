@@ -49,10 +49,14 @@
                         <div class="col-lg-3 col-md-6">
                             <div class="footer_col">
                                 <h4>newsletter</h4>
-                                <form action="">
+                                <!-- <form action="">
                                     <input type="email" placeholder="enter your email"/>
                                     <input type="submit" value="subscribe"/>
-                                </form>
+                                </form> -->
+                                <Form ref="formCustom" :label-width="80">      
+                                    <input type="email" v-model="formItem.email" placeholder="Enter your email"/>
+                                    <button class="block_btn" @click="newSubscription">Subscribe</button>
+                                </Form>
                             </div>
                         </div>
                     </div>
@@ -74,14 +78,31 @@
     </div>
 </template>
 
+
 <script>
+    export default {
+        data () {
+            return {
+				formItem:{
+                    email:''
+                }
+			}
+        },
+        methods: {
+            async newSubscription(){
+                if(this.formItem.email == '') return this.i("Email is empty!");
+				const res = await this.callApi('post','newSubscription',this.formItem)
+				if(res.status == 201){
+					this.s("Your Subscription Successfull!")
+				}
+				else{
+					this.swr();
+				}
+			},  
 
-
-export default {
-  
-  created(){
-     
-  },
-
-}
+		},
+		 async created(){
+			
+    	}
+    }
 </script>

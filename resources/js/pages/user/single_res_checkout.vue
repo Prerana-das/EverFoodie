@@ -18,7 +18,7 @@
 								<h3 class="delivery_details_subtitle">
 									Delivery time
 									<span class="delivery_time">
-									20mins
+									{{ restaurant.delivery_time}} mins
 									</span>
 								</h3>
 							</div>
@@ -39,7 +39,7 @@
 											<span>
 												Note to rider:
 											</span>
-											Note something
+											<Input v-model="formItem.order_description" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Note something..."></Input>
 										</li>
 									</ul>
 									<div class="deliver_details_1edit">
@@ -82,7 +82,7 @@
 						<!-- ========== Three ======== -->
 						<div class="delivery_details_3 _box_shadow _padd20 _mar_b30">
 							<div class="delivery_details_1_title _mar_b10">
-								<span class="delivery_details_no">2</span>
+								<span class="delivery_details_no">3</span>
 								<h3>
 									Payment
 								</h3>
@@ -90,17 +90,6 @@
 							<div class="payment_area">
 								<template>
 									<Tabs :animated="false">
-										<TabPane label="Credit Or Debit Card">
-											<div class="stripe_payment">
-												<div class="payment_img">
-													<img src="assets/img/stripe.png" alt="">
-												</div>
-												<div class="payment_option">
-													<a href="/checkout/stripe">Checkout With Stripe</a>
-												</div>
-											</div>
-											<button @click="placeOrder" class="block_btn _mar_t20"> Place Order</button>
-										</TabPane>
 										<TabPane label="Cash On Delivery">
 											<p>Simply pay the driver, when he delivers the food to your doorstep.</p>
 											
@@ -109,6 +98,17 @@
 												</FormItem> -->
 												<button @click="placeOrder" class="block_btn _mar_t20"> Place Order</button>
 	
+										</TabPane>
+										<TabPane label="Credit Or Debit Card"> 
+											<div class="stripe_payment">
+												<div class="payment_img">
+													<img src="/assets/img/stripe.png" alt="">
+												</div>
+												<div class="payment_option">
+													<a href="/checkout/stripe">Checkout With Stripe</a>
+												</div>
+											</div>
+											<button @click="placeOrder" class="block_btn _mar_t20"> Place Order</button>
 										</TabPane>
 									</Tabs>
 								</template>
@@ -125,7 +125,7 @@
 								</h3>
 							</div>
 							<div class="preparing_food_img _mar_b10">
-								<img src="assets/img/prepare_food.jpg" alt="">
+								<img src="/assets/img/prepare_food.jpg" alt="">
 							</div>
 							<p>Preparing your food....</p>
 						</div>
@@ -192,26 +192,31 @@ export default {
         return{
 			carts:[],
 			total:'0',
-
+			restaurant:{},
 			formItem: {
 				user_id:'',
-				total_price: ''
+				total_price: '',
+				res_id:'',
+				payment_method:'Cash On Delivery',
+				order_description:''
 			},
 			delivery_details_area:true,
 			order:[],
-			orderItem:[]
+			orderItem:[],
+			tab0: true,
+            tab1: true,
 
         }
 	},
 	
 
     methods :{
-        // async single_restaurant(){
-        //     const res = await this.callApi('get',`restaurant/${this.$route.params.id}`)
-        //     if(res.status == 200){
-        //         this.restaurant = res.data
-        //     }
-		// }, 
+        async single_restaurant(){
+          	const res = await this.callApi('get',`restaurant/${this.$route.params.id}`)
+            if(res.status == 200){
+                this.restaurant = res.data
+            }
+		 }, 
 
 		viewCart(){
 			if(localStorage.getItem('carts')){
@@ -230,6 +235,7 @@ export default {
 				this.formItem.total_price=this.total
 
 				this.formItem.carts = this.carts
+				this.formItem.res_id = this.$route.params.id
 
 				const res = await this.callApi('post','place_order',this.formItem)
 
@@ -264,8 +270,9 @@ export default {
 	
 
     created(){
+		console.log(this.$route.params.id);
         
-		// this.single_restaurant();
+		this.single_restaurant();
 		this.viewCart();
 		
 

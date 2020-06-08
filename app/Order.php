@@ -9,12 +9,16 @@ class Order extends Model
     //
 
     protected $fillable = [
-        'user_id','selling_price','discount_price','total_price'
+        'user_id','total_price','res_id','payment_method'
     ];
 
 
     public function user(){
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User','user_id');
+    }
+
+    public function order_details(){
+        return $this->hasMany('App\Order_details','order_id');
     }
 
     

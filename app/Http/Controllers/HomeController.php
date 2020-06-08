@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\User;
+use App\Subscription;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -52,15 +53,15 @@ class HomeController extends Controller
             return view('checkout');
 
         }
-
-        
             return view('welcome');
         }
 
-
-
-
-       
-
-
+        public function newSubscription(Request $request){
+            $this->validate($request, [
+                'email' => 'required|string|max:255|email|unique:subscriptions',
+            ]);
+            return Subscription::create([
+                'email' => $request->email,
+            ]);
+        }
 }

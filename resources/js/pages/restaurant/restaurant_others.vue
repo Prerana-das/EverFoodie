@@ -6,12 +6,16 @@
                 <div class="row justify-content-end">
                     <div class="col-md-8">
                         <div class="dashboard-user" id="desh-user">
+                            <h5>Average Review: <span>{{ user[0].avgreview.avgRating}}</span></h5>
                             <Form ref="formCustom" :label-width="80">      
                                 <FormItem label="Description">
-                                    <Input type="text" number  v-model="formItem.description"></Input>
+                                    <Input type="text"  v-model="formItem.description"></Input>
                                 </FormItem>
                                 <FormItem label="Average Cost">
                                     <Input type="text" number  v-model="formItem.cost"></Input>
+                                </FormItem>
+                                <FormItem label="Delivery Time">
+                                    <Input type="text" number  v-model="formItem.delivery_time"></Input>
                                 </FormItem>
                                 <FormItem>
                                     <Button type="primary" @click="updateUser">Save Change</Button>
@@ -34,15 +38,18 @@
             return {
                 formItem:{
 					cost:authUser.cost,
-					description:authUser.description,
+                    description:authUser.description,
+                    delivery_time:authUser.delivery_time,
                     id:authUser.id
                 },
+                user:[]
+        
 				 
 			}
         },
         methods: {
-			async all_user(){
-				const res = await this.callApi('get','all_user')
+			async restaurant_user(){
+				const res = await this.callApi('get',`restaurant_user?res_id=${this.formItem.id}`)
 				if(res.status == 200){
 					this.user = res.data
 				}
@@ -65,7 +72,7 @@
 		},
 		
 		 async created(){
-			this.all_user();
+			this.restaurant_user();
 	
     	}
     }

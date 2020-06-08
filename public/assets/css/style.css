@@ -1123,10 +1123,13 @@
    padding-right: 5px;
    font-size: 15px;  
 }
+.dashboard-list a:hover {
+    color: #283B62!important;
+}
 .dash-active {
     background-color: #eb2f06!important;
 }
-.dash-active li a{
+.dash-active a, .dash-active a:hover{
     color: #fff!important;
 }
 .dashboard-list li a {
@@ -1813,6 +1816,10 @@
 }
 .section_title {
     font-size: 30px;
+}
+.payment3{
+    display: flex;
+    justify-content: space-between;
 }
 
 

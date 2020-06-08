@@ -35,6 +35,12 @@
                                 Contact Info
                             </router-link>
                         </li>
+                        <li class="acc acc-contact" :class=" $route.path == '/restaurantProfile/restaurant_order' ?'dash-active': ''">
+                            <router-link to="/restaurantProfile/restaurant_order">
+                                <i class="far fa-address-card"></i> 
+                                All Order
+                            </router-link>
+                        </li>
                         <li class="acc acc-contact" :class=" $route.path == '/restaurantProfile/restaurant_others' ?'dash-active': ''">
                             <router-link to="/restaurantProfile/restaurant_others">
                                 <i class="far fa-address-card"></i> 
