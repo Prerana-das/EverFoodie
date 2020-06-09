@@ -7,6 +7,11 @@ use App\Category;
 class CategoryController extends Controller
 {
     
+    public function all_category_pagi(Request $request){
+        $total = $request->total;
+        $data = Category::orderBy('id','desc');
+        return $data->paginate($total);
+    }
     public function allCategory(){
         return Category::all();
     }

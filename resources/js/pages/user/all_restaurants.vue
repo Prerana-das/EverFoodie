@@ -41,7 +41,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="section_title_area _mar_b30">
-							<h1 class="section_title">All restaurants</h1>
+							<h1 class="section_title">All Restaurants</h1>
 						</div>
 					</div>
 				</div>
@@ -55,7 +55,7 @@
 									<div class="restaurant_img _mar_b10">
 										<img v-if="item.image" :src="item.image" >
 										<span class="freedelivery">Free Delivery</span>
-										<span class="deliverytime">25min</span>
+										<span class="deliverytime">{{ item.delivery_time }} min</span>
 									</div>
 									<h4 class="restaurant_title">{{ item.name }}</h4>
 									<span class="restaurant_rating" v-if="item.avgreview">
@@ -100,13 +100,6 @@
 					this.restaurant = res.data
 				}
 			}, 
-			async all_review(){
-				const res = await this.callApi('get','all_review')
-				if(res.status == 200){
-					this.review_all_data = res.data
-				}
-			},
-			
 
 		},
 		
@@ -121,7 +114,6 @@
 			}
 
 			this.all_restaurant();
-			this.all_review();
 		},
 		computed:{
 			filterrestaurant: function(){

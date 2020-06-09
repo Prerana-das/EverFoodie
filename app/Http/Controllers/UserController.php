@@ -87,10 +87,6 @@ class UserController extends Controller
         $total = $request->res_id;
         return User::with('avgreview','city')->where('id',$total)->get();
     }
-
-
-    
-
     // public function changeIt(Request $request){
     //     $data = $request->all();
         
@@ -124,9 +120,6 @@ class UserController extends Controller
         }
         
     }
-
-
-
 
     public function changePassword(Request $request){
         $data = $request->all();
@@ -181,11 +174,16 @@ class UserController extends Controller
         return $data;
         // return User::all();
     }
+    public function all_user_pagi(Request $request){
+        $total = $request->total;
+        $data = User::orderBy('id','desc');
+        return $data->paginate($total);
+    }
 
-
-
-
-
+    public function total_user(Request $request){
+        $total = $request->total;
+        $data = User::where('user_type','User')->orderBy('id','desc');
+        return $data->paginate($total);
+    }
     
-
 }

@@ -7,7 +7,7 @@
              <div class="row justify-content-end">
                 <div class="col-md-8">
                     <div class="dashboard-user" id="desh-user">
-                        <Form ref="formCustom" :label-width="80">
+                        <Form ref="formCustom" :label-width="80" class="res_user_pro_img">
                             <FormItem label="Image">
                                 <div class="_3login_input_group">		
                                     <template>	

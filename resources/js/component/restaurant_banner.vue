@@ -5,7 +5,7 @@
 
        
 
-         <div class="restaurant_banner ">
+         <!-- <div class="restaurant_banner ">
 
             
             <div class="banner_img">
@@ -13,7 +13,7 @@
                 
             </div>
             <h1 class="banner_title">{{ authUser.name }}</h1>
-        </div>
+        </div> -->
 
     </div>
 </template>

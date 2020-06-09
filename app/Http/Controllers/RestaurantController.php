@@ -15,6 +15,13 @@ class RestaurantController extends Controller
                     ->where('request_status','Approved')->get();
     }
 
+    public function all_restaurant_pagi(Request $request){
+        $total = $request->total;
+        $data = User::with('avgreview')
+        ->where('user_type','Restaurant')
+        ->orderBy('id','desc');
+        return $data->paginate($total);
+    }
 
     public function upload(Request $request)
     {

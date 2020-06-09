@@ -29,6 +29,8 @@ Route::get('/app/all_category', "CategoryController@allCategory");
 Route::post('/app/add_category', "CategoryController@storeCategory");
 Route::post('/app/edit_category', "CategoryController@updateCategory");
 Route::post('/app/delete_category', "CategoryController@deleteCategory");
+Route::get('/app/all_category_pagi', "CategoryController@all_category_pagi");
+
 
 // City Route
 Route::get('/app/all_city', "CityController@allCity");
@@ -50,6 +52,7 @@ Route::get('/app/all_area_list', "AreaController@all_area_list");
 Route::get('/app/restaurant/{id}', "RestaurantController@singleRestaurant");
 Route::get('/app/all_city_restaurant/{id}', "RestaurantController@all_city_restaurant");
 Route::get('/app/all_restaurant', "RestaurantController@all_restaurant");
+Route::get('/app/all_restaurant_pagi', "RestaurantController@all_restaurant_pagi");
 
 
 // Restaurant food Route  
@@ -58,6 +61,7 @@ Route::post('/app/add_food', "FoodController@storeFood");
 Route::post('/app/edit_food', "FoodController@updateFood");
 Route::post('/app/delete_food', "FoodController@deleteFood");
 Route::get('/app/all_food_of_this_res/{id}', "FoodController@all_food_of_this_res");
+Route::get('/app/all_food_pagi', "FoodController@all_food_pagi");
 
 
 //Auth::routes();
@@ -70,6 +74,8 @@ Route::get('/app/all_user', "UserController@all_user");
 Route::post('/app/changePassword', 'UserController@changePassword');
 Route::get('/app/getDataBySearch', "UserController@getDataBySearch");
 Route::get('/app/restaurant_user', "UserController@restaurant_user");
+Route::get('/app/all_user_pagi', "UserController@all_user_pagi");
+Route::get('/app/total_user', "UserController@total_user");
 
 
 //Route::post('/app/changeIt', "UserController@changeIt");

@@ -33,7 +33,7 @@
                                     </div>
                                     <img src="assets/img/location_search.png" alt="">
                                 </div>
-                                 <Button @click="$router.push('/all_restaurant?location='+searchFilter)" > Search Restaurant  </Button>
+                                 <Button @click="$router.push('/all_restaurant?location='+searchFilter)"> Search Restaurant  </Button>
 
                             </div>
                         </div>

@@ -8,7 +8,6 @@
        <div class="_1side_menu_logo">
           <div class="main_logo">
               <a href="/">
-                  <!-- <img src="assets/img/logo.jpg" alt="logo"> -->
                   <span>Ever</span>Foodie
                 </a>
           </div>

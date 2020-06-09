@@ -104,45 +104,8 @@
 						</div> 
 					</form>
 					<!-- ==================Form ============== -->
-
-					<div class="login_social_area">
-						<h3 class="login_social_title">Logged In with:</h3>
-						<div class="login_social">
-							<div class="social_item">
-								<p>
-									<span class="social_icon">
-										<i class="fab fa-facebook-square"></i> 
-									</span>
-									Facebook
-								</p>
-							</div>
-							<div class="social_item">
-								<p>
-									<span class="social_icon">
-										<i class="fab fa-google"></i> 
-									</span>
-									Google
-								</p>
-							</div>
-							<div class="social_item">
-								<p>
-									<span class="social_icon">
-										<i class="fab fa-twitter"></i> 
-									</span>
-									Twitter
-								</p>
-							</div>
-							<div class="social_item">
-								<p>
-									<span class="social_icon">
-										<i class="fas fa-cloud"></i> 
-									</span>
-									Dummy
-								</p>
-							</div>
-						</div>
-						<p class="login_social_cont">Home food delivery systems</p>
-					</div>
+					<p class="login_social_cont">Home food delivery systems</p>
+					
 				</div>
 			</div>
 			<!-- Right Start -->

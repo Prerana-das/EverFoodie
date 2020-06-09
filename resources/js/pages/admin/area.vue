@@ -129,16 +129,16 @@
 				// isEdit:false,
 				editIndex:-1,
 				city:[],
-				page:1,
-				total:"3",
-				pagination: {},
+				page: 1,
+				total:"7",
+				pagination:{},
 			}
         },
         methods: {
 			async getpaginate(page = 1){
-				const res  = await this.callApi('get',`app/all_area_list?page=${page}&total=${ parseInt(this.total)}`)
+				const res  = await this.callApi('get',`all_area_list?page=${page}&total=${ parseInt(this.total)}`)
 				if(res.status == 200){
-					this.area = res.data.data
+					this.city = res.data.data
 					this.pagination = res.data
 				}
 				else{
@@ -165,12 +165,9 @@
 				const res = await this.callApi('post','edit_area',this.edit_form)
 				if(res.status == 200){
 					//this.area[this.editIndex] = _.clone(this.edit_form) 
-
 					let ind =  this.city.findIndex( v => v.id == this.edit_form.city_id);
-
 					this.area[this.editIndex] = this.edit_form	
 					this.area[this.editIndex].city=this.city[ind]
-
 					this.s("Area Updated  !")
 					let ob ={
 						name:'',
@@ -197,31 +194,26 @@
 					this.area.splice(index,1)
 				}
 			},
-
-
 			isEditOn(item,index){
-
 				//separately clone item
 				this.edit_form.id = item.id
 				this.edit_form.name = item.name
 				this.edit_form.city_id = item.city_id
 				
 				//this.edit_form=this.item.name
-
 				this.editIndex = index
 				this.editModal = true
         	}
 		
-
 		},
 		 async created(){
 			const [res1, res2] = await Promise.all([ 
-			this.callApi('get','all_city'),
+			this.callApi('get','get_all_city'),
 			this.callApi('get',`all_area_list?total=${this.total}`) 
 			])
 			if(res1.status == 200 && res2.status == 200){
 				this.city = res1.data
-				this.area= res2.data.data
+				this.area = res2.data.data
 				this.pagination = res2.data
 			}
 			else{
@@ -230,8 +222,3 @@
     	}
     }
 </script>
-
-
-
-
-			

@@ -23,39 +23,39 @@
             <!--~~~ MENU LIST ~~~~~~-->
         <div class="_1side_menu_list">
           <ul class="_1side_menu_list_ul">
-            <li class="_1side_menu_list_ul_active">
+            <li class="_1side_menu_list_li" :class=" $route.path == '/admin' ?'_1side_menu_list_ul_active': ''">
+              <router-link to="/admin">
+                <Icon type="ios-speedometer" /> Dashboard 
+              </router-link> 
+            </li>
+            <li class="_1side_menu_list_li" :class=" $route.path == '/admin/city' ?'_1side_menu_list_ul_active': ''">
               <router-link to="/admin/city">
-                <Icon type="ios-speedometer" /> City 
+                <Icon type="logo-twitch" /> City 
               </router-link> 
             </li>
-            <li class="_1side_menu_list_li">
+            <li class="_1side_menu_list_li" :class=" $route.path == '/admin/area' ?'_1side_menu_list_ul_active': ''">
               <router-link to="/admin/area">
-                <Icon type="ios-speedometer" /> Area 
+                <Icon type="ios-pie" /> Area 
               </router-link> 
             </li>
-            <li class="_1side_menu_list_li">
+            <li class="_1side_menu_list_li" :class=" $route.path == '/admin/category' ?'_1side_menu_list_ul_active': ''">
               <router-link to="/admin/category">
-                <Icon type="ios-speedometer" /> Category 
+                <Icon type="ios-snow" /> Category 
               </router-link> 
             </li>
-            <li class="_1side_menu_list_li">
+            <li class="_1side_menu_list_li" :class=" $route.path == '/admin/admin_restaurant' ?'_1side_menu_list_ul_active': ''">
               <router-link to="/admin/admin_restaurant">
-                <Icon type="ios-speedometer" /> Restaurant 
+               <Icon type="ios-restaurant" /> Restaurant 
               </router-link> 
             </li>
-            <li class="_1side_menu_list_li">
+            <li class="_1side_menu_list_li" :class=" $route.path == '/admin/food' ?'_1side_menu_list_ul_active': ''">
               <router-link to="/admin/food">
-                <Icon type="ios-speedometer" /> Food 
+                <Icon type="md-pizza" /> Food 
               </router-link> 
             </li>
-            <li class="_1side_menu_list_li">
-              <router-link to="/admin/review">
-                <Icon type="ios-speedometer" /> Review 
-              </router-link> 
-            </li>
-             <li class="_1side_menu_list_li">
+             <li class="_1side_menu_list_li" :class=" $route.path == '/admin/user' ?'_1side_menu_list_ul_active': ''">
               <router-link to="/admin/user">
-                <Icon type="ios-speedometer" /> User List 
+                <Icon type="md-person" /> User List 
               </router-link> 
             </li>
           </ul>

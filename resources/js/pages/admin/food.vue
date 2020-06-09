@@ -48,7 +48,9 @@
 						</table>
 					</div>
 				</div>
-				 <Page :total="100" />
+				 <div style="text-align:center;" class="pagination_div _mar_t30">
+					<Page :current="pagination.current_page" :total="pagination.total" @on-change="getpaginate" :page-size="parseInt(pagination.per_page)" />
+				</div>
 
 			</div>
 		</div>
@@ -61,11 +63,23 @@
     export default {
         data () {
             return {
-				food:[]
+				food:[],
+				page: 1,
+				total:"7",
+         		pagination:{},
 			}
         },
         methods: {
-
+			async getpaginate(page = 1){
+				const res  = await this.callApi('get',`all_food_pagi?page=${page}&total=${ parseInt(this.total)}`)
+				if(res.status == 200){
+					this.food = res.data.data
+					this.pagination = res.data
+				}
+				else{
+					this.swr()
+				}
+			},
              handleSuccess(res, file){
 				if (res) {
 				this.formItem.image = res
@@ -74,9 +88,11 @@
 
 		},
 		 async created(){
-			const res = await this.callApi('get','all_food')
+			const res = await this.callApi('get',`all_food_pagi?total=${this.total}`)
 			if(res.status == 200){
-				this.food = res.data
+				this.food = res.data.data
+				this.pagination = res.data
+
 			}
 			else{
 				this.swr()

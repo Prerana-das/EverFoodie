@@ -137,17 +137,10 @@
 								<Button type="primary" @click="updateCity">Update</Button>
 							</div>
 						</Modal>
-				</div>
-
-
-				                       <!--  <Page :current="city.current_page" :total="city.total" @on-change="pagination_result" :page-size="parseInt(city.per_page)" /> -->
-
-				       <Page :current="parseInt(pagination.page)" 
-                        :total="pagination.total" 
-                        @on-change="pagination_result" 
-                        :page-size="parseInt(pagination.city.per_page)"
-                      />
-
+					</div>
+				    <div style="text-align:center;" class="pagination_div _mar_t30">
+						<Page :current="pagination.current_page" :total="pagination.total" @on-change="getpaginate" :page-size="parseInt(pagination.per_page)" />
+					</div>
 			</div>
 		</div>
 	</div>
@@ -174,8 +167,8 @@
 				},
 				isEdit:false,
 				editIndex:-1,
-
 				 page: 1,
+				 total:"6",
          		 pagination:{},
             }
         },
@@ -192,18 +185,7 @@
 				this.edit_form.image = res
 				}
 			},
-			
-			async all_city(){
-				let page = 1
-				const res = await this.callApi('get',`all_city?page=${this.page}`)
-				if(res.status == 200){
-					// this. = res.data.city
-					// this.pagination = res.data.city
-					this.city = res.data.city.data
-           			this.pagination = res.data
-
-				}
-			},
+		
 			
 			async add_city(){
 				if(this.formItem.name == '') return this.i("City Name is empty!");
@@ -256,44 +238,33 @@
 					this.city.splice(index,1)
 				}
 			},
-		
-			
-
 			editCity(item,index){
 				this.edit_form = _.cloneDeep(item)
 				this.editIndex = index
 				this.editModal = true
 			},
-
-			// async pagination_result(e){
-
-	  //           this.page = e
-	  //           const res3 = await this.callApi('get',`showMenuForMenu?page=${this.page}`)
-	  //           if(res3.status == 200){
-	  //               this.city = res3.data.city
-	  //               this.pagination = res3.data
-               
-   //          }
-   //      },
-
-          async pagination_result(e){
-            this.page = e
-            const res3 = await this.callApi('get',`all_city?page=${this.page}`)
-            if(res3.status == 200){
-                this.city = res3.city.data.data
-                this.pagination = res3.data       
-            }
-            else {
-              this.swr()
-            }
-        }, 
+          async getpaginate(page = 1){
+			const res  = await this.callApi('get',`all_city?page=${page}&total=${ parseInt(this.total)}`)
+			if(res.status == 200){
+				this.city = res.data.data
+				this.pagination = res.data
+			}
+			else{
+				this.swr()
+			}
+		}, 
 
 		},
-		created(){
-			this.all_city();
+		async created(){
+			const res = await this.callApi('get',`all_city?total=${this.total}`)
+			if(res.status == 200){
+				this.city = res.data.data
+				this.pagination = res.data
 
-
-
+			}
+			else{
+				this.swr()
+			}
 		}
     }
 </script>

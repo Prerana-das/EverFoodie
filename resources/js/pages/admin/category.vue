@@ -65,7 +65,9 @@
 						</table>
 					</div>
 				</div>
-				 <Page :total="100" />
+				<div style="text-align:center;" class="pagination_div _mar_t30">
+					<Page :current="pagination.current_page" :total="pagination.total" @on-change="getpaginate" :page-size="parseInt(pagination.per_page)" />
+				</div>
 				 <!--~~~~~~~ TABLE ONE ~~~~~~~~~-->
 
 				<Modal
@@ -113,16 +115,22 @@
 				},
 				isEdit:false,
 				editIndex:-1,
+				page: 1,
+				total:"7",
+				pagination:{},
 			}
         },
         methods: {
-
-			async all_products(){
-				const res = await this.callApi('get','all_category')
+			async getpaginate(page = 1){
+				const res  = await this.callApi('get',`all_category_pagi?page=${page}&total=${ parseInt(this.total)}`)
 				if(res.status == 200){
-					this.category = res.data
+					this.category = res.data.data
+					this.pagination = res.data
 				}
-        	},
+				else{
+					this.swr()
+				}
+			}, 
 			async add_category(){
 				if(this.formItem.name == '') return this.i("Category Name is empty!");
 				const res = await this.callApi('post','add_category',this.formItem)
@@ -177,8 +185,16 @@
 
 		},
 		
-		 created(){
-        	this.all_products();
+		 async created(){
+        	const res = await this.callApi('get',`all_category_pagi?total=${this.total}`)
+			if(res.status == 200){
+				this.category = res.data.data
+				this.pagination = res.data
+
+			}
+			else{
+				this.swr()
+			}
     	}
     }
 </script>

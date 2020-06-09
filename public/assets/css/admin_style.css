@@ -384,17 +384,17 @@ p {
       border: 1px solid #223340;
   }
   ._1side_menu_name {
-      font-weight: 600;
-      text-align: center;
-      font-size: 19px;
-      margin: 15px 0 2px;
-      color: #111113;
-  }
+    font-weight: 600;
+    text-align: center;
+    font-size: 19px;
+    margin: 15px 0 2px;
+    color: #111113;
+    text-transform: capitalize;
+}
   ._1side_menu_list {
       margin-top: 22px;
       margin-bottom: 16px;
   }
-  ._1side_menu_list_ul{}
   ._1side_menu_list_ul li i {
       font-size: 19px;
       margin-right: 8px;
@@ -416,10 +416,8 @@ p {
     font-size: 14px;
     cursor: pointer;
     transition: .2s all ease;
-    padding: 10px 15px;
+    padding: 6px 15px;
 }
-  ._1side_menu_list_ul li:hover{
-  }
   ._1side_menu_list_ul_active {
       color: #2d8cf0;
       background: #ecf9ff;
@@ -3374,10 +3372,10 @@ p {
   }
   /* End Top Bar Menu Area Css */
   /* Start Header Area Css */
-  .header_area {
+  /* .header_area {
       padding: 36px 0px;
       border-bottom: 1px solid #289CD7;
-  }
+  } */
   /* .header_logo a {
       font-family: 'Lobster Two', cursive;
       font-size: 69px;
@@ -11283,8 +11281,6 @@ p {
   }
   
   
-  
-  
   /* ============================BUY SELL USER TYPE===================== */
   .buysell_type {
       display: inline-block;
@@ -11443,9 +11439,6 @@ p {
   }
   .header_logo {
       width: 67%;
-  }
-  .news_real_times {
-  /*  height: 100vh; */
   }
   .top_news_area span i.fas.fa-chevron-right {
       right: 24px;
@@ -11628,8 +11621,6 @@ p {
   }
   
   
-  
-  
   /*============= BUY & SELL USER TYPE =================== */
   .application_list li input {
       width: 278px;
@@ -11637,12 +11628,7 @@ p {
   .system {
       font-size: 26px;
   }
-  
-  
-  
-  
-  
-  
+
   
   }
   
@@ -11819,11 +11805,6 @@ p {
   
   }
 
-
-
-
-
-
   /*  =============== new css ================ */
  .add_table .ivu-upload {
     width: 80%;
@@ -11848,20 +11829,14 @@ p {
 .preview_upload_img img {
     height: 100%!important;
 }
-
 ._1table_img {
     display: inline-block;
 }
-  
-
-
-
-
-
 .admin_info_title {
     color: #222;
     font-size: 18px;
     font-weight: bold;
+    text-transform: capitalize;
 }
 .admin_info .ivu-select-dropdown {
     top: 50px!important;
@@ -11871,9 +11846,6 @@ p {
     font-weight: bold;
     color:#2d8cf0;
 }
-
-
-
 .user_type_select{
     width:100px!important;
 }

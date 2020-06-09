@@ -26,6 +26,7 @@ import admin_restaurant from '../pages/admin/admin_restaurant.vue'
 import review from '../pages/admin/review.vue'
 import user from '../pages/admin/user.vue'
 import change_password from '../pages/admin/change_password.vue'
+import admin_home from '../pages/admin/admin_home.vue'
 
 
 //Restaurant
@@ -205,10 +206,18 @@ export default new Router({
           title: 'change_password',
       }
     },
+    {
+      path: '/admin',
+      name: 'admin_home',
+      component: admin_home,
+      meta: {
+          title: 'admin_home',
+      }
+    },
 
     //restaurant
     {
-      path: '/restaurantProfile/restaurant_dash',
+      path: '/restaurantProfile',
       name: 'restaurant_dash',
       component: restaurant_dash,
       meta: {

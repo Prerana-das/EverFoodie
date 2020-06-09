@@ -6,7 +6,7 @@
 				<!--~~~~~~~ TABLE ONE ~~~~~~~~~-->
 				<div class="_1adminOverveiw_table_recent _box_shadow _border_radious _mar_b30 _p20">
 
-					<p class="_title0">Restaurant</p>
+					<p class="_title0">All Restaurant</p>
 
 					<div class="_overflow _table_div">
 						<table class="_table">
@@ -187,7 +187,9 @@
 							</div>
 						</Modal>
 				</div>
-				 <Page :total="100" />
+				  <div style="text-align:center;" class="pagination_div _mar_t30">
+					<Page :current="pagination.current_page" :total="pagination.total" @on-change="getpaginate" :page-size="parseInt(pagination.per_page)" />
+				</div>
 
 			</div>
 		</div>
@@ -226,11 +228,25 @@
                         value: 'Approved',
                         label: 'Approve'
                     }
-                ]
+				],
+				page: 1,
+				total:"7",
+				pagination:{},
+				isEdit:''
 			}
         },
         methods: {
 		
+		async getpaginate(page = 1){
+			const res  = await this.callApi('get',`all_restaurant_pagi?page=${page}&total=${ parseInt(this.total)}`)
+			if(res.status == 200){
+				this.user = res.data.data
+				this.pagination = res.data
+			}
+			else{
+				this.swr()
+			}
+		}, 
 		//  async changeIt(item,index){
 		// 	  	this.editIndex = index;
 		// 		this.edit_status.id = item.id;
@@ -250,13 +266,6 @@
 		// 		}
 		// 	},
 
-		
-			async all_user(){
-				const res = await this.callApi('get','all_user')
-				if(res.status == 200){
-					this.user = res.data
-				}
-			},
 			async updateRestaurant(){
 				if(this.edit_form.name == '') return this.i("Restaurant Name is empty!");
 				if(this.edit_form.address == '') return this.i("Restaurant Address is empty!");
@@ -314,7 +323,15 @@
 		},
 		
 		 async created(){
-			this.all_user();
+			const res = await this.callApi('get',`all_restaurant_pagi?total=${this.total}`)
+			if(res.status == 200){
+				this.user = res.data.data
+				this.pagination = res.data
+
+			}
+			else{
+				this.swr()
+			}
 	
     	}
     }

@@ -44,9 +44,10 @@ class ReviewController extends Controller
         ],201);
     }
 
-
-    public function all_review(){
-        return Review::with('user')->orderBy('id','desc')->get();
+    public function all_review(Request $request){
+        $total = $request->total;
+        $data = Review::with('user')->orderBy('id','desc');
+        return $data->paginate($total);
     }
 
 

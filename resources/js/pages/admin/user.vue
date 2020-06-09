@@ -6,7 +6,7 @@
 				<!--~~~~~~~ TABLE ONE ~~~~~~~~~-->
 				<div class="_1adminOverveiw_table_recent _box_shadow _border_radious _mar_b30 _p20">
 
-					<p class="_title0">Restaurant</p>
+					<p class="_title0">All User</p>
 
 					<div class="_overflow _table_div">
 						<table class="_table">
@@ -69,7 +69,9 @@
 						</table>
 					</div>
 				</div>
-				 <Page :total="100" />
+				<div style="text-align:center;" class="pagination_div _mar_t30">
+					<Page :current="pagination.current_page" :total="pagination.total" @on-change="getpaginate" :page-size="parseInt(pagination.per_page)" />
+				</div>
 
 			</div>
 		</div>
@@ -104,20 +106,23 @@
                         value: 'Restaurant',
                         label: 'Restaurant'
                     }
-                ]
+				],
+				page: 1,
+				total:"7",
+         		pagination:{},
 			}
         },
         methods: {
-	
-
-		
-			async all_user(){
-				const res = await this.callApi('get','all_user')
+			async getpaginate(page = 1){
+				const res  = await this.callApi('get',`all_user_pagi?page=${page}&total=${ parseInt(this.total)}`)
 				if(res.status == 200){
-					this.user = res.data
+					this.user = res.data.data
+					this.pagination = res.data
+				}
+				else{
+					this.swr()
 				}
 			},
-
 			async updateUser(){
 				if(this.edit_form.user_type == '') return this.i("User Type is empty!");
 				const res = await this.callApi('post','edit_user',this.edit_form)
@@ -157,12 +162,18 @@
 			}
 			
 
-		
-
 		},
 		
 		 async created(){
-			this.all_user();
+			const res = await this.callApi('get',`all_user_pagi?total=${this.total}`)
+			if(res.status == 200){
+				this.user = res.data.data
+				this.pagination = res.data
+
+			}
+			else{
+				this.swr()
+			}
 	
     	}
     }

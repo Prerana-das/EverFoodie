@@ -8,15 +8,10 @@ class CityController extends Controller
 {
     //
 
-    public function allCity(){
-    //    $city = City::paginate(5);
-
-        return City::all();
-
-        // return response()->json([
-        //   'city' => $city,
-        //     'success' => true
-        // ],200);
+    public function allCity(Request $request){
+        $total = $request->total;
+        $data = City::orderBy('id','desc');
+        return $data->paginate($total);
     }
 
     public function get_all_city(){

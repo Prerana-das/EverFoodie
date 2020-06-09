@@ -5,38 +5,47 @@
             <div class="container">
                 <div class="row justify-content-end">
                     <div class="col-md-8">
-                        <div class="_overflow _table_div">
-                            <table class="_table">
-                                    <!-- TABLE TITLE -->
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Category</th>
-                                    <th>Date</th>
-                                    <th>Slot</th>
-                                    <th>Action</th>
-                                </tr>
-                                    <!-- TABLE TITLE -->
+                        <div class="dashboard-user">
+                            <div class="_overflow _table_div _mar_t30">
+                                <table class="_table">
+                                        <!-- TABLE TITLE -->
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Total Price</th>
+                                        <th>All Item</th>
+                                        <th>Note</th>
+                                        <th>Payment Method</th>
+                                        <th>Action</th>
+                                    </tr>
+                                        <!-- TABLE TITLE -->
 
 
-                                    <!-- ITEMS -->
-                                <tr v-for="(item, i) in order" :key="i">
-                                    <td>{{item.id}}</td>
-                                    <td>{{item.total_price}}</td>
-                                    <td v-if="item.order_details">
-                                        <span v-for="(neww, i) in item.order_details" :key="i">
-                                            {{ neww.payment_method }}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <!-- <Button type="error" size="small" @click="showDeletingModal(item, i)"  :loading="item.isDeleting">Delete</Button>			 -->
-                                    </td>
-                                </tr>
-                                    <!-- ITEMS -->
-                            </table>
-                        </div>
-                        <div style="text-align:center;" class="pagination_div _mar_t30">
-                            <Page :current="pagination.current_page" :total="pagination.total" @on-change="getpaginate" :page-size="parseInt(pagination.per_page)" />
-                        </div>
+                                        <!-- ITEMS -->
+                                    <tr v-for="(item, i) in order" :key="i">
+                                        <td>{{item.id}}</td>
+                                        <td>{{item.total_price}}</td>
+                                        <td v-if="item.order_details">
+                                            <span v-for="(neww, i) in item.order_details" :key="i">
+                                                {{ neww.food.name }} <span>({{ neww.quantity }})</span>
+                                            </span>
+                                        </td>
+                                        <td>{{item.order_description}}</td>
+                                        <td v-if="item.order_details">
+                                            <span v-for="(neww, inn) in item.order_details" :key="inn">
+                                                {{  neww.payment_method }} 
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <!-- <Button type="error" size="small" @click="showDeletingModal(item, i)"  :loading="item.isDeleting">Delete</Button>			 -->
+                                        </td>
+                                    </tr>
+                                        <!-- ITEMS -->
+                                </table>
+                            </div>
+                            <div style="text-align:center;" class="pagination_div _mar_t30">
+                                <Page :current="pagination.current_page" :total="pagination.total" @on-change="getpaginate" :page-size="parseInt(pagination.per_page)" />
+                            </div>
+                         </div>
                     </div>
                 </div>
             </div>
@@ -78,7 +87,7 @@
 				}
             },
             async getpaginate(page = 1){
-                const res  = await this.callApi('get',`app/get_all_order?page=${page}&restaurant=${this.authUser.id}&total=${ parseInt(this.total)}`)
+                const res  = await this.callApi('get',`get_all_order?page=${page}&restaurant=${this.authUser.id}&total=${ parseInt(this.total)}`)
                 if(res.status == 200){
                     this.order = res.data.data
                     this.pagination = res.data

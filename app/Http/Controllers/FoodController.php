@@ -12,6 +12,11 @@ class FoodController extends Controller
     public function allFood(){
         return Food::with('category','restaurant')->get();
     }
+    public function all_food_pagi(Request $request){
+        $total = $request->total;
+        $data = Food::with('category','restaurant')->orderBy('id','desc');
+        return $data->paginate($total);
+    }
     public function storeFood(Request $request){
         $data = $request->all();
         return Food::create($data);

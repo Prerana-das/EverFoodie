@@ -9,7 +9,7 @@ class Order_details extends Model
     //
 
     protected $fillable = [
-        'order_id','item_id','res_id','quantity','order_description'
+        'order_id','item_id','res_id','quantity'
     ];
 
     public function order(){

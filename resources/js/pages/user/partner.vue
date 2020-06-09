@@ -364,7 +364,7 @@
 
 			//this.all_user();
 	
-			const [res1, res2] = await Promise.all([ this.callApi('get','all_city'),this.callApi('get','all_area') ])
+			const [res1, res2] = await Promise.all([ this.callApi('get','get_all_city'),this.callApi('get','all_area') ])
 			if(res1.status == 200 && res2.status == 200){
 				this.city = res1.data
 				this.area= res2.data

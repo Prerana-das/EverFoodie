@@ -522,19 +522,12 @@ export default {
 				 this.review_data = res.data.review
             }
 		}, 
-		async all_review(){
-			const res = await this.callApi('get','all_review')
-			if(res.status == 200){
-				this.review_all_data = res.data
-			}
-		},
 			
 	}, 
 
 	created(){
 		this.single_restaurant();
 		this.viewCart();
-		this.all_review();
 	},
 	
 	

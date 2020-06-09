@@ -187,6 +187,7 @@
     color: #fff;
     letter-spacing: 1px;
     border-radius: 1px;
+    position: relative;
 }
 /* ==============banner end============== */
 
@@ -508,6 +509,7 @@
     width: 100%;
     height: 86px;
     border: 1px solid #ddd;
+    padding: 10px;
 }
 /* ============== activation flow end ============== */
 
@@ -628,23 +630,12 @@
 
 /* ============== restaurant search and filter end  ============== */
 
-
-
-
-
-
-
-
-
-
-
-
-
 /* ============== login start ============== */
 .login_area {
     display: flex;
     background: #000;
     height: fit-content;
+    padding: 80px 0px;
 }
 .login_left_top img {
     width: 100px;
@@ -1144,34 +1135,23 @@
    background-color: #F0F3F4;
 }
 .dashboard-item {
-   background-color: #fff;
-   padding: 20px;
-   margin-bottom: 20px;
-   min-height: 150px;
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    min-height: 92px;
+    display: flex;
+    justify-content: space-between;
 }
 .desh-main-title {
-   text-transform: uppercase;
-}
-.desh-main-title {
-    text-transform: uppercase;
+    text-transform: capitalize;
     position: relative;
-    display: inline-block;
     padding: 14px;
+    text-align: center;
 }
 .desh-user-info img {
    width: 100%;
    height: 275px;
    margin: 0 auto 20px auto;
-}
-.desh-main-title:after {
-   position: absolute;
-   content: "";
-   width: 100px;
-   height: 2px;
-   background-color: #283B62;
-   bottom: -10px;
-   left: 50%;
-   transform: translateX(-50%);
 }
 .desh-user-info input {
    display: block;
@@ -1262,8 +1242,10 @@
    margin-bottom: 10px;
 }
 .dashboard-item-list li {
-   font-size: 15px;
-   margin-bottom: 3px;
+    margin-bottom: 3px;
+    color: #eb2f06;
+    font-weight: bold;
+    font-size: 20px;
 }
 
 /* dashboard review */
@@ -1343,25 +1325,12 @@
     margin: 20px 0px 0px 0px;
 }
 
-
-
-
-
-.dashboard-review,.dashboard-user,.dashboard-default,.desh-user-info,.dashboard-food {
+.dashboard-review, .dashboard-user, .dashboard-default, .desh-user-info, .dashboard-food {
     /* background-color: #ddd; */
-    padding: 50px 20px!important;
+    padding: 130px 20px!important;
 }
-/* #desh-user {
-    padding: 50px 0px;
-} */
-
-
-
 .res_profile_bg{
     height:100vh;
-}
-.restaurant_banner {
-    margin-top: 80px;
 }
 .banner_img img {
     height: 80vh;
@@ -1727,9 +1696,9 @@
 }
 ._comments_items_img {
     height: 45px;
-    width: 45px;
+    width: 70px;
     border-radius: 50%;
-    margin: 8px 16px 0 0;
+    margin: 8px 6px 0 0;
 }
 ._comments_items_pic {
     flex: 0 0 auto;
@@ -1820,6 +1789,41 @@
 .payment3{
     display: flex;
     justify-content: space-between;
+}
+.main_search_form button:hover {
+    background-color: #d82b05!important;
+    color:#fff!important;
+}
+.main_search_form button:before {
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+    background-color: #494544;
+    border-color: #d03412;
+    top: -100%;
+    left: 0;
+    z-index: -1;
+    visibility: hidden;
+    transition: .4s;
+}
+.res_user_pro_img img {
+    height: 250px!important;
+}
+.dashboard-list {
+    border-top: 1px solid #9e9999;
+}
+.dash_profile_img img {
+    border-radius: 50%;
+    width: 50%;
+    margin: 15px auto;
+    height: 135px;
+}
+.dash_profile_title {
+    text-align: center;
+}
+#radios input {
+    margin-right: 7px;
 }
 
 
