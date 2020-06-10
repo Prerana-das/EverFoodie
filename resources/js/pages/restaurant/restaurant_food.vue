@@ -84,6 +84,7 @@
                                             <th>Price</th>
                                             <th>Category</th>
                                             <th>Image</th>
+                                            <th>Discount Price</th>
                                             <th>Action</th>
                                         </tr>
                                             <!-- TABLE TITLE -->
@@ -91,7 +92,9 @@
 
                                             <!-- ITEMS -->
                                         
-                                        <tr v-for="(item,index) in food" :key="index" v-if="item.res_id == item.restaurant.id">
+                                        <!-- <tr v-for="(item,index) in food" :key="index" v-if="item.res_id == item.restaurant.id"> -->
+
+                                        <tr v-for="(item,index) in food" :key="index">
                                 
                                             <td>{{ item.id }}</td>
                                             <td class="_table_name">
@@ -103,6 +106,7 @@
                                             <td>
                                                 <img :src="item.image" alt="image">
                                             </td>
+                                            <td>{{ item.discount_price }}</td>
                                             <td>
                                                 <template>
                                                     <button class="_btn _action_btn edit_btn1" @click="isEditOn(item,index)" >Edit</button>
@@ -164,10 +168,14 @@
                                             </template> 
                                         </div>
                                     </div>
+                                     <div class="col-12 col-md-12">
+                                        <label class="form_label"> Discount Price</label>
+                                        <Input v-model="edit_form.discount_price" placeholder="Enter price..."></Input>
+                                    </div>
                                     <div class="col-12 col-md-12">
                                         <label class="form_label">Select Category</label>
                                         <Select v-model="edit_form.category_id"  >
-                                            <Option v-for="item in category" :value="item.id" :key="item.name">
+                                            <Option v-for="item in category" :value="item.id" :key="item.id">
                                                 {{ item.name }}
                                             </Option>
                                         </Select> 
@@ -212,12 +220,12 @@
                     description:'',
                     price:'',
                     image:'',
+                    discount_price:'',
                     category_id:'',
-                    id:'',
+                    id:''
                 },
                 imageUrl:'',			
                 listMethod:true,
-                
 				isEdit:false,
 				editIndex:-1,
 				category:[]
@@ -270,15 +278,16 @@
 
 				const res = await this.callApi('post','edit_food',this.edit_form)
 				if(res.status == 200){
+                    this.editModal=false
 					this.food[this.editIndex] = _.clone(this.edit_form) 
 					this.s("Food Updated  !")
-					let ob ={
-						name:'',
-						id:'',
-					}
-					this.edit_form = ob 
+					// let ob ={
+					// 	name:'',
+					// 	id:'',
+					// }
+					// this.edit_form = ob 
 					this.editIndex = -1
-					this.editModal = false
+					
 				}
 				else{
 					this.swr();
@@ -302,7 +311,13 @@
 
 
 			isEditOn(item,index){
-				this.edit_form = _.clone(item) 
+                // this.edit_form = _.clone(item) 
+                this.edit_form.id=this.food[index].id
+                this.edit_form.name=this.food[index].name
+                this.edit_form.category_id=this.food[index].category_id
+                this.edit_form.description=this.food[index].description
+                this.edit_form.price=this.food[index].price
+                this.edit_form.image=this.food[index].image 
 				this.editIndex = index
 				this.editModal = true
         	}

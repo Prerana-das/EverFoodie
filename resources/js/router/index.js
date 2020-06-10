@@ -7,7 +7,7 @@ Vue.use(Router)
 import home from '../pages/user/home.vue'
 //import login from '../pages/user/login.vue'
 //import register from '../pages/user/register.vue'
-import forgot_password from '../pages/user/forgot_password.vue'
+// import forgot_password from '../pages/user/forgot_password.vue'
 import partner from '../pages/user/partner.vue' 
 import restaurant from '../pages/user/restaurant.vue'
 import singlerestaurant from '../pages/user/singlerestaurant.vue'
@@ -78,14 +78,14 @@ export default new Router({
     //   }
     // },
 
-    {
-      path: '/forgot_password',
-      name: 'forgot_password',
-      component: forgot_password,
-      meta: {
-          title: 'forgot_password',
-      }
-    },
+    // {
+    //   path: '/forgot_password',
+    //   name: 'forgot_password',
+    //   component: forgot_password,
+    //   meta: {
+    //       title: 'forgot_password',
+    //   }
+    // },
 
     {
       path: '/partner',

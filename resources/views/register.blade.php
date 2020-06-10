@@ -30,7 +30,7 @@
 			<div class="login_left">
 				<div class="login_left_top">
 					<div class="login_left_top_btn">
-					<a href="/login" class="sign_up_btn"> Login</a>
+					<a href="/login" class="sign_up_btn"> Sign In</a>
 					</div>
 
 					<!-- <div class="right_arrow_btn">

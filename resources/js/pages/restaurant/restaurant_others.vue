@@ -6,7 +6,6 @@
                 <div class="row justify-content-end">
                     <div class="col-md-8">
                         <div class="dashboard-user" id="desh-user">
-                            <h5>Average Review: <span>{{ user[0].avgreview.avgRating}}</span></h5>
                             <Form ref="formCustom" :label-width="80">      
                                 <FormItem label="Description">
                                     <Input type="text"  v-model="formItem.description"></Input>

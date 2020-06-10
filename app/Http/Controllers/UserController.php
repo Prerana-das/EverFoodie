@@ -185,5 +185,62 @@ class UserController extends Controller
         $data = User::where('user_type','User')->orderBy('id','desc');
         return $data->paginate($total);
     }
+
+    // public function testEmail(){
+    //     $data['msg'] = 'hello';
+    //     \Mail::send('email/test', $data, function ($message) {
+    //         $message->from('preranadas97@gmail.com', 'Checkk');
+    //         $message->to('prerona97@gmail.com')->subject('Just Laravel demo email using SendGrid');
+    //     });
+    // }
+
+    public function passwordReset_view(){
+        return view('passwordReset');
+    }
+
+
+    public function passwordToken(Request $request){
+        // \Log::info($request->email);
+        $isFound = User::where('email',$request->email)->count();
+        if($isFound==0){
+            return redirect("/forgot_password_view")->with('message',"Email doesn't match!!");
+        }
+            $token=rand(100000,999999);
+            $email = $request->email;
+            \DB::table('password_resets')->where('email',$request->email)->delete();
+            $savedData = \DB::table('password_resets')->insert([
+                'email' => $request->email,
+                'token' => $token, //change 60 to any length you want
+                'created_at' => \Carbon\Carbon::now()
+            ]);
+            $data['token'] = $token; 
+            // return $token;
+            \Mail::send('email/token', $data, function ($message ) use ($email) {
+                $message->from('preranadas97@gmail.com','Verification Code');
+                $message->to($email)->subject('Password reset code');
+            });
+            return redirect()->route('passwordReset', ['email' => $request->email])->with('message',"password reset code has been Sent!");
+    }
+
+    public function PasswordReset(Request $request){
+        \Log::info($request->email);
+        $token = $request->token;
+        $isTokenFound = \DB::table('password_resets')->where('token',$token)->first();
+        if(!$isTokenFound){
+            return redirect("/passwordReset")->with('message',"Token doesn't match!");
+            // return response()->json([
+            //     'msg' => "token doesn't match!",
+            // ],401);
+        }
+        $flag = User::where("email",$request->email)->update(['password' => Hash::make($request->newPassword)]);
+        if(!$flag){
+            return redirect("/passwordReset")->with('message',"Email doesn't match!!");
+            // return response()->json([
+            //     'msg' => "Email doesn't match!",
+            // ],401);
+        }
+        \DB::table('password_resets')->where('email',$request->email)->delete();
+        return redirect("/login")->with('message',"Password has been updated successfully!");
+    }
     
 }

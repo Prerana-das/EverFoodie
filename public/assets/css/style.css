@@ -634,7 +634,6 @@
 .login_area {
     display: flex;
     background: #000;
-    height: fit-content;
     padding: 80px 0px;
 }
 .login_left_top img {
@@ -1824,6 +1823,10 @@
 }
 #radios input {
     margin-right: 7px;
+}
+
+.forgot_pass_area{
+    padding:120px 0px;
 }
 
 

@@ -175,6 +175,9 @@
 					this.i(' Category have been successfully Deleted!')
 					this.category.splice(index,1)
 				}
+				else{
+					this.swr();
+				}
 			},
 			isEditOn(item,index){
 				this.edit_form = _.clone(item) 

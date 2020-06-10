@@ -13,7 +13,6 @@
                                         <th>ID</th>
                                         <th>Total Price</th>
                                         <th>All Item</th>
-                                        <th>Note</th>
                                         <th>Payment Method</th>
                                         <th>Action</th>
                                     </tr>
@@ -29,14 +28,14 @@
                                                 {{ neww.food.name }} <span>({{ neww.quantity }})</span>
                                             </span>
                                         </td>
-                                        <td>{{item.order_description}}</td>
                                         <td v-if="item.order_details">
                                             <span v-for="(neww, inn) in item.order_details" :key="inn">
                                                 {{  neww.payment_method }} 
                                             </span>
                                         </td>
                                         <td>
-                                            <!-- <Button type="error" size="small" @click="showDeletingModal(item, i)"  :loading="item.isDeleting">Delete</Button>			 -->
+                                            <button class="_btn _action_btn view_btn1" type="button" @click="viewDetails(item, i)">View Details</button>
+                                            <Button type="error" size="small" @click="cancel_order(item, i)">Cancel</Button>			
                                         </td>
                                     </tr>
                                         <!-- ITEMS -->
@@ -46,6 +45,36 @@
                                 <Page :current="pagination.current_page" :total="pagination.total" @on-change="getpaginate" :page-size="parseInt(pagination.per_page)" />
                             </div>
                          </div>
+                          <Modal
+                            v-model="orderDetails"
+                            title="Product Details"
+                            :mask-closable="false"
+                            width="80%"
+                            :closable="false"
+                            >
+                            <div class="_table_responsive _table_div">
+                                <table class="_table" rpv="content">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>User Name</th> 
+                                        <th>Email</th>
+                                        <th>Phone</th> 
+                                        <th>Special note</th> 
+                                    </tr>
+                                    <tr>
+                                        <td>{{dataDetails.id}}</td>
+                                        <td v-if="dataDetails.user">{{dataDetails.user.name}}</td>
+                                        <td v-if="dataDetails.user">{{dataDetails.user.email}}</td>
+                                        <td v-if="dataDetails.user">{{dataDetails.user.phone}}</td>
+                                        <td>{{dataDetails.order_description}}</td>
+                                   
+                                    </tr>
+                                </table>
+                                </div>
+                            <div slot="footer">
+                                <Button type="default" @click="orderDetails=false">Close</Button>
+                            </div>
+                        </Modal>
                     </div>
                 </div>
             </div>
@@ -71,6 +100,8 @@
                 page:1,
                 total:"10",
                 pagination: {},
+                orderDetails:false,
+                dataDetails:{}
 				 
 			}
         },
@@ -96,6 +127,27 @@
                     this.swr()
                 }
             },
+            async cancel_order(item,i){
+                if(!confirm("Are you sure to cancel this Order")){
+					return;
+				}
+				let ob = {
+                    id:item.id,
+                    user_id:item.user_id
+				}
+				const res = await this.callApi('post','cancel_order',ob)
+				if(res.status == 200){
+					this.i(' Order have been successfully Canceled!')
+					this.order.splice(i,1)
+				}
+				else{
+					this.swr();
+				}
+            },
+            viewDetails(item, i){
+                this.dataDetails=item
+                this.orderDetails=true
+            }
 
 		
 

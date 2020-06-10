@@ -90,6 +90,7 @@ Route::post('/app/reviews', "ReviewController@reviews");
 //Order
 Route::post('/app/place_order', "OrderController@place_order");
 Route::get('/app/get_all_order', "OrderController@get_all_order");
+Route::post('/app/cancel_order', "OrderController@cancel_order");
 
 
 //Checkout
@@ -100,13 +101,10 @@ Route::post('/checkout/stripepayment', "CheckoutController@stripePayment");
 Route::post('/app/newSubscription', "HomeController@newSubscription");
 
 
-
-// Route::get('/app/showMenuForMenu', 'CityController@showMenuForMenu');
 Route::get('/login', "UserController@login_check");
 Route::get('/register', function () {
     return view('register');
 });
-
 Route::get('/logout', function () {
     Auth::logout();
     Session::flush();
@@ -115,6 +113,14 @@ Route::get('/logout', function () {
 });
 
 
+//Email
+// Route::get('app/testEimal','UserController@testEmail');
+Route::get('/forgot_password_view', function () {
+    return view('forgot_password');
+});
+Route::post('/app/forgot_password', 'UserController@passwordToken');
+Route::post('app/PasswordReset', 'UserController@PasswordReset');
+Route::get('/passwordReset', 'UserController@passwordReset_view')->name('passwordReset');
 
 
 Route::any('{slug}', 'HomeController@home')->where('slug', '([A-z\d-\/_.]+)?');

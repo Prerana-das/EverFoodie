@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Order;
-
+use App\User;
 use App\Order_details;
 class OrderController extends Controller
 {
@@ -14,8 +14,6 @@ class OrderController extends Controller
     public function place_order(Request $request){
        // $data = $request->all();
         //$order= Order::create($data);
-
-
         $data = $request->all();
         $carts = $data['carts'];
         unset($data['carts']);
@@ -59,6 +57,24 @@ class OrderController extends Controller
         return $data->paginate($total);
     }
 
+    public function cancel_order(Request $request){
+       
+        // \Log::info($user);
+            $dataa = $request->all();
+            $user = User::where('id',$dataa['user_id'])->get();
+            Order::where('id',$dataa['id'])->delete();
+            foreach ($user as $value){
+                $data = [
+                    'email'   => $value['email'],
+                    'subject' => 'hkjhkd'
+                ];
+                \Mail::send('email/test', $data, function ($message) use ($data){
+                    $message->from('preranadas97@gmail.com','Order cancelled');
+                    $message->to($data['email'])->subject('Order cancelled');
+                });
+            }
 
-
+            return;  
+        
+      }
 }

@@ -24,12 +24,13 @@
     <body>
     
     <!-- ================== Login Area Start ================== -->
-		<div class="login_area  _padd_tb60">
+		<div class="login_area forgot_pass_area _padd_tb60">
 			<!-- Left Start -->
 			<div class="login_left">
 				<div class="login_left_top">
-					<div class="login_left_top_btn">
+					<div class="login_left_top_btn login_left_top_btn_fp">
 						<a href="/register" class="sign_up_btn"> Sign Up</a>
+						<a href="/login" class="sign_up_btn"> Sign Up</a>
 					</div>
 
 					<!-- <div class="right_arrow_btn">
@@ -43,12 +44,35 @@
 						</a>
 					</div>
 					<div class="login_title_area">
-						<h3 class="login_title">Log in</h3>
-						<p class="login_sub">Log in your email or username</p>
+						<h3 class="login_title">Recover Password</h3>
+						<p class="login_sub">Recover your password with email</p>
 					</div>
 
 					<!-- ==================Form ============== -->
-					<form method="POST" action="/app/login">
+
+					<form method="POST" action="/app/forgot_password" class="edit_password">
+						@csrf
+						@if (session('message'))
+							<div class="alert alert-danger" role="alert">
+								{{ session('message') }}
+							</div>
+						@endif
+
+						<!-- @if (session('message'))
+							<div class="alert alert-success" role="alert">
+								{{ session('message') }}
+							</div>
+						@endif -->
+						<div class="login_group">
+							<label>Type your email:</label>
+							<input name="email"  id="email"  type="email" placeholder="Email" required>
+						</div>
+						<div class="login_group">
+							<input class="block_btn _mar_t30" type="submit" >
+						</div>
+                 </form>
+				 
+					<!-- <form method="POST" action="/app/forgot_password">
                         @csrf
                         @if (session('message'))
                             <div class="alert alert-danger" role="alert">
@@ -56,21 +80,13 @@
                             </div>
                         @endif
 						<div class="login_group">
-							<label>Email or username</label>
-							<input name="email" type="email" placeholder="Type your email or username" required>
+							<label>Type your email:</label>
+							<input name="email"  id="email"  type="email" placeholder="Type your email or username" required>
 						</div>
-						<div class="login_group">
-							<label>Password</label>
-							<a href="/forgot_password_view" class="forgot_pass">Forgot Password?</a>
-							<input name="password" type="password" placeholder="Type your password" required>
-						</div>
-
-						
-
 						<div class="login_group _mar_t10">
 							<input type="submit" value="Log in">
 						</div> 
-					</form>
+					</form> -->
 					<!-- ==================Form ============== -->
 
 					<p class="login_social_cont">Home food delivery systems</p>

@@ -28,8 +28,9 @@
 			<!-- Left Start -->
 			<div class="login_left">
 				<div class="login_left_top">
-					<div class="login_left_top_btn">
+                    <div class="login_left_top_btn login_left_top_btn_fp">
 						<a href="/register" class="sign_up_btn"> Sign Up</a>
+						<a href="/login" class="sign_up_btn"> Sign In</a>
 					</div>
 
 					<!-- <div class="right_arrow_btn">
@@ -43,37 +44,51 @@
 						</a>
 					</div>
 					<div class="login_title_area">
-						<h3 class="login_title">Log in</h3>
-						<p class="login_sub">Log in your email or username</p>
+						<h3 class="login_title">Reset Password</h3>
 					</div>
 
 					<!-- ==================Form ============== -->
-					<form method="POST" action="/app/login">
+					<form method="POST" action="app/PasswordReset" class="edit_password">
                         @csrf
                         @if (session('message'))
                             <div class="alert alert-danger" role="alert">
                                 {{ session('message') }}
                             </div>
                         @endif
-						<div class="login_group">
-							<label>Email or username</label>
-							<input name="email" type="email" placeholder="Type your email or username" required>
-						</div>
-						<div class="login_group">
-							<label>Password</label>
-							<a href="/forgot_password_view" class="forgot_pass">Forgot Password?</a>
-							<input name="password" type="password" placeholder="Type your password" required>
-						</div>
-
-						
-
-						<div class="login_group _mar_t10">
-							<input type="submit" value="Log in">
-						</div> 
-					</form>
+                        <div class="login_group">
+                            <label>New Password:</label>
+                            <input name="email"  id="email" type="hidden" value="{{\Request::get('email')}}">
+                            <input name="newPassword"  id="newPassword" type="password" placeholder="New password">
+                        </div>
+                        <div class="login_group">
+                            @if ($errors->has('password'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                        <div class="login_group">
+                            <label>Confirm Password:</label>
+                            <input name="confirmPassword"  id="confirmPassword" type="password" placeholder="Confirm password">
+                        </div>
+                        <div class="login_group">
+                            <label>Code:</label>
+                            <input name="token"  id="token" type="token" placeholder="Token">
+                        </div>
+                        <!-- <span class="forgot_pass">
+                        <a style="color: #000;font-size: 18px;" href="/forgot_password_view"> 
+                                Forgot Password?
+                                </a>
+                        </span> -->
+                        <div class="regi_form_item">
+                            <button type="submit" class="block_btn _mar_t30">
+                                {{ __('Save New Password') }}
+                            </button>
+                        </div>
+                    </form>
 					<!-- ==================Form ============== -->
 
-					<p class="login_social_cont">Home food delivery systems</p>
+					<p class="login_social_cont _mar_t20">Home food delivery systems</p>
 				</div>
 			</div>
 			<!-- Left End -->
