@@ -29,7 +29,7 @@
                                                         </a>
                                                      </template>
                                                      <template v-if=" authUser.user_type=='User'">
-                                                        <a href="/" >
+                                                        <a href="/profile" >
                                                             Profile
                                                         </a>
                                                      </template>

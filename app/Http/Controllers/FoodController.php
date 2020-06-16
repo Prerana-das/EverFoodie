@@ -19,13 +19,15 @@ class FoodController extends Controller
     }
     public function storeFood(Request $request){
         $data = $request->all();
-        return Food::create($data);
+        Food::create($data);
+        return Food::with('category','restaurant')->orderBy('id','desc')->first();
     }
 
     public function updateFood(Request $request){
         $data = $request->all();
         \Log::info($data);
-        return Food::where('id',$data['id'])->update($data);
+        Food::where('id',$data['id'])->update($data);
+        return Food::with('category','restaurant')->where('id',$data['id'])->orderBy('id','desc')->first();
     }
 
     public function deleteFood(Request $request){
@@ -35,8 +37,11 @@ class FoodController extends Controller
 
     
 
-    public function all_food_of_this_res($id){
-        return Food::with('category','restaurant')->where('res_id',$id)->get();
+    public function all_food_of_this_res(Request $request){
+        $restaurant = $request->restaurant;
+        $total = $request->total;
+        $data = Food::with('category','restaurant')->where('res_id',$restaurant)->orderBy('id','desc');
+        return $data->paginate($total);
     }
 
 

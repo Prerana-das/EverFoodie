@@ -8,117 +8,57 @@
     	<div class="container">
 			<div class="row">
 				<div class="col-md-8">
-					
-					<div class="modal fade" id="cart">
-						<div class="modal-dialog modal-dialog-centered modal-lg">
-							<div class="modal-content">
-								<div class="modal-header">
-									
-									<button class="close" data-dismiss="modal">Close</button>
-								</div>
-								<div class="modal-body">
-									<table class="table table-bordered">
-										<tbody>
-											<tr v-for="(cart,n) in carts" :key="n">
-												<td>{{ cart.name }}</td>
-												<td>{{ cart.amount*cart.price }}</td>
-												<!-- <td>
-													<input type="text" readonly class="form-control" v-model="cart.amount">
-												</td> -->
-												<td>
-
-												<template v-if="editQuantity">
-														<template>
-															<InputNumber :max="10" :min="1" v-model="cart.amount"></InputNumber>
-														
-														</template>
-														
-													</template>
-
-													<template v-else>{{cart.amount}}</template>
-												</td>
-												<td>
-													<Button type="info" @click="edit">Edit</Button>
-													<template v-if="editQuantity">
-														<Button type="success"  @click="editOff">Save</Button>
-													</template>
-													<Button type="error" @click="removeCart(n)">Remove</Button>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-								<div class="modal-footer">
-									
-									
-									<!-- <a href="/checkout" class="block_btn">
-										Checkout
-									</a> -->
-									
-								</div>
-							</div>
-						</div>
-					</div>
-
 					<Modal
 						v-model="modal6"
 						title="Your Cart"
 						>
-
-						<div class="_overflow _table_div">
-                            <table class="_table">
-                                    <!-- TABLE TITLE -->
+						<table class="table table-bordered">
+							<thead>
 								<tr>
-                                    <th>Name</th>
-                                    <th>Price</th>
-                                    <th>Amount</th>
-                                    <th>Action</th>
-                                </tr>
-                                <tr v-for="(cart,n) in carts" :key="n">
-									<td>{{ cart.name }}</td>
-									<td>{{ cart.amount*cart.price }}</td>
-									<!-- <td>
-										<input type="text" readonly class="form-control" v-model="cart.amount">
-									</td> -->
-									<td>
+								<th scope="col">Name</th>
+								<th scope="col">Price</th>
+								<th scope="col">quantity</th>
+								<th scope="col">Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr v-for="(cart,n) in carts" :key="n">
+								<th scope="row">{{ cart.name }}</th>
+								<td>{{ cart.amount*cart.price }}</td>
+								<td>
 									<template v-if="editQuantity">
 										<template>
-											<InputNumber :max="10" :min="1" v-model="cart.amount"></InputNumber>
-										
+											<InputNumber :min="1" v-model="cart.amount"></InputNumber>
 										</template>
 									</template>
-										<template v-else>{{cart.amount}}</template>
-									</td>
-									<td>
-										<Button type="info" @click="edit">Edit</Button>
-										<template v-if="editQuantity">
-											<Button type="success"  @click="editOff">Save</Button>
-										</template>
-										<Button type="error" @click="removeCart(n)">Remove</Button>
-									</td>
-								</tr> 
-                            </table>
-                        </div>
+									<template v-else>{{cart.amount}}</template>
+								</td>
+								<td>
+									<Button type="info" @click="edit">Edit</Button>
+									<template v-if="editQuantity">
+										<Button type="success"  @click="editOff">Save</Button>
+									</template>
+									<Button type="error" @click="removeCart(n)">Remove</Button>
+								</td>
+								</tr>
+							</tbody>
+						</table>
 						<div slot="footer">
-							<h3>
-								Total Price: BDT{{ totalprice }}
+							<h3 class="_mar_b20">
+								Total Price: BDT {{ totalprice }}
 							</h3>
 							<router-link :to="`/checkout/${restaurant.id}`" >
-								<button class="block_btn" @click="modal6 = false">Get Started</button>
+								<button class="block_btn" @click="modal6 = false">Make your order</button>
 							</router-link>
 			
-						<Button type="default" @click="modal6 = false">Close</Button>
+						<!-- <Button type="default" @click="modal6 = false">Close</Button> -->
 						
-					</div>
+						</div>
 					</Modal>
-
-
-				
-			
 					<!-- ===================== Restaurant Area Start ======================= -->
 					<div class="restaurant_details_banner_area ">
 					
-						<div class="restaurant_details_banner _padd_t100">
+						<div class="restaurant_details_banner _padd_t80">
 							<img :src="restaurant.image" alt="">
 						</div>
 						<div class="restaurant_details_title_area">
@@ -127,24 +67,25 @@
 									<div class="col-md-12">
 										<div class="restaurant_details_title_cont">
 											<h1 class="restaurant_details_title">{{ restaurant.name }}</h1>
-											<span class="block_item">20% Off</span>
-											<ul class="restaurant_details_item_list">
+											<span class="block_item" v-if="restaurant.res_discount!=null">{{restaurant.res_discount}}% Off</span>
+											<!-- <ul class="restaurant_details_item_list">
 												<li>Kabab & Grill</li>
 												<li>Asian</li>
 												<li>Chicken</li>
 												<li>Noodles</li>
-											</ul>
+											</ul> -->
 										</div>
+										<p class="restaurant_description">{{ restaurant.description }}</p>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="res_details_discount_area">
+						<div class="res_details_discount_area" v-if="restaurant.res_discount!=null">
 							<div class="container _padd_0">
 								<div class="row">
 									<div class="col-md-12">
-										<h1 class="res_details_discount">20% OFF</h1>
-										<p>Enjoy 20% Discount on Full Menu</p>
+										<h1 class="res_details_discount">{{restaurant.res_discount}}% OFF</h1>
+										<p>Enjoy {{restaurant.res_discount}}% Discount on Full Menu</p>
 									</div>
 								</div>
 							</div>
@@ -157,14 +98,14 @@
 						<div class="container _padd_0">
 							<div class="row">
 								<div class="col-md-12">
-									<ul class="restaurant_details_meal_menu">
+									<!-- <ul class="restaurant_details_meal_menu">
 										<li>Kabab & Grill</li>
 										<li>Asian</li>
 										<li>Chicken</li>
 										<li>Noodles</li>
 										<li>Chicken</li>
 										<li>Noodles</li>
-									</ul>
+									</ul> -->
 									
 									<!-- ITem -->
 									<ul class="restaurant_details_meal_list">
@@ -176,7 +117,7 @@
 											<div class="restaurant_meal_price_area">
 												<div class="restaurant_meal_price">
 													<span class="restaurant_meal_new">BDT {{ item.price }}</span>
-													<span class="restaurant_meal_old"><strike>BDT 120.00</strike></span>
+													<!-- <span class="restaurant_meal_old"><strike>BDT 120.00</strike></span> -->
 												</div>
 												<div class="addtocart_option">
 													<input type="hidden" v-model="quantity">
@@ -295,92 +236,110 @@
 						</template>
 					</div>
 				</div>
+
+				<div class="col-md-4">
+					<div class="single_restaurant_sidebar _box_shadow">
+						
+						<!-- Chcekout -->
+						<div class="checkout_area ">
+							<div class="checkout_cont">
+								<span class="checkout_cont_deliverytime">{{restaurant.delivery_time}} min</span>
+								<h3 class="checkout_cont_title">Your order from {{ restaurant.name }}</h3>
+								<p class="checkout_cont_sub">Start adding your favourite dishes!</p>
+							</div>
+							<button class="_mar_t15 cart_btn" @click="modal6 = true">
+								<i class="fas fa-shopping-cart"></i>
+								<span class="badge badge-light">{{ badge }}</span>
+							</button>
+							<template v-if="carts.length>0">
+								<p @click="closeSidebar" class="closeCart" v-if="this.closeClass==false">
+									<span>
+										Close <i class="fas fa-shopping-cart"></i>
+									</span>
+								</p>
+								<p @click="closeSidebar" class="closeCart" v-if="this.closeClass==true">
+									<span>
+										Open <Icon type="md-return-right" />
+									</span>
+								</p>
+							</template>
+							<template v-if="this.closeClass==false">
+								<div class="addcart_items">
+									<!-- Item -->
+									<ul class="addcart_items_list" >
+										<li>
+											<!-- <div class="table-wrapper-scroll-y my-custom-scrollbar"> -->
+											<table class="table table-striped">
+												<tbody>
+													<tr v-for="(cart,cartItem) in carts" :key="cartItem">
+														<td class="addcart_items_title">{{ cart.name }}</td>
+														<td class="addcart_items_price">{{ cart.amount*cart.price }}</td>
+														<!-- <td>
+															<input type="text" readonly class="form-control" v-model="quantity">
+														</td> -->
+														<td>
+															<div class="addtocart_option">
+																<ul class="addtocart_option_list">
+																	<li @click="cart_plus(cartItem)">
+																		<Icon type="ios-add" />
+																		<Icon type="ios-remove" />
+																	</li>
+																</ul>
+																<input type="number" v-model="cart.amount" min=1>
+																<span class="cart_cancel" @click="removeCart(cartItem)">
+																	<Icon type="md-close" />
+																</span>
+															</div>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											
+											<!-- </div> -->
+										</li>
+									</ul>
+									<!-- Item -->
+									
+								</div>
+							</template>
+							<!-- <div class="checkout_list _mar_t20">
+								<ul>
+									<li class="checkout_list_item">
+										<div class="checkout_list_left">
+											<p>Subtotal</p>
+										</div>
+										<div class="checkout_list_right">
+											<span>BDT {{ totalprice }}</span>
+										</div>
+									</li>
+									<li class="checkout_list_item">
+										<div class="checkout_list_left">
+											<p>Delivery fee</p>
+										</div>
+										<div class="checkout_list_right">
+											<span>BDT 00</span>
+										</div>
+									</li>
+									<li class="checkout_list_item">
+										<div class="checkout_list_left">
+											<p><b>Total</b></p>
+										</div>
+										<div class="checkout_list_right">
+											<span>BDT {{ totalprice }}</span>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<button class="block_btn checkout_btnnn">Checkout</button> -->
+
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 
 		<!-- ===================== Restaurant checkout end ======================= -->
-		<div class="single_restaurant_sidebar _box_shadow">
-			<!-- Chcekout -->
-			<div class="checkout_area ">
-				<div class="checkout_cont">
-					<span class="checkout_cont_deliverytime">20 min</span>
-					<h3 class="checkout_cont_title">Your order Kababia</h3>
-					<p class="checkout_cont_sub">You haven’t added anything to your cart yet! Start adding your favourite dishes</p>
-				</div>
-				<button class="_mar_t15 cart_btn" @click="modal6 = true">
-					<i class="fas fa-shopping-cart"></i>
-					<span class="badge badge-light">{{ badge }}</span>
-				</button>
-				<div class="addcart_items">
-					<!-- Item -->
-					<ul class="addcart_items_list" >
-						<li>
-							<div class="table-wrapper-scroll-y my-custom-scrollbar">
-							<table class="table table-striped">
-								<tbody>
-									<tr v-for="(cart,cartItem) in carts" :key="cartItem">
-										<td class="addcart_items_title">{{ cart.name }}</td>
-										<td class="addcart_items_price">{{ cart.amount*cart.price }}</td>
-										<!-- <td>
-											<input type="text" readonly class="form-control" v-model="quantity">
-										</td> -->
-										<td>
-											<div class="addtocart_option">
-												<ul class="addtocart_option_list">
-													<li @click="cart_plus(cartItem)">
-														<Icon type="ios-add" />
-														<Icon type="ios-remove" />
-													</li>
-												</ul>
-												<input type="number" v-model="cart.amount">
-												<span class="cart_cancel" @click="removeCart(cartItem)">
-													<Icon type="md-close" />
-												</span>
-											</div>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-							
-							</div>
-						</li>
-					</ul>
-					<!-- Item -->
-					
-				</div>
-				<!-- <div class="checkout_list _mar_t20">
-					<ul>
-						<li class="checkout_list_item">
-							<div class="checkout_list_left">
-								<p>Subtotal</p>
-							</div>
-							<div class="checkout_list_right">
-								<span>BDT {{ totalprice }}</span>
-							</div>
-						</li>
-						<li class="checkout_list_item">
-							<div class="checkout_list_left">
-								<p>Delivery fee</p>
-							</div>
-							<div class="checkout_list_right">
-								<span>BDT 00</span>
-							</div>
-						</li>
-						<li class="checkout_list_item">
-							<div class="checkout_list_left">
-								<p><b>Total</b></p>
-							</div>
-							<div class="checkout_list_right">
-								<span>BDT {{ totalprice }}</span>
-							</div>
-						</li>
-					</ul>
-				</div>
-				<button class="block_btn checkout_btnnn">Checkout</button> -->
-
-			</div>
-
-		</div>
+		
 		<!-- ===================== Restaurant checkout end ======================= -->
 		</div>
 	</div>
@@ -411,7 +370,8 @@ export default {
 			review_data:[],
 			single_review:[],
 			review_all_data:[],
-			modal6:false
+			modal6:false,
+			closeClass:false,
 		}
 	},
 
@@ -483,7 +443,7 @@ export default {
 		else{
 			this.carts.push(cartadd);
 			this.storeCart();
-			console.log('firsttime');
+			// console.log('firsttime');
 		}
 		},
 		removeCart(pro){
@@ -522,6 +482,10 @@ export default {
 				 this.review_data = res.data.review
             }
 		}, 
+		closeSidebar(){
+			if(this.closeClass == true) this.closeClass = false
+        	else this.closeClass = true
+		}
 			
 	}, 
 

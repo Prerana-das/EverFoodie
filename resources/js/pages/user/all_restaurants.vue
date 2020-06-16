@@ -48,32 +48,34 @@
 				<div class="row">
 
 					<!-- ITEM -->
-					<div v-for="(item,index) in filterrestaurant" :key="index" class="col-md-3" v-if="item.request_status=='Approved' && item.user_type=='Restaurant'">				
-						<router-link :to="`/singlerestaurant/${item.id}`">
-							<div class="single_restaurant _mar_b30">
-								<!-- <a href="singlerestaurant.html"> -->
-									<div class="restaurant_img _mar_b10">
-										<img v-if="item.image" :src="item.image" >
-										<span class="freedelivery">Free Delivery</span>
-										<span class="deliverytime">{{ item.delivery_time }} min</span>
-									</div>
-									<h4 class="restaurant_title">{{ item.name }}</h4>
-									<span class="restaurant_rating" v-if="item.avgreview">
-										<i class="fas fa-star"></i>
-										{{ item.avgreview.avgRating }} / 5
-									</span>
-									<p class="restaurant_sub">{{ item.description }}</p>
-								<!-- </a> -->
-							</div>
-						</router-link>
-					</div>
-
-					<!-- <span v-if="restaurant.length <= 0">
-						<div class="alert alert-warning" role="alert">
-							There no available Restaurants in this city.
+					<template v-if="filterrestaurant.length>0">
+						<div v-for="(item,index) in filterrestaurant" :key="index" class="col-md-3" v-if="item.request_status=='Approved' && item.user_type=='Restaurant'">				
+							<router-link :to="`/singlerestaurant/${item.id}`">
+								<div class="single_restaurant _mar_b30">
+									<!-- <a href="singlerestaurant.html"> -->
+										<div class="restaurant_img _mar_b10">
+											<img v-if="item.image" :src="item.image" >
+											<span class="freedelivery">Free Delivery</span>
+											<span class="deliverytime" v-if="item.delivery_time!=null">{{ item.delivery_time }} min</span>
+										</div>
+										<div class="restaurant_cont">
+											<h4 class="restaurant_title">{{ item.name }}</h4>
+											<span class="restaurant_rating" v-if="item.avgreview">
+												<i class="fas fa-star"></i>
+												{{ item.avgreview.avgRating }} / 5
+											</span>
+											<p class="restaurant_sub">{{ item.description }}</p>
+										</div>
+									<!-- </a> -->
+								</div>
+							</router-link>
 						</div>
-					</span> -->
-					<!-- ITEM -->
+					</template>
+					<template v-else>
+						<Alert class="text-center res_alert">
+							There're no available Restaurants.
+						</Alert>
+					</template>
 				</div>
 			</div>
 		</div>

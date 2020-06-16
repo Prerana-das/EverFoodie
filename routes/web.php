@@ -53,14 +53,14 @@ Route::get('/app/restaurant/{id}', "RestaurantController@singleRestaurant");
 Route::get('/app/all_city_restaurant/{id}', "RestaurantController@all_city_restaurant");
 Route::get('/app/all_restaurant', "RestaurantController@all_restaurant");
 Route::get('/app/all_restaurant_pagi', "RestaurantController@all_restaurant_pagi");
-
+Route::get('/app/all_subscription', "RestaurantController@all_subscription");
 
 // Restaurant food Route  
 Route::get('/app/all_food', "FoodController@allFood");
 Route::post('/app/add_food', "FoodController@storeFood");
 Route::post('/app/edit_food', "FoodController@updateFood");
 Route::post('/app/delete_food', "FoodController@deleteFood");
-Route::get('/app/all_food_of_this_res/{id}', "FoodController@all_food_of_this_res");
+Route::get('/app/all_food_of_this_res', "FoodController@all_food_of_this_res");
 Route::get('/app/all_food_pagi', "FoodController@all_food_pagi");
 
 
@@ -69,6 +69,7 @@ Route::get('/app/all_food_pagi', "FoodController@all_food_pagi");
 Route::post('/app/edit_user', "UserController@updateUser");
 Route::post('/app/delete_user', "UserController@deleteUser");
 Route::post('/app/registration', "UserController@registration");
+Route::post('/app/res_registration', "UserController@res_registration");  
 Route::post('/app/login', "UserController@login");
 Route::get('/app/all_user', "UserController@all_user");
 Route::post('/app/changePassword', 'UserController@changePassword');
@@ -76,9 +77,11 @@ Route::get('/app/getDataBySearch', "UserController@getDataBySearch");
 Route::get('/app/restaurant_user', "UserController@restaurant_user");
 Route::get('/app/all_user_pagi', "UserController@all_user_pagi");
 Route::get('/app/total_user', "UserController@total_user");
+Route::post('/app/update_res_status', "UserController@update_res_status");
 
 
-//Route::post('/app/changeIt', "UserController@changeIt");
+
+// Route::post('/app/changeIt', "UserController@changeIt");
 // Route::get('/login', function () {
 //     return view('login');
 // });
@@ -91,6 +94,9 @@ Route::post('/app/reviews', "ReviewController@reviews");
 Route::post('/app/place_order', "OrderController@place_order");
 Route::get('/app/get_all_order', "OrderController@get_all_order");
 Route::post('/app/cancel_order', "OrderController@cancel_order");
+Route::get('/app/get_user_order', "OrderController@get_user_order");
+Route::post('/app/user_order_cancel', "OrderController@user_order_cancel");
+
 
 
 //Checkout

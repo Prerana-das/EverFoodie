@@ -55,6 +55,11 @@
                                 {{ session('message') }}
                             </div>
                         @endif
+						@if (session('success_message'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('success_message') }}
+                            </div>
+                        @endif
 						<div class="login_group">
 							<label>Email or username</label>
 							<input name="email" type="email" placeholder="Type your email or username" required>

@@ -57,6 +57,23 @@ class OrderController extends Controller
         return $data->paginate($total);
     }
 
+    public function get_user_order(Request $request){
+        $user = $request->user;
+        return Order::with('user','order_details.food')->where('user_id',$user)->orderBy('id','desc')->get();
+        
+    }
+
+    public function user_order_cancel(Request $request){
+        return Order::where('id',$request->id)->delete();
+        // if($order){
+        //     \Mail::send('email/test', $data, function ($message){
+        //         $message->from('demo.com', 'demo');
+        //         $message->to( demo)->subject('Cancel ');
+        //     });
+        // }
+        // return $order;
+    }
+
     public function cancel_order(Request $request){
        
         // \Log::info($user);

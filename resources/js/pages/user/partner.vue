@@ -188,24 +188,28 @@
 							<h3 class="hour_title _mar_b30">Partnership Form</h3>
 
 							<form class="partnership-form" @submit.prevent="registration">
-								<div class="form-box required">
-									<input v-model="formItem.name" type="text" placeholder="Restaurant Name">
+								<div class="form-box">
+									<label class="form-box-label">Restaurant Name</label>
+									<input v-model="formItem.name" type="text" placeholder="Name">
 								</div>
 								<div class="form-box">
-									<Select v-model="formItem.city_id"  placeholder="Select City">
+									<label class="form-box-label">Select City</label>
+									<Select v-model="formItem.city_id"  placeholder="City">
 										<Option v-for="(item,index) in city" :value="item.id" :key="index">
 											{{ item.name }}
 										</Option>
 									</Select>
 								</div>
 								<div class="form-box">
-									<Select v-model="formItem.address" placeholder="Select Area">
+									<label class="form-box-label">Select Area</label>
+									<Select v-model="formItem.address" placeholder="Area">
 										<Option v-for="(item,index) in area" :value="item.name" :key="index">
 											{{ item.name }}
 										</Option>
 									</Select>
 								</div>
 								<div class="form-box">
+									<label class="form-box-label">Upload Image</label>
 									<Upload
 									ref="upload"
 									type="drag"
@@ -225,32 +229,37 @@
 									</Upload>
 								</div>
 								<div class="form-box">
-									<p>Average cost of a meal</p>
+									<label class="form-box-label">Average cost of a meal</label>
 									  <div id="radios">
-										<label>&#36;</label>
+										<label>BDT 150</label>
 										<input type="radio" value="150" v-model="formItem.cost">
-										<label>&#36; &#36;</label>
+										<label>BDT 300</label>
 										<input type="radio" value="300" v-model="formItem.cost">
-										<label>&#36; &#36; &#36;</label>
+										<label>BDT 1000</label>
 										<input type="radio" value="1000" v-model="formItem.cost">
 									</div>  
 
 									<!-- $ = Less than 150 BDT, $$ = Less than 300 BDT, $$$ = Less than 1000 BDT -->
 								</div>
 								<div class="form-box required">
+									<label class="form-box-label">Description</label>
 									<textarea v-model="formItem.description"></textarea>
 								</div>
 								<div class="form-box required">
+									<label class="form-box-label">Phone number</label>
 									<input v-model="formItem.phone" type="number" placeholder="Restaurant Phone">
 								</div>
 								<div class="form-box required">
+									<label class="form-box-label">Email</label>
 									<input v-model="formItem.email" type="email" placeholder="Restaurant Email">
 								</div>
 								<div class="form-box required">
+									<label class="form-box-label">Password</label>
 									<input v-model="formItem.password" type="password" placeholder="Restaurant Password">
 								</div>
 								<div class="form-box required">
-									<input v-model="formItem.password_confirmation" type="password" placeholder="Restaurant Password confirm">
+									<label class="form-box-label">Confirm Password</label>
+									<input v-model="formItem.password_confirmation" type="password" placeholder="Restaurant Confirm Password">
 								</div>
 								<!-- <input name="user_type" type="hidden" :value="someData"> -->
 								<div class="partnership-btn">
@@ -279,6 +288,7 @@
 					address:'',
 					image:'',
 					cost:'',
+					description:'',
 					city_id:'',
 					phone:'',
 					email:'',
@@ -309,15 +319,17 @@
 		
 
 			async registration(){
-				if(this.formItem.name == '') return this.i("Restaurant Name is empty!");
-				if(this.formItem.description == '') return this.i("Restaurant Name is empty!");
-				if(this.formItem.image == '') return this.i("Restaurant Name is empty!");
-				if(this.formItem.cost == '') return this.i("Restaurant Name is empty!");
+				if(this.formItem.name.trim() == '') return this.i("Restaurant Name is empty!");
+				if(this.formItem.city_id == '') return this.i("Restaurant City is empty!");
+				if(this.formItem.address == '') return this.i("Restaurant Area is empty!");
+				if(this.formItem.image == '') return this.i("Restaurant Image is empty!");
+				if(this.formItem.cost == '') return this.i("Restaurant avg cost is empty!");
+				if(this.formItem.description.trim() == '') return this.i("Restaurant Description is empty!");
 				if(this.formItem.phone == '') return this.i("Restaurant phone number is empty!");
-				if(this.formItem.email == '') return this.i("Restaurant email is empty!");
-				if(this.formItem.password == '') return this.i("Restaurant password is empty!");
+				if(this.formItem.email.trim() == '') return this.i("Restaurant email is empty!");
+				if(this.formItem.password.trim() == '') return this.i("Restaurant password is empty!");
 				this.formItem.user_type='Restaurant'
-				const res = await this.callApi('post','registration',this.formItem)
+				const res = await this.callApi('post','res_registration',this.formItem)
 
 				if(res.status == 200){
 					this.user.push(res.data)

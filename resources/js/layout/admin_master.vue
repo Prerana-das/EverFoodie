@@ -58,6 +58,11 @@
                 <Icon type="md-person" /> User List 
               </router-link> 
             </li>
+            <li class="_1side_menu_list_li" :class=" $route.path == '/admin/subscription' ?'_1side_menu_list_ul_active': ''">
+              <router-link to="/admin/subscription">
+                <i class="ivu-icon ivu-icon-md-list"></i> All Subscriptions 
+              </router-link> 
+            </li>
           </ul>
         </div>
         </div>

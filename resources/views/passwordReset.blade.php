@@ -55,6 +55,11 @@
                                 {{ session('message') }}
                             </div>
                         @endif
+                        @if (session('success_message'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('success_message') }}
+                            </div>
+                        @endif
                         <div class="login_group">
                             <label>New Password:</label>
                             <input name="email"  id="email" type="hidden" value="{{\Request::get('email')}}">
@@ -73,7 +78,7 @@
                         </div>
                         <div class="login_group">
                             <label>Code:</label>
-                            <input name="token"  id="token" type="token" placeholder="Token">
+                            <input name="token"  id="token" type="token" placeholder="Code">
                         </div>
                         <!-- <span class="forgot_pass">
                         <a style="color: #000;font-size: 18px;" href="/forgot_password_view"> 
@@ -82,7 +87,7 @@
                         </span> -->
                         <div class="regi_form_item">
                             <button type="submit" class="block_btn _mar_t30">
-                                {{ __('Save New Password') }}
+                                {{ __('Update Password') }}
                             </button>
                         </div>
                     </form>

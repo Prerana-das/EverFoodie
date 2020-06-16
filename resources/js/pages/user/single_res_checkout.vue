@@ -230,6 +230,9 @@ export default {
 		},
 
 		async placeOrder(){
+				if(!this.isLoggedIn){
+					return this.i("Please Login first  !")
+				}
 		
 				this.formItem.user_id=authUser.id
 				this.formItem.total_price=this.total

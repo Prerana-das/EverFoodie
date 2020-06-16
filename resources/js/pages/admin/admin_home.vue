@@ -76,7 +76,7 @@
 						<table class="_table">
 								<!-- TABLE TITLE -->
 							<tr>
-								<th>Date</th>
+								<th>#</th>
 								<th>Name</th>
 								<th>Address</th>
 								<th>Description</th>

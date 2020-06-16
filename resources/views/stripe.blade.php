@@ -39,7 +39,8 @@
                   <div class="delivery_details_1 _box_shadow _padd20 _mar_b30 _mar_t100">
                       @if(Session::has('success_message'))
                           <div class="alert alert-success">
-                              Your Payment is successful.
+                            <h5>{{ session('success_message') }}  </h5>
+                            <h6>Go back to home page -> <a href="/">Home</a> </h6>
                           </div>
                       @endif
                       <form action="{{ url('/checkout/stripepayment') }}" method="POST" id="payment-form">

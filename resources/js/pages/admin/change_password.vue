@@ -3,16 +3,16 @@
 		<div class="content">
 			<div class="container">
 
-				<h1>Change Password</h1>
+				<h1 class="_mar_b30">Change Password</h1>
 				<div class="row">
 					<div class="col-md-6">
 						<Form v-model="formItem">
 							<label>Old Password</label>
-							<Input type="password" placeholder="Old Password" v-model="formItem.current_password"></Input>
+							<Input class="_mar_b20" type="password" placeholder="Old Password" v-model="formItem.current_password"></Input>
 							<label>New Password</label>
-							<Input type="password" placeholder="New Password" v-model="formItem.new_password"></Input>
+							<Input class="_mar_b20" type="password" placeholder="New Password" v-model="formItem.new_password"></Input>
 							<label>Confirm Password</label>
-							<Input type="password" placeholder="Confirm Password" v-model="formItem.confirm_password"></Input>
+							<Input class="_mar_b30" type="password" placeholder="Confirm Password" v-model="formItem.confirm_password"></Input>
 
 							<button @click="changePassword" class="_btn _btn_info " >Update Password</button>
 						</Form>
@@ -59,13 +59,8 @@
                     this.e(res.data.msg)
                     // this.isLoading = false
                 }
-               
-                
 			}
 			
-
-	
-		
 
 		},
 		

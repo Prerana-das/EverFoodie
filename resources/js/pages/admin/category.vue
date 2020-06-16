@@ -33,7 +33,7 @@
 						<table class="_table">
 								<!-- TABLE TITLE -->
 							<tr>
-								<th>Date</th>
+								<th>#</th>
 								<th>Name</th>
 								<th>Action</th>
 							</tr>

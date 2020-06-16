@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Stripe\Stripe;
 use Stripe\Charge;
-
 use App\Order;
-
+use Illuminate\Support\Facades\Redirect;
 class CheckoutController extends Controller
 {
     //
@@ -43,7 +42,7 @@ class CheckoutController extends Controller
 
             //return  redirect("/checkout")->with('success_message',"thank you");
             
-            return  redirect("/checkout");
+            return Redirect::back()->with('success_message',"Thank You. Your payment is successful!");
 
 
      }

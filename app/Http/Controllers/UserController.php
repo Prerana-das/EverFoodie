@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers; // namespace before use App\user must
-
+use Validator;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -9,18 +9,46 @@ use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
     //
     public function registration(Request $request)
     {
+        $validator = Validator::make($request->all(),
+        [
+            'name'=>'required|string|max:255',
+            'email'=>'required|string|max:255|email|unique:users',
+            'address'=>'required|string|max:255',
+            'phone'=>'required|string|max:255|regex:/^(?:\+?88)?01[15-9]\d{8}$/i',
+            'password'=>'required|string|min:6|confirmed',
+        ]);
+
+
+        if ($validator->fails()){
+            return Redirect::back()->withErrors($validator);
+        }
+        $data = $request->all();
+        $data['password'] = Hash::make($data['password']);
+        $user = User::create($data);
+        return redirect('/login')->with('success_message',"Your registration is successful. Please enter your email & password!");
+        
+        // return response()->json([
+        //     'user' => $user,
+        //        'success' => true
+        //    ],200);
+ 
+    }
+
+    public function res_registration(Request $request)
+    {
         $this->validate($request,
         [
             'name'=>'required|string|max:255',
             'email'=>'required|string|max:255|email|unique:users',
             'address'=>'required|string|max:255',
-            'phone'=>'required|string|max:255',
+            'phone'=>'required|string|max:255|regex:/^(?:\+?88)?01[15-9]\d{8}$/i',
             'password'=>'required|string|min:6|confirmed',
         ]);
 
@@ -87,20 +115,20 @@ class UserController extends Controller
         $total = $request->res_id;
         return User::with('avgreview','city')->where('id',$total)->get();
     }
-    // public function changeIt(Request $request){
-    //     $data = $request->all();
-        
-    //     if($data['request_status']=='approve') $data['request_status'] = 'Pending';
-    //     if($data['request_status']=='pending') $data['request_status'] = 'Approved';
-
-    //     return User::where('id',$data['id'])->update($data);
-    // }
 
     public function updateUser(Request $request){
         $data = $request->all();
         \Log::info($data);
         return User::where('id',$data['id'])->update($data);
     }
+
+    public function update_res_status(Request $request){
+        $data = $request->all();
+        // \Log::info($data);
+        $update_data = User::where('id',$data['id'])->update($data);
+        return  User::where('id',$data['id'])->get();
+    }
+
 
     public function deleteUser(Request $request){
         $data = $request->all();
@@ -219,7 +247,7 @@ class UserController extends Controller
                 $message->from('preranadas97@gmail.com','Verification Code');
                 $message->to($email)->subject('Password reset code');
             });
-            return redirect()->route('passwordReset', ['email' => $request->email])->with('message',"password reset code has been Sent!");
+            return redirect()->route('passwordReset', ['email' => $request->email])->with('success_message',"Password reset code has been Sent!");
     }
 
     public function PasswordReset(Request $request){
@@ -240,7 +268,7 @@ class UserController extends Controller
             // ],401);
         }
         \DB::table('password_resets')->where('email',$request->email)->delete();
-        return redirect("/login")->with('message',"Password has been updated successfully!");
+        return redirect("/login")->with('success_message',"Password has been updated successfully!");
     }
     
 }

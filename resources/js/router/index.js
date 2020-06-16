@@ -13,6 +13,7 @@ import restaurant from '../pages/user/restaurant.vue'
 import singlerestaurant from '../pages/user/singlerestaurant.vue'
 import city_restaurant from '../pages/user/city_restaurant.vue'
 import all_restaurants from '../pages/user/all_restaurants.vue'
+import profile from '../pages/user/profile.vue'
 
 
 
@@ -27,6 +28,8 @@ import review from '../pages/admin/review.vue'
 import user from '../pages/admin/user.vue'
 import change_password from '../pages/admin/change_password.vue'
 import admin_home from '../pages/admin/admin_home.vue'
+import subscription from '../pages/admin/subscription.vue'
+
 
 
 //Restaurant
@@ -127,6 +130,14 @@ export default new Router({
           title: 'city_restaurant',
       }
     },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: profile,
+      meta: {
+          title: 'profile',
+      }
+    },
 
 
     //admin
@@ -207,6 +218,14 @@ export default new Router({
       }
     },
     {
+      path: '/admin/subscription',
+      name: 'subscription',
+      component: subscription,
+      meta: {
+          title: 'subscription',
+      }
+    },
+    {
       path: '/admin',
       name: 'admin_home',
       component: admin_home,
@@ -214,7 +233,6 @@ export default new Router({
           title: 'admin_home',
       }
     },
-
     //restaurant
     {
       path: '/restaurantProfile',

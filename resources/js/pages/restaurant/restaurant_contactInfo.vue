@@ -53,7 +53,7 @@
 				const res = await this.callApi('post','edit_user',this.formItem)
 				if(res.status == 200){
 					this.user[this.editIndex] = _.clone(this.formItem) 
-					this.s("User Updated  !")
+					this.s("Updated successfully!")
                 }
 				else{
 					this.swr();

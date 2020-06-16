@@ -46,7 +46,8 @@ class ReviewController extends Controller
 
     public function all_review(Request $request){
         $total = $request->total;
-        $data = Review::with('user')->orderBy('id','desc');
+        $restaurant = $request->restaurant;
+        $data = Review::with('user')->where('res_id',$restaurant)->orderBy('id','desc');
         return $data->paginate($total);
     }
 

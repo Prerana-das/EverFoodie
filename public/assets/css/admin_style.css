@@ -928,9 +928,8 @@ p {
       margin-top: 63px;
   }
   ._3login_input_group {
-      margin-bottom: 30px;
-  }
-  ._3login_input_group input{}
+    margin-bottom: 18px;
+}
   ._3login_input_button {
       text-align: center;
   }
@@ -11864,6 +11863,24 @@ p {
     font-weight: bold;
     color: #222;
     font-size: 13px;
+}
+
+
+/* neww */
+/* ._table th:last-child, ._table tr td:last-child {
+    padding: 8px 25px;
+    min-width: 54px;
+    background-color: red;
+} */
+._table tr td {
+    border: 1px solid #f3f3f3;
+    text-align: left;
+    padding: 8px 13px;
+    min-width: 80px;
+    font-size: 15px;
+}
+.res_table ._table tr td:last-child {
+    min-width: 201px;
 }
   
   

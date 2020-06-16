@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\User;
+use App\Subscription;
 
 class RestaurantController extends Controller
 {
@@ -45,7 +46,11 @@ class RestaurantController extends Controller
         return User::with('avgreview','city')->where('city_id',$id)->where('request_status','Approved')->get();
     }
 
-
+    public function all_subscription(Request $request){
+        $total = $request->total;
+        $data = Subscription::orderBy('id','desc');
+        return $data->paginate($total);
+    }
 
 
 

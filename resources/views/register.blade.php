@@ -51,11 +51,17 @@
 					<!-- ==================Form ============== -->
 					<form  method="POST" action="/app/registration">
                     @csrf
-                        <!-- @if (session('message'))
+                        @if (session('message'))
                             <div class="alert alert-danger" role="alert">
                                 {{ session('message') }}
                             </div>
-                        @endif -->
+                        @endif
+
+						<!-- @if($errors->any())
+						<div class="alert alert-danger" role="alert">
+							{{ implode('', $errors->all(':message')) }}
+							</div>
+						@endif -->
 
 						<div class="login_group">
 							<label>Your Username</label>
@@ -80,11 +86,21 @@
 						</div>
 						<div class="login_group">
 							<label>Your Address</label>
-							<input name="address" type="text" placeholder="Type your Address">
+							<input id="address" name="address" type="text" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}"  placeholder="Type your Address">
+							@if ($errors->has('address'))
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $errors->first('address') }}</strong>
+								</span>
+							@endif
 						</div>
 						<div class="login_group">
 							<label>Your Phone Number</label>
-							<input name="phone" type="number" placeholder="Type your number">
+							<input id="phone" name="phone" type="number" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" placeholder="Type your email">
+							@if($errors->has('phone'))
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $errors->first('phone') }}</strong>
+								</span>
+							@endif
 						</div>
 						<div class="login_group">
 							<label>Password</label>

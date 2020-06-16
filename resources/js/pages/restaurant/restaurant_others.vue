@@ -11,10 +11,13 @@
                                     <Input type="text"  v-model="formItem.description"></Input>
                                 </FormItem>
                                 <FormItem label="Average Cost">
-                                    <Input type="text" number  v-model="formItem.cost"></Input>
+                                    <Input type="number" v-model="formItem.cost"></Input>
                                 </FormItem>
                                 <FormItem label="Delivery Time">
-                                    <Input type="text" number  v-model="formItem.delivery_time"></Input>
+                                    <Input type="number"  v-model="formItem.delivery_time"></Input>
+                                </FormItem>
+                                <FormItem label="Total Discount">
+                                    <Input type="number" v-model="formItem.res_discount"></Input>
                                 </FormItem>
                                 <FormItem>
                                     <Button type="primary" @click="updateUser">Save Change</Button>
@@ -39,6 +42,7 @@
 					cost:authUser.cost,
                     description:authUser.description,
                     delivery_time:authUser.delivery_time,
+                    res_discount:authUser.res_discount,
                     id:authUser.id
                 },
                 user:[]
@@ -59,7 +63,7 @@
 				const res = await this.callApi('post','edit_user',this.formItem)
 				if(res.status == 200){
 					this.user[this.editIndex] = _.clone(this.formItem) 
-					this.s("User Updated  !")
+					this.s("Updated successfully !")
 				}
 				else{
 					this.swr();

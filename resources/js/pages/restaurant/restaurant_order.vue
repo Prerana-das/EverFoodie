@@ -6,44 +6,50 @@
                 <div class="row justify-content-end">
                     <div class="col-md-8">
                         <div class="dashboard-user">
-                            <div class="_overflow _table_div _mar_t30">
-                                <table class="_table">
-                                        <!-- TABLE TITLE -->
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Total Price</th>
-                                        <th>All Item</th>
-                                        <th>Payment Method</th>
-                                        <th>Action</th>
-                                    </tr>
-                                        <!-- TABLE TITLE -->
+                            <template v-if="pagination['data'] == 0">
+                                <Alert class="text-center _padd15">
+                                    <strong>No Data available</strong>
+                                </Alert>
+                            </template>
+                            <template v-else>
+                                <div class="_overflow _table_div _mar_t30">
+                                    <table class="_table">
+                                            <!-- TABLE TITLE -->
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>All Item</th>
+                                            <th>Total Price</th>
+                                            <th>Action</th>
+                                        </tr>
+                                            <!-- TABLE TITLE -->
 
 
-                                        <!-- ITEMS -->
-                                    <tr v-for="(item, i) in order" :key="i">
-                                        <td>{{item.id}}</td>
-                                        <td>{{item.total_price}}</td>
-                                        <td v-if="item.order_details">
-                                            <span v-for="(neww, i) in item.order_details" :key="i">
-                                                {{ neww.food.name }} <span>({{ neww.quantity }})</span>
-                                            </span>
-                                        </td>
-                                        <td v-if="item.order_details">
-                                            <span v-for="(neww, inn) in item.order_details" :key="inn">
-                                                {{  neww.payment_method }} 
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <button class="_btn _action_btn view_btn1" type="button" @click="viewDetails(item, i)">View Details</button>
-                                            <Button type="error" size="small" @click="cancel_order(item, i)">Cancel</Button>			
-                                        </td>
-                                    </tr>
-                                        <!-- ITEMS -->
-                                </table>
-                            </div>
-                            <div style="text-align:center;" class="pagination_div _mar_t30">
-                                <Page :current="pagination.current_page" :total="pagination.total" @on-change="getpaginate" :page-size="parseInt(pagination.per_page)" />
-                            </div>
+                                            <!-- ITEMS -->
+                                        <tr v-for="(item, i) in order" :key="i">
+                                            <td>{{item.id}}</td>
+                                            <td v-if="item.order_details">
+                                                <span v-for="(neww, i) in item.order_details" :key="i">
+                                                    {{ neww.food.name }} <span>({{ neww.quantity }})</span>
+                                                </span>
+                                            </td>
+                                            <td>{{item.total_price}}</td>
+                                            <!-- <td v-if="item.order_details">
+                                                <span v-for="(neww, inn) in item.order_details" :key="inn">
+                                                    {{  neww.payment_method }} 
+                                                </span>
+                                            </td> -->
+                                            <td>
+                                                <button class="_btn _action_btn view_btn1" type="button" @click="viewDetails(item, i)">View Details</button>
+                                                <Button type="error" size="small" @click="cancel_order(item, i)">Cancel</Button>			
+                                            </td>
+                                        </tr>
+                                            <!-- ITEMS -->
+                                    </table>
+                                </div>
+                                <div style="text-align:center;" class="pagination_div _mar_t30">
+                                    <Page :current="pagination.current_page" :total="pagination.total" @on-change="getpaginate" :page-size="parseInt(pagination.per_page)" />
+                                </div>
+                            </template>
                          </div>
                           <Modal
                             v-model="orderDetails"
@@ -110,7 +116,7 @@
 				//if(this.user_name == '') return this.i("User Type is empty!");
 				const res = await this.callApi('post','edit_user',this.formItem)
 				if(res.status == 200){
-					this.user[this.editIndex] = _.clone(this.formItem) 
+                    this.user[this.editIndex] = _.clone(this.formItem) 
 					this.s("User Updated  !")
 				}
 				else{

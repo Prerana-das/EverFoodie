@@ -68,7 +68,7 @@
 							<input name="email"  id="email"  type="email" placeholder="Email" required>
 						</div>
 						<div class="login_group">
-							<input class="block_btn _mar_t30" type="submit" >
+							<input class="block_btn _mar_t30" type="submit" value="Recover Password">
 						</div>
                  </form>
 				 
