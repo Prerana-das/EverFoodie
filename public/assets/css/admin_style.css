@@ -11882,5 +11882,8 @@ p {
 .res_table ._table tr td:last-child {
     min-width: 201px;
 }
+.order_table ._table tr td:last-child {
+    min-width: 180px!important;
+}
   
   

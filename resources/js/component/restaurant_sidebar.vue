@@ -47,6 +47,12 @@
                                 All Order
                             </router-link>
                         </li>
+                        <li class="acc acc-contact" :class=" $route.path == '/restaurantProfile/restaurant_change_pass' ?'dash-active': ''">
+                            <router-link to="/restaurantProfile/restaurant_change_pass">
+                                <Icon type="md-shuffle" />
+                                Change Password
+                            </router-link>
+                        </li>
                         <li class="acc acc-contact" :class=" $route.path == '/restaurantProfile/restaurant_others' ?'dash-active': ''">
                             <router-link to="/restaurantProfile/restaurant_others">
                                 <Icon type="md-copy" />

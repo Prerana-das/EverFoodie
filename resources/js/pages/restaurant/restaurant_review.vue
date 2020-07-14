@@ -6,18 +6,18 @@
                 <div class="row justify-content-end">
                     <div class="col-md-8">
                         <div class="dashboard-review" id="desh-review">
-                           <h2 class="_1title _text_center _mar_b30">ALL Reviews</h2>
+                           <h2 class="_1title _text_center">All Reviews</h2>
 							<div class="_comm_re_details"  >
 								<template v-if="pagination.total == 0">
                                     <Alert class="text-center _padd15">
                                         <strong>No Data available</strong>
                                     </Alert>
                                 </template>
-								<template v-else>
-									<div class="_comments_items _flex_row _border_color" v-for="(item,index) in review_all_data" :key="index">
-										<div class="_comments_items_pic">
-											<img class="_comments_items_img" src="/assets/img/user_img.png" alt="" title="">
-										</div>
+                                <template v-else>
+								<div class="_comments_items _flex_row _border_color" v-for="(item,index) in review_all_data" :key="index">
+									<div class="_comments_items_pic">
+										<img class="_comments_items_img" src="/assets/img/user_img.png" alt="" title="">
+									</div>
 
 										<div class="_comments_items_details">
 											<p class="_comments_items_name" v-if="item.user">{{item.user.name}}</p>
@@ -45,7 +45,7 @@
 									<div style="text-align:center;" class="pagination_div _mar_t30">
 										<Page :current="pagination.current_page" :total="pagination.total" @on-change="getpaginate" :page-size="parseInt(pagination.per_page)" />
 									</div>
-								 </template>
+							</template>
 							</div> 
                         </div>
                     </div>
@@ -69,7 +69,7 @@ export default {
     },
     methods :{
        async getpaginate(page = 1){
-			const res  = await this.callApi('get',`all_review?page=${page}&total=${ parseInt(this.total)}`)
+			const res  = await this.callApi('get',`all_review?restaurant=${this.authUser.id}&page=${page}&total=${ parseInt(this.total)}`)
 			if(res.status == 200){
 				this.review_all_data = res.data.data
 				this.pagination = res.data
@@ -80,7 +80,6 @@ export default {
 		},
 	},
     async created(){
-
         const res = await this.callApi('get',`all_review?restaurant=${this.authUser.id}&total=${this.total}`)
         if(res.status == 200){
 			this.review_all_data = res.data.data
@@ -90,12 +89,10 @@ export default {
             this.swr()
         }
 		
-
     }
 }
 </script>
 
 
 <style scoped>
-
 </style>

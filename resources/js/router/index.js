@@ -40,7 +40,7 @@ import restaurant_review from '../pages/restaurant/restaurant_review.vue'
 import restaurant_food from '../pages/restaurant/restaurant_food.vue'
 import restaurant_others from '../pages/restaurant/restaurant_others.vue'
 import restaurant_order from '../pages/restaurant/restaurant_order.vue'
-
+import restaurant_change_pass from '../pages/restaurant/restaurant_change_pass.vue'
 
 //checkout payment_vue
 import single_res_checkout from '../pages/user/single_res_checkout.vue'
@@ -289,6 +289,14 @@ export default new Router({
       component: restaurant_order,
       meta: {
           title: 'restaurant_order',
+      }
+    },
+    {
+      path: '/restaurantProfile/restaurant_change_pass',
+      name: 'restaurant_change_pass',
+      component: restaurant_change_pass,
+      meta: {
+          title: 'restaurant_change_pass',
       }
     },
     {

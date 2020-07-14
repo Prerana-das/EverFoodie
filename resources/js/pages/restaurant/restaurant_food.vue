@@ -77,13 +77,13 @@
                                         <Button type="primary" @click="add_food">Add Food</Button>
                                     </div>
                                 </Modal>
-                                <template v-if="food.length == 0">
+                                <template v-if="pagination.total == 0">
                                     <Alert class="text-center _padd15">
                                         <strong>No Data available</strong>
                                     </Alert>
                                 </template>
                                 <template v-else>
-                                    <div class="_overflow _table_div">
+                                    <div class="_overflow _table_div order_table ">
                                         <table class="_table">
                                                 <!-- TABLE TITLE -->
                                             <tr>
@@ -131,10 +131,12 @@
                                                 <!-- ITEMS -->
                                         </table>
                                     </div>
-                                    <div style="text-align:center;" class="pagination_div _mar_t30">
+                                     <div style="text-align:center;" class="pagination_div _mar_t30">
 										<Page :current="pagination.current_page" :total="pagination.total" @on-change="getpaginate" :page-size="parseInt(pagination.per_page)" />
 									</div>
-                                </template>
+                                 </template>
+                                   
+                                <!-- </template> -->
                                 <Modal
                                 v-model="editModal"
                                 :mask-closable="false"
@@ -257,7 +259,7 @@
         },
         methods: {
             async getpaginate(page = 1){
-                const res  = await this.callApi('get',`all_food_of_this_res?page=${page}&total=${ parseInt(this.total)}`)
+                const res  = await this.callApi('get',`all_food_of_this_res?restaurant=${this.authUser.id}&page=${page}&total=${ parseInt(this.total)}`)
                 if(res.status == 200){
                     this.food = res.data.data
                     this.pagination = res.data

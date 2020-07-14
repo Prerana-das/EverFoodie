@@ -8,7 +8,8 @@
                         <div class="dashboard-user" id="desh-user">
                             <Form ref="formCustom" :label-width="80">      
                                 <FormItem label="Description">
-                                    <Input type="text"  v-model="formItem.description"></Input>
+                                    <!-- <Input type="text"  v-model="formItem.description"></Input> -->
+                                    <Input v-model="formItem.description" type="textarea" :autosize="{minRows: 3,maxRows: 8}"></Input>
                                 </FormItem>
                                 <FormItem label="Average Cost">
                                     <Input type="number" v-model="formItem.cost"></Input>

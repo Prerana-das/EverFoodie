@@ -17,14 +17,14 @@
                                     </div>
                                 </div>
                                 <!-- ITEM -->
-                                <!-- <div class="col-md-6">
+                                <div class="col-md-6">
                                     <div class="dashboard-item">
-                                        <h3 class="dashboard-item-title">Total Order</h3>
+                                        <h3 class="dashboard-item-title">Total Food</h3>
                                         <ul class="dashboard-item-list">
-                                            <li>{{ allOrder.total }}</li>
+                                            <li>{{ allFood.total }}</li>
                                         </ul>
                                     </div>
-                                </div> -->
+                                </div>
                                 <!-- ITEM -->
                                 <div class="col-md-6">
                                     <div class="dashboard-item">
@@ -67,6 +67,7 @@
                 user:[],
                 allOrder:[],
                 allReview:[],
+                allFood:[],
                 total:"7",
 				 
 			}
@@ -75,15 +76,17 @@
 		},
 		
 		 async created(){
-            const [res1, res2,res3,res4,res5] = await Promise.all([ 
+            const [res1, res2,res3,res4] = await Promise.all([ 
             this.callApi('get',`restaurant_user?res_id=${this.authUser.id}`),
             this.callApi('get',`get_all_order?restaurant=${this.authUser.id}&&total=${this.total}`),
-            this.callApi('get',`all_review?total=${this.total}`)
+            this.callApi('get',`all_review?restaurant=${this.authUser.id}&total=${this.total}`),
+            this.callApi('get',`all_food_of_this_res?restaurant=${this.authUser.id}&&total=${this.total}`)
             ])
-            if(res1.status == 200 && res2.status == 200 && res3.status == 200) {
+            if(res1.status == 200 && res2.status == 200 && res3.status == 200 && res4.status == 200) {
                 this.user = res1.data
                 this.allOrder= res2.data
                 this.allReview= res3.data
+                this.allFood= res4.data
             }
             else{
                 this.swr()

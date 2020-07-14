@@ -94,7 +94,7 @@
 					<!-- ===================== Restaurant Area end ======================= -->
 					
 					<!-- ===================== Restaurant Details Meal Start ======================= -->
-					<div class="restaurant_details_meal">
+					<div class="restaurant_details_meal" v-if="restaurant.food.length>0">
 						<div class="container _padd_0">
 							<div class="row">
 								<div class="col-md-12">
@@ -112,6 +112,9 @@
 										<!-- <label class="restaurant_meal_list_label">BREAKFAST</label> -->
 										<li class="restaurant_details_meal_item" v-for="(item,index) in restaurant.food" :key="index">
 											<div class="restaurant_meal_title">
+												<span class="food_img">
+													<img :src="item.image" alt="image">
+												</span>
 												{{ item.name }}
 											</div>
 											<div class="restaurant_meal_price_area">
@@ -280,12 +283,13 @@
 														<td>
 															<div class="addtocart_option">
 																<ul class="addtocart_option_list">
-																	<li @click="cart_plus(cartItem)">
+																	<!-- <li @click="cart_plus(cartItem)"> -->
+																	<li>
 																		<Icon type="ios-add" />
 																		<Icon type="ios-remove" />
 																	</li>
 																</ul>
-																<input type="number" v-model="cart.amount" min=1>
+																<input type="number" v-model="cart.amount" min=1  @click="cart_plus(cartItem)">
 																<span class="cart_cancel" @click="removeCart(cartItem)">
 																	<Icon type="md-close" />
 																</span>
@@ -357,6 +361,7 @@ export default {
 				name:'',
 				price:'',
 				amount:'',
+				res_id:''
 			},
 			badge:'0',
 			quantity:'1',
@@ -421,6 +426,7 @@ export default {
 			cartadd.name= item.name;
 			cartadd.price=item.price;
 			cartadd.amount=this.quantity;
+			cartadd.res_id=item.res_id
 			// this.carts.push(this.cartadd);
 			// 	//this.cartadd = {};
 			// 	this.storeCart();
@@ -436,6 +442,11 @@ export default {
 					}
 				}
 				if(flag == false){
+					for (let i of this.carts) {     //'in' get only index but 'of' get the full obj
+						if( i.res_id!=item.res_id){
+							this.carts.splice(i,this.carts.length);
+						}
+					}
 					this.carts.push(cartadd);
 					this.storeCart();
 				}
@@ -443,10 +454,11 @@ export default {
 		else{
 			this.carts.push(cartadd);
 			this.storeCart();
-			// console.log('firsttime');
+			console.log('firsttime');
 		}
 		},
 		removeCart(pro){
+			console.log(pro);
 			this.carts.splice(pro,1);
 			this.storeCart();
 		},

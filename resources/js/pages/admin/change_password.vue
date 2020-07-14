@@ -16,8 +16,6 @@
 
 							<button @click="changePassword" class="_btn _btn_info " >Update Password</button>
 						</Form>
-
-		
 					</div>
 				</div>
 			</div>

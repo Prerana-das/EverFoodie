@@ -6,13 +6,14 @@
                 <div class="row justify-content-end">
                     <div class="col-md-8">
                         <div class="dashboard-user">
-                            <template v-if="pagination['data'] == 0">
+                            <h2 class="_1title _text_center">All Order</h2>
+                              <template v-if="pagination.total == 0">
                                 <Alert class="text-center _padd15">
                                     <strong>No Data available</strong>
                                 </Alert>
                             </template>
                             <template v-else>
-                                <div class="_overflow _table_div _mar_t30">
+                                <div class="_overflow _table_div order_table _mar_t30">
                                     <table class="_table">
                                             <!-- TABLE TITLE -->
                                         <tr>

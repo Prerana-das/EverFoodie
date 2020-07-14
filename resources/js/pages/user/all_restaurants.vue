@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="main_banner">
                         <h1 class="main_title _mar_b20">
-							All Restaurant On Everfoodie				
+							All Restaurants On Everfoodie				
 						</h1>
 						
                         <!-- <div class="main_search">
@@ -60,9 +60,11 @@
 										</div>
 										<div class="restaurant_cont">
 											<h4 class="restaurant_title">{{ item.name }}</h4>
-											<span class="restaurant_rating" v-if="item.avgreview">
+											<span class="restaurant_rating">
 												<i class="fas fa-star"></i>
-												{{ item.avgreview.avgRating }} / 5
+												<span v-if="item.avgreview">
+													{{ item.avgreview.avgRating }} / 5
+												</span>
 											</span>
 											<p class="restaurant_sub">{{ item.description }}</p>
 										</div>

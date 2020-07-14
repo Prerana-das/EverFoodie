@@ -129,4 +129,5 @@ Route::post('app/PasswordReset', 'UserController@PasswordReset');
 Route::get('/passwordReset', 'UserController@passwordReset_view')->name('passwordReset');
 
 
-Route::any('{slug}', 'HomeController@home')->where('slug', '([A-z\d-\/_.]+)?');
+// Route::any('{slug}', 'HomeController@home')->where('slug', '([A-z\d\-\/_.]+)');
+Route::any('{slug}', 'HomeController@home')->where('slug', '[\/\w\.-]*');

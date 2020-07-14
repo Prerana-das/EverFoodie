@@ -5,7 +5,7 @@
             <div class="container">
                 <div class="row">
                     <div class="main_banner">
-                        <h1 class="main_title _mar_b20">Order Takeaway or Delivery Food</h1>
+                        <h1 class="main_title _mar_b40">Order Takeaway or Delivery Food</h1>
                         <div class="main_search">
                             <div class="main_search_form">
                                 <div class="search_location">

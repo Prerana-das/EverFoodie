@@ -31,10 +31,10 @@
                 <div class="edit_info_area _mar_t100">
                   <h3 class="_mar_b30 edit_info_title">Edit Information</h3>
                     <div class="edit_info_form">
-                      Name:<input type="text" v-model="formItem.name" placeholder="Name:">
-                      Email:<input type="email" v-model="formItem.email" placeholder="Email:">
-                      Phone:<input type="text"  v-model="formItem.phone" placeholder="Contact Number:">
-                      Address:<input type="text"  v-model="formItem.address" placeholder="Address:"><br>
+                      Name:<input type="text" v-model="formItem.name" placeholder="Name">
+                      Email:<input type="email" v-model="formItem.email" placeholder="Email">
+                      Phone:<input type="text"  v-model="formItem.phone" placeholder="Contact Number">
+                      Address:<input type="text"  v-model="formItem.address" placeholder="Address"><br>
                       <button @click="updateUser()" class="block_btn" type="submit" >Save</button>
                     </div>
                 </div>
@@ -72,8 +72,8 @@
                                 {{ neww.food.name }} <span>({{ neww.quantity }})</span>
                             </span>  
                          </h3>
-                          <p class="appintment_l_time">{{item.total_price}}</p>
-                          <p class="appintment_l_time">{{item.id}}</p>
+                          <p class="appintment_l_time">BDT {{item.total_price}}</p>
+                         <!--  <p class="appintment_l_time">{{item.id}}</p> -->
                       </div>
                      <div class="appointment_list_cancel " @click="cancelOrder(item, index)">
                        <p>
@@ -136,7 +136,7 @@
                 const res = await this.callApi('post','changePassword',this.passFormItem)
                 if(res.status===200){
                     this.s('Password changed successfully!')  
-                    // this.$router.push('/') 
+                    window.location = '/logout'
                 }
                  else{
                     this.e(res.data.msg)

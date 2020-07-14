@@ -118,7 +118,7 @@
     z-index: -1;
 }
 .home_banner_area {
-    background-image: url(../img/banner.jpg);
+    background-image: url(../img/bg1.jpg);
     background-size: cover;
     /* background-position: center; */
     background-repeat: no-repeat;
@@ -140,7 +140,7 @@
 .main_banner {
     position: absolute;
     top: 50%;
-    left: 9%;
+    left: 13%;
     transform: translateY(-50%);
 }
 .main_title {
@@ -151,6 +151,7 @@
 .main_search {
     background-color: #fff;
     padding: 10px;
+    border-radius: 2px;
 }
 .main_search_form{
     display: flex;
@@ -571,7 +572,7 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 8em;
+    width: 11em;
 }
 .restaurant_rating i {
     font-size: 13px;
@@ -1084,11 +1085,12 @@
 }
 .login_list_dropdown_list {
     position: absolute;
-    top: 14px;
+    top: 13px;
     left: -45px;
     background-color: #fff;
     border-radius: 2px;
     width: 120px;
+    box-shadow: 0px 3px 21px -2px rgba(149, 149, 247, 0.25);
 }
 .login_list_dropdown_list li:last-child {
     border-top:1px solid #ddd;
@@ -1097,11 +1099,13 @@
 
 /* =======================Deshboard page===================== */
 .dashboard-left {
-    background-color: #F0F3F4;
+    background-color: #fff;
     margin-top: 100px;
+    margin-bottom: 50px;
     position: absolute;
     width: 280px;
     left: 9%;
+    box-shadow: 0px 3px 21px -2px rgba(149, 149, 247, 0.25);
 }
 .dashboard-list li {
    margin-bottom: 0px;
@@ -1114,7 +1118,7 @@
     display: block;
 }
 .dashboard-list li:hover{
-   background-color: #283B6224;
+   background-color: #718dc524;
    color:#283B62;
 }
 .dashboard-list li:hover i{
@@ -1153,6 +1157,7 @@
     min-height: 92px;
     display: flex;
     justify-content: space-between;
+    box-shadow: 0px 3px 21px -2px rgba(149, 149, 247, 0.25);
 }
 .desh-main-title {
     text-transform: capitalize;
@@ -1386,6 +1391,7 @@
     display: flex;
     justify-content: space-between;
     width: 20%;
+    align-items: center;
 }
 .addtocart_option_list li:nth-child(2) {
     background-color: #eb2f06;
@@ -1668,9 +1674,10 @@
     color: #666;
     margin: 0px 0 0px;
 }
-._comments_items_name{
-	    font-weight: bold;
+._comments_items_name {
+    font-weight: bold;
     font-size: 14px;
+    text-transform: capitalize;
 }
 ._comments_items_pro_name {
     font-size: 14px;
@@ -1975,6 +1982,14 @@ label.form-box-label {
 }
 .restaurant_meal_title {
     text-transform: capitalize;
+    display: flex;
+    align-items: center;
+}
+.food_img img {
+    width: 54px;
+    height: 40px;
+    margin-right: 15px;
+    border: 1px solid #ddd;
 }
 
 

@@ -160,9 +160,11 @@
 										</div>
 										<div class="restaurant_cont">
 											<h4 class="restaurant_title">{{ item.name }}</h4>
-											<span class="restaurant_rating" v-if="item.avgreview">
+											<span class="restaurant_rating">
 												<i class="fas fa-star"></i>
-												{{ item.avgreview.avgRating }} / 5
+												<span v-if="item.avgreview">
+													{{ item.avgreview.avgRating }} / 5
+												</span>
 											</span>
 											<p class="restaurant_sub">{{ item.description }}</p>
 										</div>	
